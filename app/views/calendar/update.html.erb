@@ -1,0 +1,14 @@
+<%=@day.date%>
+<table border=1>
+	<tr>
+		
+	<%for stat in @slots%>
+	<td>
+	<%for st in stat%> 
+	st[0] = <%=st[0]%> | st[1] = <%=st[1]%><br/>
+	<%end%>
+	</td>
+	<%end%>
+	
+	</tr>
+</table>

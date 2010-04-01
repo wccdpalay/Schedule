@@ -1,0 +1,22 @@
+%p= flash[:notice]
+%table{:border=>1, :style=>'table-layout:fixed;'}
+  %caption Template #{@wtemplate.name}
+  %tr
+    %td
+      %table{:border=>1}
+        %tr
+          %td
+            %table{:border=>1}
+              %caption Date
+              %tr<
+                %td<
+                  &nbsp;
+              %tr<
+                %td<
+                  &nbsp;
+              - for x in TIME_SLOTS do
+                %tr<
+                  %td<
+                    =x
+          - for x in 1..7 
+            = render :partial => "template_select", :locals => {:x => x}

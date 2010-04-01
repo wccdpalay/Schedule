@@ -1,0 +1,7 @@
+Pick a starting date
+<% form_tag "view" do -%>
+<%= select_date(Date.today, :date_separator => '/') %><br/>
+Length: <%= select_tag("length", "<option>day</option><option>week</option><option>1</option><option>2</option><option>3</option><option>4</option>"
+) %><br />
+<%= submit_tag ("Go to Date")%>
+<% end -%>

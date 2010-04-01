@@ -1,0 +1,52 @@
+body {
+	background:	#eeeeff;	
+}
+
+td ul li
+{
+	list-style: none;
+}
+
+td{
+	text-align: center;
+}
+
+table {
+	white-space: nowrap;
+}
+
+.col1{
+	background-color:#CCF;
+}
+
+.col2{
+	background-color:#CDF;
+}
+
+.col3{
+	background-color:#CEE;
+}
+
+.col4{
+	background-color:#BED;
+}
+
+.col{
+	
+}
+
+.day_link{
+	text-align: center;	
+}
+
+.current_day table{
+	border: medium outset #B43530;
+}
+
+.today table{
+	border: medium outset #EE6600;
+}
+
+.blocked {
+	background-color:#363636
+}

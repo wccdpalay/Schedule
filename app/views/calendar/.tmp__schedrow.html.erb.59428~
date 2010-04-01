@@ -1,0 +1,16 @@
+<tr>
+	
+	<td>
+		<%= render :partial => "slot/slot", :locals => {:slot => day.slotAs[row], :col => 1}%>
+	</td>
+	<td>
+		<%= render :partial => "slot/slot", :locals => {:slot => day.slotBs[row], :col => 2}%>
+	</td>
+	<td>
+		<%= render :partial => "slot/slot", :locals => {:slot => day.slotCs[row], :col => 3}%>
+	</td>
+	<td>
+		<%= render :partial => "slot/slot", :locals => {:slot => day.slotDs[row], :col => 4}%>
+	</td>
+	
+</tr>

@@ -1,0 +1,311 @@
+= DB Charmer - ActiveRecord Connection Magic Plugin
+
++DbCharmer+ is a simple yet powerful plugin for ActiveRecord that does a few things:
+
+1. Allows you to easily manage AR models' connections (+switch_connection_to+ method)
+2. Allows you to switch AR models' default connections to a separate servers/databases
+3. Allows you to easily choose where your query should go (<tt>Model.on_*</tt> methods family)
+4. Allows you to automatically send read queries to your slaves while masters would handle all the updates.
+5. Adds multiple databases migrations to ActiveRecord
+
+
+== Installation
+
+There are two options when approaching db-charmer installation:
+* using the gem (recommended)
+* install as a Rails plugin
+
+To install as a gem, add this to your environment.rb:
+
+  config.gem 'db-charmer', :lib => 'db_charmer', :source => 'http://gemcutter.org'
+
+And then run the command:
+
+  sudo rake gems:install
+
+To install db-charmer as a Rails plugin use this:
+
+  script/plugin install git://github.com/kovyrin/db-charmer.git
+
+
+== Easy ActiveRecord Connection Management
+
+As a part of this plugin we've added +switch_connection_to+ method that accepts many different kinds
+of db connections specifications and uses them on a model. We support:
+
+1. Strings and symbols as the names of connection configuration blocks in database.yml.
+2. ActiveRecord models (we'd use connection currently set up on a model).
+3. Database connections (<tt>Model.connection</tt>)
+4. Nil values to reset model to default connection.
+
+Sample code:
+
+  class Foo < ActiveRecord::Model; end
+
+  Foo.switch_connection_to(:blah)
+  Foo.switch_connection_to('foo')
+  Foo.switch_connection_to(Bar)
+  Foo.switch_connection_to(Baz.connection)
+  Foo.switch_connection_to(nil)
+
+The +switch_connection_to+ method has an optional second parameter +should_exist+ which is true
+by default. This parameter is used when the method is called with a string or a symbol connection
+name and there is no such connection configuration in the database.yml file. If this parameter
+is +true+, an exception would be raised, otherwise, the error would be ignored and no connection
+change would happen.
+
+This is really useful when in development mode or in a tests you do not want to create many different
+databases on your local machine and just want to put all your tables in a single database.
+
+*Warning*: All the connection switching calls would switch connection *only* for those classes the
+method called on. You can't call the +switch_connection_to+ method and switch connection for a
+base class in some hierarchy (for example, you can't switch AR::Base connection and see all your
+models switched to the new connection, use the classic +establish_connection+ instead).
+
+
+== Multiple DB Migrations
+
+In every application that works with many databases, there is need in a convenient schema migrations mechanism.
+
+All Rails users already have this mechanism - rails migrations. So in +DbCharmer+, we've made it possible
+to seamlessly use multiple databases in Rails migrations.
+
+There are two methods available in migrations to operate on more than one database:
+
+1. Global connection change method - used to switch whole migration to a non-default database.
+2. Block-level connection change method - could be used to do only a part of a migration on a non-default db.
+
+Migration class example (global connection rewrite):
+
+  class MultiDbTest < ActiveRecord::Migration
+     db_magic :connection => :second_db
+
+     def self.up
+       create_table :test_table, :force => true do |t|
+         t.string :test_string
+         t.timestamps
+       end
+     end
+
+     def self.down
+       drop_table :test_table
+     end
+   end
+
+Migration class example (block-level connection rewrite):
+
+  class MultiDbTest < ActiveRecord::Migration
+    def self.up
+      on_db :second_db do
+        create_table :test_table, :force => true do |t|
+          t.string :test_string
+          t.timestamps
+        end
+      end
+    end
+
+    def self.down
+      on_db :second_db { drop_table :test_table }
+    end
+  end
+
+Migration class example (global connection rewrite, multiple connections with the same table):
+(NOTE: both :connection and :connections can take an array of connections)
+
+  class MultiDbTest < ActiveRecord::Migration
+    db_magic :connections => [:second_db, :default]
+
+    def self.up
+      create_table :test_table, :force => true do |t|
+        t.string :test_string
+        t.timestamps
+      end
+    end
+
+    def self.down
+      drop_table :test_table
+    end
+  end
+
+By default in development and test environments you could skip this <tt>:second_db</tt>
+connection from your database.yml files and rails would create the tables in your single database,
+but in production you'd specify it and get the table created on a separate server and/or in a
+separate database.
+
+This behaviour is controlled by the <tt>DbCharmer.migration_connections_should_exist</tt>
+configuration attribute which could be set from a rails initializer.
+
+
+== Using Models in Master-Slave Environments
+
+Master-slave replication is the most popular scale-out technique in a medium-sized and
+large database-centric applications today. There are some rails plugins out there that help
+developers to use slave servers in their models but none of them were flexible enough
+for us to start using them in a huge application we work on.
+
+So, we've been using ActsAsReadonlyable plugin for a long time and have made tons
+of changes in its code over the time. But since that plugin has been abandoned
+by its authors, we've decided to collect all of our master-slave code in one plugin
+and release it for rails 2.2+. +DbCharmer+ adds the following features to Rails models:
+
+
+=== Auto-Switching all Reads to the Slave(s)
+
+When you create a model, you could use <tt>db_magic :slave => :blah</tt> or
+<tt>db_magic :slaves => [ :foo, :bar ]</tt> commands in your model to set up reads
+redirection mode when all your find/count/exist/etc methods will be reading data
+from your slave (or a bunch of slaves in a round-robin manner). Here is an example:
+
+  class Foo < ActiveRecord::Base
+    db_magic :slave => :slave01
+  end
+
+  class Bar < ActiveRecord::Base
+    db_magic :slaves => [ :slave01, :slave02 ]
+  end
+
+
+=== Default Connection Switching
+
+If you have more than one master-slave cluster (or simply more than one database)
+in your database environment, then you might want to change the default database
+connection of some of your models. You could do that by using
+<tt>db_magic :connection => :foo</tt> call from your models. Example:
+
+  class Foo < ActiveRecord::Base
+    db_magic :connection => :foo
+  end
+
+Sample model on a separate master-slave cluster (so, separate main connection +
+a slave connection):
+
+  class Bar < ActiveRecord::Base
+    db_magic :connection => :bar, :slave => :bar_slave
+  end
+
+=== Per-Query Connection Management
+
+Sometimes you have select queries that you know you want to run on the master.
+This could happen for example when you have just added some data and need to read
+it back and not sure if it made it all the way to the slave yet or no. For this
+situation and a few others there is a set of methods we've added to ActiveRecord models:
+
+1) +on_master+ - this method could be used in two forms: block form and proxy form.
+In the block form you could force connection switch for a block of code:
+
+  User.on_master do
+    user = User.find_by_login('foo')
+    user.update_attributes!(:activated => true)
+  end
+
+In the proxy form this method could be used to force one query to be performed on
+the master database server:
+
+  Comment.on_master.last(:limit => 5)
+  User.on_master.find_by_activation_code(code)
+  User.on_master.exists?(:login => login, :password => password)
+
+2) +on_slave+ - this method is used to force a query to be run on a slave even in
+situations when it's been previously forced to use the master. If there is more
+than one slave, one would be selected randomly. Tis method has two forms as
+well: block and proxy.
+
+3) <tt>on_db(connection)</tt> - this method is what makes two previous methods
+possible. It is used to switch a model's connection to some db for a short block
+of code or even for one statement (two forms). It accepts the same range of values
+as the +switch_connection_to+ method does. Example:
+
+  Comment.on_db(:olap).count
+  Post.on_db(:foo).find(:first)
+
+
+=== Associations Connection Management
+
+ActiveRecord models can have an associations with each other and since every model has its
+own database connections, it becomes pretty hard to manage connections in a chained calls
+like <tt>User.posts.count</tt>. With a class-only connection switching methods this call
+would look like the following if we'd want to count posts on a separate database:
+
+  Post.on_db(:olap) { User.posts.count }
+
+Apparently this is not the best way to write the code and we've implemented an <tt>on_*</tt>
+methods on associations as well so you could do things like this:
+
+  @user.posts.on_db(:olap).count
+  @user.posts.on_slave.find(:title => 'Hello, world!')
+
+Notice: Since ActiveRecord associations implemented as proxies for resulting
+objects/collections, it is possible to use our connection switching methods even without
+chained methods:
+
+  @post.user.on_slave - would return post's author
+  @photo.owner.on_slave - would return photo's owner
+
+
+Starting with +DbCharmer+ release 1.4 it is possible to use prefix notation for has_many
+and HABTM associations connection switching:
+
+  @user.on_db(:foo).posts
+  @user.on_slave.posts
+
+
+=== Bulk Connection Management
+
+Sometimes you want to run code where a large number of tables may be used, and you'd like
+them all to use an alternate database. You can now do this:
+
+  DbCharmer.with_remapped_databases(:logs => :big_logs_slave) { ... }
+
+Any model whose default database is +:logs+ (e.g., <tt>db_charmer :connection => :logs</tt>)
+will now have its connection switched to +:big_logs_slave+ in that block. This is lower
+precedence than any other +DbCharmer+ method, so <tt>Model.on_db(:foo).find(...)</tt> and
+such things will still use the database they specify, not the one that model was remapped
+to.
+
+You can specify any number of remappings at once, and you can also use +:master+ as a database
+name that matches any model that has not had its connection set by +DbCharmer+ at all.
+
+*Note*: +DbCharmer+ works via +alias_method_chain+ in model classes. It is very careful
+to only patch the models it needs to. However, if you use +with_remapped_databases+ and 
+remap the default database (+:master+), then it has no choice but to patch all subclasses
+of +ActiveRecord::Base+. This should not cause any serious problems or any big performance
+impact, but it is worth noting.
+
+
+=== Named Scopes Support
+
+To make it easier for +DbCharmer+ users to use connections switching methods with named scopes,
+we've added <tt>on_*</tt> methods support on the scopes as well. All the following scope chains
+would do exactly the same way (the query would be executed on the :foo database connection):
+
+  Post.on_db(:foo).published.with_comments.spam_marked.count
+  Post.published.on_db(:foo).with_comments.spam_marked.count
+  Post.published.with_comments.on_db(:foo).spam_marked.count
+  Post.published.with_comments.spam_marked.on_db(:foo).count
+
+And now, add this feature to our associations support and here is what we could do:
+
+  @user.on_db(:archive).posts.published.all
+  @user.posts.on_db(:olap).published.count
+  @user.posts.published.on_db(:foo).first
+
+
+== Documentation
+
+For more information on the plugin internals, please check out the source code. All the plugin's
+code is ~100% covered with a tests that were placed in a separate staging rails project located
+at http://github.com/kovyrin/db-charmer-sandbox. The project has unit tests for all or at least the
+most of the parts of plugin's code.
+
+
+== What Ruby and Rails implementations does it work for?
+
+We have a continuous integration setups for this plugin on MRI 1.8.6 with Rails 2.2 and 2.3.
+We use the plugin in production on Scribd.com with MRI (rubyee) 1.8.6 and Rails 2.2.
+
+
+== Who are the authors?
+
+This plugin has been created in Scribd.com for our internal use and then the sources were opened for
+other people to use. All the code in this package has been developed by Alexey Kovyrin for Scribd.com
+and is released under the MIT license. For more details, see the LICENSE file.

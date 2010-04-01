@@ -1,0 +1,109 @@
+--- !ruby/object:Gem::Specification 
+name: db-charmer
+version: !ruby/object:Gem::Version 
+  prerelease: false
+  segments: 
+  - 1
+  - 5
+  - 5
+  version: 1.5.5
+platform: ruby
+authors: 
+- Alexey Kovyrin
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-03-15 00:00:00 -04:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: rails
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        segments: 
+        - 2
+        - 2
+        - 0
+        version: 2.2.0
+  type: :runtime
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: blankslate
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        segments: 
+        - 0
+        version: "0"
+  type: :runtime
+  version_requirements: *id002
+description: ActiveRecord Connections Magic (slaves, multiple connections, etc)
+email: alexey@kovyrin.net
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- LICENSE
+- README.rdoc
+files: 
+- .gitignore
+- CHANGES
+- LICENSE
+- Makefile
+- README.rdoc
+- Rakefile
+- VERSION
+- db-charmer.gemspec
+- init.rb
+- lib/db_charmer.rb
+- lib/db_charmer/abstract_adapter_extensions.rb
+- lib/db_charmer/active_record_extensions.rb
+- lib/db_charmer/association_preload.rb
+- lib/db_charmer/connection_factory.rb
+- lib/db_charmer/connection_proxy.rb
+- lib/db_charmer/connection_switch.rb
+- lib/db_charmer/db_magic.rb
+- lib/db_charmer/finder_overrides.rb
+- lib/db_charmer/multi_db_migrations.rb
+- lib/db_charmer/multi_db_proxy.rb
+- lib/db_charmer/scope_proxy.rb
+- lib/tasks/databases.rake
+has_rdoc: true
+homepage: http://github.com/kovyrin/db-charmer
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --charset=UTF-8
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.6
+signing_key: 
+specification_version: 3
+summary: ActiveRecord Connections Magic
+test_files: []
+

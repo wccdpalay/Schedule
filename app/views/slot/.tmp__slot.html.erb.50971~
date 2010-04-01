@@ -1,0 +1,22 @@
+<% case col -%>
+<% when 1 -%>
+	<div class="col1">
+<% when 2 -%>
+	<div class="col2">
+<% when 3 -%>
+	<div class="col3">
+<% when 4 -%>
+	<div class="col4">
+<% else -%>
+	<div class="col">
+<% end -%>
+		<!-- >
+				We need to call the partial here.  
+				The helper should be a dropdown of the 
+					possible users & "Blocked".  The <td> needs to have 
+					class equal to "normal" or "blocked"
+		</!-->
+<%# "(#{col}, #{x})" %>
+<%= get_user_for_slot(slot)%>
+
+</div>

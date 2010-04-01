@@ -1,0 +1,30 @@
+<p><%=flash[:notice]%></p>
+<table border=1 style="table-layout:fixed;">
+
+  <caption>
+	Template <%= @wtemplate.name%>
+  </caption>
+  <tbody align=center>
+  <tr>
+    <td>
+      <table border=1>
+        <tr>
+          <td>
+            <table border=1>
+              <caption>Date</caption>
+			  <tr><td>&nbsp;</td></tr>
+			  <tr><td>&nbsp;</td></tr>
+              <% for x in TIME_SLOTS do -%>
+                <%= "<tr><td> #{x} </td></tr>"%>
+              <% end -%>
+            </table>
+          </td>
+          <% for x in 1..7 -%>
+            <%= render :partial => 'template_select' %>
+          <% end -%>
+        </tr>    
+      </table>
+    </td>
+  </tr>
+  </tbody>
+</table>

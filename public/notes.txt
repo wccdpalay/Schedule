@@ -1,0 +1,22 @@
+TODO:
+	User roles
+		Variable limitation on # hours.  
+		unique color for the table?
+		Control only unclaimed and their own spots
+	
+	Administration
+		Control ANYONE
+		Make templates
+		Propagate Templates into a given week
+		
+	Lock schedule once day is passed*  (Or some other criteria)
+	Lock day/week when being edited		(redirect back with flash[:notice]
+	
+	Coloration
+		Logged in user is shown in different color
+	
+	
+	
+class DUser < ActiveRecord::Base
+table_name 'drupal_db.users'
+end

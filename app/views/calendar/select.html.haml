@@ -1,0 +1,5 @@
+%p Pick a starting date
+-form_tag "view" do
+  =select_date(Date.today, :date_separator => '/')
+  %br
+  =submit_tag ("Go To Date")
