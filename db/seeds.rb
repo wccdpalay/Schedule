@@ -8,7 +8,7 @@
 
 #blank Day_Template
 daytemplates = Dtemplate.create([{:name => "Blank"}, {:name => "Blank Fall/Winter Weekday"}])
-wtemplate = WTemplate.create({:name => "Empty Template"})
+wtemplate = Wtemplate.create({:name => "Empty Template"})
 
 
 
@@ -51,7 +51,7 @@ end
 end
 
 
-for year in 2010..2030
+year = Date.today.year
   #def init_year(year)
 puts "starting year #{year}"
 #puts "making new date"
@@ -112,4 +112,3 @@ puts "Week #{woy} saved with start_date = #{w.start_date}"
 puts "Saved #{d.date}"
       days -= 1
     end
-  end

@@ -14,9 +14,3 @@ TODO:
 	
 	Coloration
 		Logged in user is shown in different color
-	
-	
-	
-class DUser < ActiveRecord::Base
-table_name 'drupal_db.users'
-end

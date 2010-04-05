@@ -22,6 +22,7 @@ Rails::Initializer.run do |config|
    config.gem "rufus-scheduler", :source => "http://gemcutter.org"
    config.gem "haml"
    config.gem 'db-charmer', :lib => 'db_charmer', :source => 'http://gemcutter.org'
+   config.gem 'chronic'
 
    
 
