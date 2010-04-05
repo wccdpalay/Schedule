@@ -10,7 +10,7 @@ TODO:
 		Propagate Templates into a given week
 		
 	Lock schedule once day is passed*  (Or some other criteria)
-	Lock day/week when being edited		(redirect back with flash[:notice]
+
 	
 	Coloration
 		Logged in user is shown in different color
