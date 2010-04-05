@@ -92,7 +92,7 @@ def init_year(year)
   w.save!
 #puts "Week #{woy} saved with start_date = #{w.start_date}"
 #puts "Making new day"
-  d = Day.new({:date => date, :week => w})
+  d = Day.new({:date => date, :week => w, :being_edited => DateTime.now - 2.years})
   d.save!
 #puts "Saved #{d.date}"
   days -= 1
@@ -105,7 +105,7 @@ def init_year(year)
       w.save!
 #puts "Week #{woy} saved with start_date = #{w.start_date}"        
     end
-    d = Day.new({:date => d.date.tomorrow, :week => w})
+    d = Day.new({:date => d.date.tomorrow, :week => w, :being_edited => DateTime.now - 2.years})
     d.save!
 #puts "Saved #{d.date}"
     days -= 1
