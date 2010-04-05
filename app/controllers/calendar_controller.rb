@@ -68,8 +68,10 @@ class CalendarController < ApplicationController
     
     #completely unsatisfied with Rail's Locking mechanism, I'm writing my own.  
     #On an edit, the Day#being_edited attribute is updated to the current time.  If the attribute is within
-    #the EDITLAG set in the environment, then it is "locked".  
-    if @sd.being_edited < (DateTime.now - 2.minutes)
+    #the EDITLAG set in the environment, then it is "locked".
+  
+    #if @sd.being_edited < (DateTime.now - 2.minutes)
+    if true
      @sd.being_edited = DateTime.now  
      @sd.save!
     else
@@ -93,8 +95,8 @@ class CalendarController < ApplicationController
     end
     @day.being_edited = (DateTime.now - 1.year)
     @day.save!
-    redirect_to :controller => :calendar, :action => :view, 
-                :year => params[:year], :month => params[:month], :day => params[:day]
+    #redirect_to :controller => :calendar, :action => :view, 
+    #            :year => params[:year], :month => params[:month], :day => params[:day]
   end
   
   
