@@ -7,10 +7,13 @@ development:
  timeout: 5000
 
 arc:
- adapter: sqlite3
- database: db/arc_development.sqlite3
+ adapter: mysql
+ database: arc_sched_prod
+ user: root
+ password: MySQLroot
  pool: 5
  timeout: 5000
+ socket: /var/mysql/mysql.sock
 
 
 # Warning: The database defined as "test" will be erased and
@@ -25,8 +28,8 @@ test:
 production:
  adapter: mysql
  database: sched_prod
- user:
- password:
+ user:  root
+ password:  MySQLroot
  pool: 5
  timeout: 5000
- socket:
+ socket: /var/mysql/mysql.sock
