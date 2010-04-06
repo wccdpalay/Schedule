@@ -1,0 +1,38 @@
+%p
+  = flash[:notice]
+%p
+  = link_to "Admin Clear", :controller => :calendar, :action => :admin_clear
+  - if @length != 7
+    = link_to "View the whole week", {:controller => :calendar, :action => :view,       | 
+                                      :length => "week", :year => @start_day.date.year, |
+                                      :month => @start_day.date.month,                  |
+                                      :day => @start_day.date.day}                      |
+%table{:border => 1, :style => "table-layout: fixed;"}
+  %caption
+    = "Schedule starting on #{@start_day.date.strftime(fmt='%A, %B %d, %Y')}"
+    %br
+    =link_to_cal(h("<back 1 week> "), (@sd.date-7), @length)
+    = link_to_cal(h("<back 1 day> "), (@sd.date-1), @length)
+    = link_to_cal(h("<forward 1 day> "), (@sd.date+1), @length
+    = link_to_cal(h("<forward 1 week>"), (@sd.date+7), @length)
+  %tbody{:align => center}
+    %tr
+      %td
+        %table{:border => 1}
+          %tr
+            %td
+              %table{:border => 1}
+                %caption Date
+                %tr<
+                  %td &nbsp;
+                - for x in TIME_SLOTS
+                  %tr<
+                    %td<
+                      =x
+            - for x in 1..@length.to_i
+              = render :partial => 'day', :locals => {:day => @start_day.date+(x-1), |
+                  :is_today => (@sd.date == @start_day.date+(x-1))}                  |
+  %tr<
+    %td< Your total hours will go here!
+
+              
