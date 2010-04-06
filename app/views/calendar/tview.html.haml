@@ -11,7 +11,7 @@
   %caption
     = "Schedule starting on #{@start_day.date.strftime(fmt='%A, %B %d, %Y')}"
     %br
-    =link_to_cal(h("<back 1 week> "), (@sd.date-7), @length)
+    = link_to_cal(h("<back 1 week> "), (@sd.date-7), @length)
     = link_to_cal(h("<back 1 day> "), (@sd.date-1), @length)
     = link_to_cal(h("<forward 1 day> "), (@sd.date+1), @length
     = link_to_cal(h("<forward 1 week>"), (@sd.date+7), @length)
