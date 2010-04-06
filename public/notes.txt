@@ -2,6 +2,16 @@ TODO:
 
 Set up Production environment
 Make sure Timed events are going off (set it to clear a date at a given time, just to test)
+Users.  Pull from session?  Joomla's session info
+calendar/edit for work-studies & level2s
+"View my schedule for this week"
+
+Aesthetics (last issue)
+
+Rails app shit for apache is in /etc/apache2/site/0000_207.72...
+
+
+
 
 
 
@@ -15,6 +25,10 @@ Make sure Timed events are going off (set it to clear a date at a given time, ju
 		Control ANYONE
 		Make templates
 		Propagate Templates into a given week
+		View anyone's schedule
+		
+		
+		
 		
 	Lock schedule once day is passed*  (Or some other criteria)
 
