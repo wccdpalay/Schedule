@@ -1,4 +1,11 @@
 TODO:
+
+Set up Production environment
+Make sure Timed events are going off (set it to clear a date at a given time, just to test)
+
+
+
+
 	User roles
 		Variable limitation on # hours.  
 		unique color for the table?
