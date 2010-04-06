@@ -32,7 +32,7 @@ role :db,  "207.72.2.8", :primary => true # This is where Rails migrations will 
 
 
 set :mongrel_cmd, "/usr/bin/mongrel_rails_persist"
-set :mongrel_ports, 3000..3000
+set :mongrel_ports, 3000..3001
 
 
 
