@@ -45,4 +45,9 @@ namespace :deploy do
   task :restart, :roles => :app do
     run "touch #{current_release}/tmp/restart.txt"
   end
+  
+  desc "get the archive up"
+  task :arch, :rols => :app do
+    run "rake db:create RAILS_ENV=arc"
+  end
 end
