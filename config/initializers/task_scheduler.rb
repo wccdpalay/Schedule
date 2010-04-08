@@ -121,19 +121,19 @@ archiver = Rufus::Scheduler::PlainScheduler.start_new(
 addyear = Rufus::Scheduler::PlainScheduler.start_new(
     :thread_name => 'New Year adder')
   
-tester = Rufus::Scheduler::PlainScheduler.start_new(
-    :thread_name => 'testing')
+#tester = Rufus::Scheduler::PlainScheduler.start_new(
+ #   :thread_name => 'testing')
     
-    tester.every '30s' do
-      d = Day.find_by_date(Date.today)
-      for x in d.slotAs.length
-        d.slotCs[x].user_id = d.slotBs[x].user_id
-        d.slotBs[x].user_id = d.slotAs[x].user_id
-        d.slotAs[x].user_id = d.slotCs[x].user_id
-        d.slotBs[x].save!
-        d.slotAs[x].save!
-      end
-    end
+  #tester.every '30s' do
+    #d = Day.find_by_date(Date.today)
+    #for x in 0..d.slotAs.length-1
+      #d.slotCs[x].user_id = d.slotBs[x].user_id
+      #d.slotBs[x].user_id = d.slotAs[x].user_id
+      #d.slotAs[x].user_id = d.slotCs[x].user_id
+      #d.slotBs[x].save!
+      #d.slotAs[x].save!
+    #end
+  #end
     
   
   #Every day at 00:01, check for the NEXT day's schedule
