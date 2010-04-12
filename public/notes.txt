@@ -40,25 +40,54 @@ Rails app shit for apache is in /etc/apache2/site/0000_207.72...
 		
 		
 //******************************************************************
+a :before_filter will have to check the session table of the Joomla database
+to make sure that the user is still logged in with an active session.  
+
+on the startup of the schedule, (arriving at the site), the rail's session's user
+will have to be set by looking up (using session_id) in the Joomla-db session-table
+
+session_id comes from the php script listed below.
+
+//******************************************************************
 		
 In "login" controller
+
+
+#Method 1:
 #	`php /Library/WebServer/Documents/Joomla/tech.php`
 
-require 'open-uri'
-require 'pp'
+#Method 2:
+	require 'open-uri'
+	require 'pp'
+	
+	open('https://serafina.labs.is.wccnet.org/joomla/tech.php') do |page|
+	  content = page.read
+	  # do something with content
+	  pp content
+	end		
+			
+			
+#In PHP scripts in joomla
+			
+	<?php
+	define( '_JEXEC', 1 );
+	define( 'DS', DIRECTORY_SEPARATOR );
+	define('JPATH_BASE', dirname(__FILE__) );
+	
+	require_once ( JPATH_BASE .DS.'includes'.DS.'defines.php' );
+	require_once ( JPATH_BASE .DS.'includes'.DS.'framework.php' );
+	
+	$mainframe =& JFactory::getApplication('site');
+	$mainframe->initialise();
+	
+	$session =& JFactory::getSession();
+	//print_r($session);
+	//$user =& JFactory::getUser();
+	//print_r($user);
+	
+	print(session_id());
+	?>
 
-open('https://serafina.labs.is.wccnet.org/joomla/tech.php') do |page|
-  content = page.read
-  # do something with content
-  pp content
-end		
-		
-		
-In PHP scripts in joomla
-
-include('configuration.php');
-include('includes/joomla.php');
-		
 //******************************************************************		
 %script
   ID=window.setTimeout("update();", 1000);

@@ -5,5 +5,7 @@ class JoomlaController < ApplicationController
       @content = page.read
       # do something with content
     end
+    #@content = `/Library/WebServer/Documents/Joomla/tech.php`
+
   end
 end
