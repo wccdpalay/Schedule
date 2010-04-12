@@ -8,9 +8,11 @@ calendar/edit for work-studies & level2s
 
 Aesthetics (last issue)
 
+//******************************************************************
+
 Rails app shit for apache is in /etc/apache2/site/0000_207.72...
 
-
+//******************************************************************
 
 
 
@@ -37,8 +39,25 @@ Rails app shit for apache is in /etc/apache2/site/0000_207.72...
 		Logged in user is shown in different color
 		
 		
+//******************************************************************
+		
+In "login" controller
+#	`php /Library/WebServer/Documents/Joomla/tech.php`
+
+require 'open-uri'
+
+open('https://serafina.labs.is.wccnet.org/joomla/tech.php') do |page|
+  content = page.read
+  # do something with content
+end		
 		
 		
+In PHP scripts in joomla
+
+include('configuration.php');
+include('includes/joomla.php');
+		
+//******************************************************************		
 %script
   ID=window.setTimeout("update();", 1000);
   function update()
