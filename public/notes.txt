@@ -45,10 +45,12 @@ In "login" controller
 #	`php /Library/WebServer/Documents/Joomla/tech.php`
 
 require 'open-uri'
+require 'pp'
 
 open('https://serafina.labs.is.wccnet.org/joomla/tech.php') do |page|
   content = page.read
   # do something with content
+  pp content
 end		
 		
 		

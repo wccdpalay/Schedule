@@ -25,7 +25,16 @@ Rails::Initializer.run do |config|
    config.gem 'chronic'
 
    
-
+  # Require certain gems
+  require 'open-uri'
+  require 'pp'
+  require 'openssl'
+  module OpenSSL
+    module SSL
+      remove_const :VERIFY_PEER
+    end
+  end
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

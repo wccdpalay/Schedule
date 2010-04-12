@@ -1,0 +1,2 @@
+module JoomlaHelper
+end
