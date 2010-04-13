@@ -11,7 +11,7 @@ class JoomlaController < ApplicationController
     @content = cookies[params[:cookie_name]]
     
     sql = ActiveRecord::Base.establish_connection(:joomla).connection
-    @result = sql.execute(["SELECT * FROM jos_session WHERE session_id = ?;", @content])
+    @result = sql.execute("SELECT * FROM jos_session WHERE session_id = '#{@content}';")
     @row = @result.fetch_row
   end
 end
