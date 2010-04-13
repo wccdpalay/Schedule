@@ -1,4 +1,7 @@
 class Joomla < ActiveRecord::Base
-  Joomla.establish_connection :joomla
-  attr_accessor :jinfo
+  
+  serialize :info
+  
+  sql = ActiveRecord::Base.establish_connection(:joomla).connection
+  
 end

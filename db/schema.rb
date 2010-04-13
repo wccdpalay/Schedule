@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100330204242) do
+ActiveRecord::Schema.define(:version => 20100413162735) do
 
   create_table "arc_slots", :force => true do |t|
     t.integer  "day_id"
@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(:version => 20100330204242) do
 
   create_table "dtemplates", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "joomlas", :force => true do |t|
+    t.string   "info"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
