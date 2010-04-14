@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :slots
   has_many :stemplates
+  User.establish_connection(:joomla).connection
+  table_name "jos_users"
 
 
   attr_accessor :name, :username, :usertype
@@ -16,7 +18,7 @@ class User < ActiveRecord::Base
     
     params[:cookie_name] = content
     content = cookies[params[:cookie_name]]
-    sql = User.establish_connection(:joomla).connection
+    sql = 
     result = sql.execute("SELECT * FROM jos_session WHERE session_id = '#{@content}';")
     row = result.fetch_hash
     username = row["username"]
