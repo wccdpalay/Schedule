@@ -1,11 +1,10 @@
 class User < ActiveRecord::Base
   has_many :slots
   has_many :stemplates
-  User.establish_connection(:joomla).connection
-  table_name "jos_users"
+  User.establish_connection(:joomla)
+  def self.table_name() "jos_users" end
 
 
-  attr_accessor :name, :username, :usertype
 
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
@@ -22,9 +21,7 @@ class User < ActiveRecord::Base
     result = sql.execute("SELECT * FROM jos_session WHERE session_id = '#{@content}';")
     row = result.fetch_hash
     username = row["username"]
-    uresult = sql.execute("SELECT * FROM jos_users WHERE username = '#{username}'")
-    user = uresult.fetch_hash
-    user["username"] == "" ? nil : user["username"]
+    user["username"] == "" ? nil : User.find_by_username(username)
   end
   
   def self.make_new(name, username, usertype)

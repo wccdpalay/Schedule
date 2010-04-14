@@ -4,7 +4,6 @@
 class ApplicationController < ActionController::Base
   
   include AuthenticatedSystem
-  before_filter :login_from_cookie
   
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
@@ -25,6 +24,15 @@ class ApplicationController < ActionController::Base
       else
         Day.find(day).slots
     end
+  end
+  
+  def get_joomla_session_id
+    open('https://serafina.labs.is.wccnet.org/joomla/tech.php') do |page|
+      session[:cookie_name] = page.read
+      # do something with content
+    end
+    #session[:cookie_name] = `/Library/WebServer/Documents/Joomla/tech.php`
+    cookies[session[:cookie_name]]
   end
 
 end

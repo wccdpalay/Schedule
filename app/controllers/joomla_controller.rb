@@ -1,18 +1,13 @@
 class JoomlaController < ApplicationController
-  def index
-    
-    open('https://serafina.labs.is.wccnet.org/joomla/tech.php') do |page|
-      @content = page.read
-      # do something with content
-    end
-    #@content = `/Library/WebServer/Documents/Joomla/tech.php`
-    
-    params[:cookie_name] = @content
-    @content = cookies[params[:cookie_name]]
+  
+  
+  def index  
+    @content = get_joomla_session_id
     
     sql = ActiveRecord::Base.establish_connection(:joomla).connection
-    @result = sql.execute("SELECT * FROM jos_session WHERE session_id = '#{@content}';")
-    @row = @result.fetch_hash
-    @row["username"]
+    @session = Session.find_by_session_id(@content)
+    @user = User.find_by_username(@session.username)
   end
+  
+  
 end

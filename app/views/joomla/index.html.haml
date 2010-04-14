@@ -1,6 +1,4 @@
-%p The index view
-= @content
 %p
-  =@cookie_content
-  =@results
+  =session[:cookie_name]
+  =@session.session_id
   =@row
