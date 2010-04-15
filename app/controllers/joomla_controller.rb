@@ -1,5 +1,5 @@
 class JoomlaController < ApplicationController
-  before_filter :check_user, :except => :debug
+  before_filter :check_user, :except => [:debug, :kick]
   
   
   def index  

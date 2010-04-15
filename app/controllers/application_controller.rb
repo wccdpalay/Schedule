@@ -18,13 +18,15 @@ class ApplicationController < ActionController::Base
     else
       sess = Jsession.find_by_session_id(sess_id)
       if sess.nil?
+        session[:sess_id] = sess_id
         redirect_to :controller => :joomla, :action => :debug
-      end
-      if sess.username != ""
-        current_user = User.find_by_username(sess.username)
-        session[:user] = current_user
       else
-        redirect_to :controller => :joomla, :action => :kick
+        if sess.username == ""
+          redirect_to :controller => :joomla, :action => :kick
+        else
+          current_user = User.find_by_username(sess.username)
+          session[:user] = current_user
+        end
       end
     end
   end
@@ -56,7 +58,7 @@ class ApplicationController < ActionController::Base
       session[:cookie_name] = page.read
       # do something with content
     end
-    #session[:cookie_name] = `/Library/WebServer/Documents/Joomla/tech.php`
+    #session[:cookie_name] = `php /Library/WebServer/Documents/Joomla/tech.php`
     cookies[session[:cookie_name]]
   end
 

@@ -12,6 +12,17 @@ Aesthetics (last issue)
 
 Rails app shit for apache is in /etc/apache2/site/0000_207.72...
 
+
+#Dave's stuff here!
+        RailsBaseURI /schedule
+        <Directory /Library/WebServer/Documents/schedule>
+                Options -MultiViews
+                Allow from all
+                PassengerResolveSymlinksInDocumentRoot on
+                RailsEnv development
+        </Directory>
+
+
 //******************************************************************
 
 
