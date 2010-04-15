@@ -1,4 +1,11 @@
-%p 
-  = @cookie_contents
 %p
+  Results from the php script:
   = @result_from_php
+
+%p
+  Cookie Results (The contents of the cookie):
+  = @cookie_contents
+
+%p
+  -for x in @jessions
+    = x.session_id
