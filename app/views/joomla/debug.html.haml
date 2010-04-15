@@ -7,5 +7,7 @@
   = @cookie_contents
 
 %p
-  -for x in @jessions
+  = "There are #{@jsessions.length} sessions" 
+  -for x in @jsessions
     = x.session_id
+    %br

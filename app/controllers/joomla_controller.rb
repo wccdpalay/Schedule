@@ -18,6 +18,6 @@ class JoomlaController < ApplicationController
     @user = session[:user]
     @result_from_php = `php /Library/WebServer/Documents/Joomla/tech.php`
     @cookie_contents = cookies[@result_from_php]
-    @jessesions = Jsession.find(:all)
+    @jsessions = Jsession.find(:all)
   end
 end

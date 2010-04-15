@@ -54,11 +54,11 @@ class ApplicationController < ActionController::Base
   end
   
   def get_joomla_session_id
-    open('https://serafina.labs.is.wccnet.org/joomla/tech.php') do |page|
-      session[:cookie_name] = page.read
+    #open('https://serafina.labs.is.wccnet.org/joomla/tech.php') do |page|
+    #  session[:cookie_name] = page.read
       # do something with content
     end
-    #session[:cookie_name] = `php /Library/WebServer/Documents/Joomla/tech.php`
+    session[:cookie_name] = `php /Library/WebServer/Documents/Joomla/tech.php`
     cookies[session[:cookie_name]]
   end
 
