@@ -15,6 +15,9 @@ class JoomlaController < ApplicationController
   end
   
   def debug
+    @user = session[:user]
+    @result_from_php = `php /Library/WebServer/Documents/Joomla/tech.php`
+    @cookie_contents = cookie[@result_from_php]
     
   end
 end
