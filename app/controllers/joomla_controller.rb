@@ -8,5 +8,9 @@ class JoomlaController < ApplicationController
     @user = User.find_by_username(@session.username) unless @session.nil?
   end
   
+  def kick
+    @message = "Your session has either expired or never existed.  
+    Please go back and log into Serafina's main page"
+  end
   
 end
