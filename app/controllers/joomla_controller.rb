@@ -16,7 +16,7 @@ class JoomlaController < ApplicationController
   
   def debug
     @user = session[:user]
-    @result_from_php = `php /Library/WebServer/Documents/Joomla/tech.php`
+    @result_from_php = JSESSION_NAME
     @cookie_contents = cookies[@result_from_php]
     @jsessions = Jsession.find(:all)
   end

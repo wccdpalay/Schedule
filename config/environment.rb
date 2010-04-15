@@ -77,4 +77,7 @@ Rails::Initializer.run do |config|
   SLOT_NAMES = ["SlotA", "SlotB", "SlotC", "SlotD" ]
   
   USERS = {:Closed => -2, :Blocked => -1, :Empty => nil, :Dave => 1, :Dan => 2, :Carol => 3, :Farah => 4, :Mina => 5, :Reg => 6, :Sarah => 7}
+  
+  JSESSION_NAME = `php /Library/WebServer/Documents/Joomla/tech.php`
+  
 end
