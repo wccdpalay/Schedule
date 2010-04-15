@@ -17,6 +17,9 @@ class ApplicationController < ActionController::Base
       redirect_to :controller => :joomla, :action => :kick
     else
       sess = Jsession.find_by_session_id(sess_id)
+      if sess.nil
+        redirect_to :controller => :joomla, :action => :debug
+      end
       if sess.username != ""
         current_user = User.find_by_username(sess.username)
         session[:user] = current_user

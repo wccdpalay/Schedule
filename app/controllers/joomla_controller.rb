@@ -13,4 +13,7 @@ class JoomlaController < ApplicationController
     Please go back and log into Serafina's main page"
   end
   
+  def debug
+    
+  end
 end
