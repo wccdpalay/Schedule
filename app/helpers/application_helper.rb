@@ -1,7 +1,8 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  
-  
+  def admin?
+    session[:user].usertype == "Administrator"
+  end
   
   def link_to_cal(string, date, length="day")
     link_to string, {:controller => :calendar, :action => :view, 
@@ -23,7 +24,7 @@ module ApplicationHelper
       end
       
     end
-    return options
+    options
   end
   
   def options_for_wtemplates
@@ -33,7 +34,7 @@ module ApplicationHelper
           options += "<option>"+op.name.to_s+"</option> "
       end
     end
-    return options
+    options
   end
   
   def options_for_dtemplates
