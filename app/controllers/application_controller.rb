@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
     #open('https://serafina.labs.is.wccnet.org/joomla/tech.php') do |page|
     #  session[:cookie_name] = page.read
       # do something with content
-    end
+    #end
     session[:cookie_name] = `php /Library/WebServer/Documents/Joomla/tech.php`
     cookies[session[:cookie_name]]
   end
