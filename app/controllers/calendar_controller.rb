@@ -1,5 +1,6 @@
 require "date"
 class CalendarController < ApplicationController
+  before_filter :check_user
   
   include CalendarHelper
   def index
