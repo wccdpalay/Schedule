@@ -16,15 +16,13 @@
 <% elsif params[:action]=="edit" -%>
 	
 	<% if slot.user_id != nil %>
-		<% if get_user_for_slot(slot) != session[:user].username  %>
+		<% if get_user_for_slot(slot) != session[:user].name.gsub(/\s[a-zA-Z]*/, "")  %>
 			<%= get_user_for_slot(slot)%>
-		<% end%>
-	<% else %>
-		<% if get_user_for_slot(slot) != session[:user].username %>
-			<%= radio_button_tag("row_#{row}", "Slot#{['A','B','C','D'][col-1]}", false)%>
 		<% else %>
-			<%= radio_button_tag("row_#{row}", "Slot#{['A','B','C','D'][col-1]}")%>
+			<%= radio_button_tag("row_#{row}", "Slot#{['A','B','C','D'][col-1]}", true)%>
 		<% end %>
+	<% else %>
+		<%= radio_button_tag("row_#{row}", "Slot#{['A','B','C','D'][col-1]}", false)%>
 	<% end %>
 
 <% end -%>

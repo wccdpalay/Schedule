@@ -38,7 +38,7 @@ module CalendarHelper
     elsif slot.user_id == -2
       return "Closed"
     else
-      return slot.user.username.gsub(/\s[a-zA-Z]*/, "")
+      return slot.user.name.gsub(/\s[a-zA-Z]*/, "")
     end
   end
   
