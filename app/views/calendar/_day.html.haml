@@ -7,7 +7,9 @@
         :year => day.year, :month => day.month, :day => day.day}          |
     %tr
       %td{:colspan => 4}
-        - if !admin?
+        - if admin?
+          &nbsp;
+        - else
           :erb
             <a onclick="Effect.toggle('<%="admin_options_#{day.strftime(fmt='%Y%m%d')}" %>','slide',{duration:.5});; return false;" href="#">Admin Options</a>
             <%= "<div id=\"admin_options_#{day.strftime(fmt='%Y%m%d')}\", style=\"display: none;\">"%>
