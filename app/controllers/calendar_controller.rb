@@ -100,7 +100,7 @@ class CalendarController < ApplicationController
       #redirect_to :controller => :calendar, :action => :view, 
       #            :year => params[:year], :month => params[:month], :day => params[:day]
     else
-     
+      @rows = params[:row]
     end
   end
   
