@@ -2,13 +2,20 @@ body {
 	background:	#eeeeff;	
 }
 
-td ul li
-{
+tr {
+ vertical-align: top;	
+}
+
+td ul li{
 	list-style: none;
 }
 
 td{
 	text-align: center;
+}
+
+td div{
+	
 }
 
 table {
