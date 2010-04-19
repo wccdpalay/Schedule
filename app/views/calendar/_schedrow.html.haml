@@ -34,6 +34,7 @@
       = render :partial => "slot/slot",      | 
       :locals => {:slot => day.slotDs[row],  |
       :col => 4, :row => row}                |
-    %td<
-    = radio_button_tag("row_#{row}", "SlotE")
+    - if params[:action] == "edit"
+      %td<
+        = radio_button_tag("row_#{row}", "SlotE")
     

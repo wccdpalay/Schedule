@@ -27,7 +27,7 @@
                 :action => :admin_edit,      |
                 :params => {:day => day,     | 
                 :method => "alter_block",    |
-                :uid => -2}                 |
+                :uid => -2}                  |
             %li
               = link_to "Close At 5",        |
                 :controller => :calendar,    | 
@@ -113,6 +113,9 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       %td
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      - if params[:action] == "edit"
+        %td
+          No Shift
     - for row in ALL_TIMES.index(START_TIME)..ALL_TIMES.index(END_TIME)
       = render :partial => "schedrow", :locals => {:row => row-1, :day => Day.find_by_date(day)}
 

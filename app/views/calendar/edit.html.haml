@@ -23,7 +23,7 @@
                     %td< &nbsp;
                   -for x in TIME_SLOTS do
                     %tr<
-                      %td<
+                      %td{:class => "fillslot"}<
                         =x
               -for x in 1..@length.to_i
                 =render :partial => 'day',                         |

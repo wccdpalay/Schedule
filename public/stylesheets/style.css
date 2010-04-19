@@ -12,6 +12,7 @@ td ul li{
 
 td{
 	text-align: center;
+	height: 25px;
 }
 
 td div{
@@ -44,6 +45,14 @@ table {
 
 .day_link{
 	text-align: center;	
+}
+
+.filler{
+	height: 52px;
+}
+
+.fillslot{
+	height: 25px;
 }
 
 .current_day table{
