@@ -12,14 +12,20 @@
 <% end -%>
 
 <% if params[:action]=="view" -%> 
-<%= get_user_for_slot(slot)%>
+	<%= get_user_for_slot(slot)%>
 <% elsif params[:action]=="edit" -%>
-
-<% if slot.user_id != nil %>
-<%= get_user_for_slot(slot)%>
-<% else %>
-<%= radio_button_tag("row_#{row}", "Slot#{['A','B','C','D'][col-1]}")%>
-<% end %>
+	
+	<% if slot.user_id != nil %>
+		<% if get_user_for_slot(slot) != session[:user].username  %>
+			<%= get_user_for_slot(slot)%>
+		<% end%>
+	<% else %>
+		<% if get_user_for_slot(slot) != session[:user].username %>
+			<%= radio_button_tag("row_#{row}", "Slot#{['A','B','C','D'][col-1]}", false)%>
+		<% else %>
+			<%= radio_button_tag("row_#{row}", "Slot#{['A','B','C','D'][col-1]}")%>
+		<% end %>
+	<% end %>
 
 <% end -%>
 </div>

@@ -18,34 +18,34 @@ d = Day.find_by_date(Date.today)
 #shift 1 level 2
 for x in 11..22
   s = d.slotAs[x]
-  s.user_id = USERS[:Carol]
+  s.user = User.find_by_username("ckruise")
   s.save!
 end
 #shift2 level2
 for x in 23..40
  s = d.slotAs[x]
- s.user_id = USERS[:Dave]
+ s.user = User.find_by_username("dpalay")
  s.save!
 end
 
 #shift1 workstudy
 for x in 11..15
   s = d.slotCs[x]
-  s.user_id = USERS[:Reg]
+s.user = User.find_by_username("swomble")
   s.save!
 end
 
 #shift2 workstudy
 for x in 13..18
 s = d.slotDs[x]
-s.user_id = USERS[:Mina]
+s.user = User.find_by_username("rrwandz")
 s.save!
 end
 
 #shift3 workstudy
 for x in 17..38
 s = d.slotCs[x]
-s.user_id = USERS[:Sarah]
+s.user = User.find_by_username("taylor")
 s.save!
 end
 end
