@@ -83,22 +83,27 @@ class CalendarController < ApplicationController
   end
   
   def update
-    @day = Day.find_by_date(Date.civil(y=params[:year].to_i, m=params[:month].to_i, d=params[:day].to_i)) 
-    @slots = [params[:SlotAs],params[:SlotBs],params[:SlotCs],params[:SlotDs]]
-    @dslots = [@day.slotAs, @day.slotBs, @day.slotCs, @day.slotDs]
-
-    for col in 0..3
-      for slot in @slots[col]
-        dslot = @dslots[col][slot[0].to_i]
-        dslot.user_id = USERS[slot[1].to_sym]
-        dslot.save!        
+    @day = Day.find_by_date(Date.civil(y=params[:year].to_i, m=params[:month].to_i, d=params[:day].to_i))
+    if admin?
+      @slots = [params[:SlotAs],params[:SlotBs],params[:SlotCs],params[:SlotDs]]
+      @dslots = [@day.slotAs, @day.slotBs, @day.slotCs, @day.slotDs]
+  
+      for col in 0..3
+        for slot in @slots[col]
+          dslot = @dslots[col][slot[0].to_i]
+          dslot.user_id = USERS[slot[1].to_sym]
+          dslot.save!        
+        end
       end
+      @day.being_edited = (DateTime.now - 1.year)
+      @day.save!
+      #redirect_to :controller => :calendar, :action => :view, 
+      #            :year => params[:year], :month => params[:month], :day => params[:day]
+    else
+     
     end
-    @day.being_edited = (DateTime.now - 1.year)
-    @day.save!
-    #redirect_to :controller => :calendar, :action => :view, 
-    #            :year => params[:year], :month => params[:month], :day => params[:day]
   end
+  
   
   
   def admin_edit
