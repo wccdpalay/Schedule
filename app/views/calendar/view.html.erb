@@ -1,6 +1,6 @@
 <p><%=flash[:notice]%></p>
 <p>
-<%= if !admin?; link_to "Admin Clear", :controller => :calendar, :action => :admin_clear; end %>
+<%= if admin?; link_to "Admin Clear", :controller => :calendar, :action => :admin_clear; end %>
 <% if @length != 7%>
 <%= link_to "view the whole week", {:controller => :calendar, :action => :view, 
                                     :length => "week", :year => @start_day.date.year, 

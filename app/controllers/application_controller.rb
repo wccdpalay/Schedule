@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   
   def admin?
     if session[:user]
-      session[:user].usertype != "Administrator"
+      session[:user].usertype == "Administrator"
     end
   end
   

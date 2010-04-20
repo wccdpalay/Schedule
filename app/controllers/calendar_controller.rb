@@ -110,27 +110,27 @@ class CalendarController < ApplicationController
       }
       
       for x in @sa
-        slot = @day.SlotAs[x]
+        slot = @day.slotAs[x.to_i]
         slot.user = session[:user]
         slot.save!
       end
       for x in @sb
-        slot = @day.SlotBs[x]
+        slot = @day.slotBs[x.to_i]
         slot.user = session[:user]
         slot.save!
       end
       for x in @sc
-        slot = @day.SlotCs[x]
+        slot = @day.slotCs[x.to_i]
         slot.user = session[:user]
         slot.save!
       end
       for x in @sd
-        slot = @day.SlotDs[x]
+        slot = @day.slotDs[x.to_i]
         slot.user = session[:user]
         slot.save!
       end
       for x in @se
-        slot = @day.SlotAs[x]
+        slot = @day.slotAs[x.to_i]
         slot.user = nil
         slot.save!
       end
@@ -144,7 +144,8 @@ class CalendarController < ApplicationController
   
   
   def admin_edit
-     @day = Day.find_by_date(params[:day])
+    @title = "Administrative Edit"
+    @day = Day.find_by_date(params[:day])
     if params[:col] != nil
       @args = get_slots(@day, params[:col])
     else
