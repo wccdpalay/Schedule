@@ -3,11 +3,7 @@
     %tr
       %caption.day_link{:colspan => 4}
         = link_to_cal(day.strftime(fmt='%a, %b %d, %Y'), day)
-        - if admin?
-          = link_to "(Edit)", {:controller => :calendar, :action => :admin_edit,  |
-          :year => day.year, :month => day.month, :day => day.day}                |
-        - else
-          = link_to "(Edit)", {:controller => :calendar, :action => :edit,  |
+        = link_to "(Edit)", {:controller => :calendar, :action => :edit,    |
           :year => day.year, :month => day.month, :day => day.day}          |
     %tr
       %td{:colspan => 4}

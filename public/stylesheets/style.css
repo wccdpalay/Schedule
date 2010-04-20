@@ -55,6 +55,10 @@ table {
 	height: 21px;
 }
 
+.admin_edit{
+	height: 28px;
+}
+
 .current_day table{
 	border: medium outset #B43530;
 }
