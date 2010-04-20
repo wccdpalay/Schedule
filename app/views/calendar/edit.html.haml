@@ -22,9 +22,14 @@
                   %tr<
                     %td{:class => "filler"}< &nbsp;
                   -for x in TIME_SLOTS do
-                    %tr<
-                      %td{:class => "fillslot"}<
-                        =x
+                    -if admin?
+                      %tr{:class => "admin_edit"}<
+                        %td<
+                          =x
+                    -else
+                      %tr<
+                        %td{:class => "fillslot"}<
+                          =x
               -for x in 1..@length.to_i
                 =render :partial => 'day',                         |
                 :locals => {:day => @start_day.date+(x-1),         |
