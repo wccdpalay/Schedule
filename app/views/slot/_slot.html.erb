@@ -21,10 +21,10 @@
 		<% if get_user_for_slot(slot) != session[:user].name.gsub(/\s[a-zA-Z]*/, "")  %>
 			<%= get_user_for_slot(slot)%>
 		<% else %>
-			<%= radio_button_tag("row[#{row}]", "Slot#{['A','B','C','D'][col-1]}", true)%>
+			<%= radio_button_tag("row[#{row}]", "s#{['a','b','c','d'][col-1]}", true)%>
 		<% end %>
 	<% else %>
-		<%= radio_button_tag("row[#{row}]", "Slot#{['A','B','C','D'][col-1]}", false)%>
+		<%= radio_button_tag("row[#{row}]", "s#{['a','b','c','d'][col-1]}", false)%>
 	<% end %>
 
 <% end -%>

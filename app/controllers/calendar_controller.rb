@@ -97,11 +97,48 @@ class CalendarController < ApplicationController
       end
       @day.being_edited = (DateTime.now - 1.year)
       @day.save!
-      #redirect_to :controller => :calendar, :action => :view, 
-      #            :year => params[:year], :month => params[:month], :day => params[:day]
+      
     else
       @rows = params[:row]
+      @sa = []
+      @sb = []
+      @sc = []
+      @sd = []
+      @se = []
+      @rows.each { |key, val|
+        eval("@" + val.to_s) << key
+      }
+      
+      for x in @sa
+        slot = @day.SlotAs[x]
+        slot.user = session[:user]
+        slot.save!
+      end
+      for x in @sb
+        slot = @day.SlotBs[x]
+        slot.user = session[:user]
+        slot.save!
+      end
+      for x in @sc
+        slot = @day.SlotCs[x]
+        slot.user = session[:user]
+        slot.save!
+      end
+      for x in @sd
+        slot = @day.SlotDs[x]
+        slot.user = session[:user]
+        slot.save!
+      end
+      for x in @se
+        slot = @day.SlotAs[x]
+        slot.user = nil
+        slot.save!
+      end
+      
+      
     end
+    redirect_to :controller => :calendar, :action => :view, 
+                :year => params[:year], :month => params[:month], :day => params[:day]
   end
   
   

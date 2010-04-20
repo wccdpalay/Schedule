@@ -137,24 +137,24 @@ addyear = Rufus::Scheduler::PlainScheduler.start_new(
     
   
   #Every day at 00:01, check for the NEXT day's schedule
-  schedule_check.cron("1 0 * * 0-6") do  
-    puts("DailyDigest.send_digest!")  
-    if Day.find_by_date(Date.today+1).check_for_empty?
-      puts("Need to send email to warn Dan!!")
-    else
-      puts("all is well!")
-    end
-  end
+#  schedule_check.cron("1 0 * * 0-6") do  
+#    puts("DailyDigest.send_digest!")  
+#    if Day.find_by_date(Date.today+1).check_for_empty?
+#      puts("Need to send email to warn Dan!!")
+#    else
+#      puts("all is well!")
+#    end
+#  end
   
 
 #Every week, take the oldest week and archive it
-  archiver.every '1w', :first_at => Chronic.parse('next saturday', 
-                            :now => Chronic.parse('next saturday')) do
-    archweek(Week.find(:first))
-    initweek()
-  end
+#  archiver.every '1w', :first_at => Chronic.parse('next saturday', 
+#                            :now => Chronic.parse('next saturday')) do
+#    archweek(Week.find(:first))
+#    initweek()
+#  end
   
 #in December, create next year.
- addyear.every('1y', :first_at => Chronic.parse('December 20')) do
-   init_year(Date.today.year)
- end
+# addyear.every('1y', :first_at => Chronic.parse('December 20')) do
+#   init_year(Date.today.year)
+# end

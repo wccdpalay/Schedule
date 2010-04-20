@@ -12,11 +12,11 @@ td ul li{
 
 td{
 	text-align: center;
-	height: 25px;
+	height: 100%;
 }
 
 td div{
-	
+	height: 100%;
 }
 
 table {
@@ -48,11 +48,11 @@ table {
 }
 
 .filler{
-	height: 52px;
+	height: 51px;
 }
 
 .fillslot{
-	height: 25px;
+	height: 21px;
 }
 
 .current_day table{
