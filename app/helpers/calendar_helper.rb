@@ -23,20 +23,31 @@ module CalendarHelper
   end
   
   def close_at_time(day, time)
-    for index in (ALL_TIMES[0]...ALL_TIMES.index(time)-1)
-      for slot in day.slots.find_all_by_start_time(index)
-        if slot.user_id = -2
-          slot.user_id = nil
-          slot.save!
-        end
-      end
-    end
-    for index in (ALL_TIMES.index(time)-1)..ALL_TIMES.length
-      for slot in day.slots.find_all_by_start_time(index)
+    #open all closed, before closing after the time
+    for slot in day.slots
+      if (ALL_TIMES.index(time)..ALL_TIMES.length-1).include? slot.start_time
         slot.user_id = -2
+        slot.save!
+      elsif slot.user_id == -2
+        slot.user_id = nil
         slot.save!
       end
     end
+  end
+
+  
+    
+#        if slot.user_id = -2
+#          slot.user_id = nil
+#          slot.save!
+#        end
+#      end
+#    for index in (ALL_TIMES.index(time)-1)..ALL_TIMES.length
+#      for slot in day.slots.find_all_by_start_time(index)
+#        slot.user_id = -2
+#        slot.save!
+#      end
+#    end
   end
   
   def alter_block(block, uid=nil)
