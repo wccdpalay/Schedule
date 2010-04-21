@@ -28,4 +28,7 @@ class User < ActiveRecord::Base
     current_user = User.new({:name => name, :username => username, :usertype => usertype})
   end
   
+  def self.firstname()
+    name.gsub(/(\.|\s)[a-zA-Z]*/, "")
+  end
 end
