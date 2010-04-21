@@ -1,5 +1,5 @@
 - if admin?
-  %tr
+  %tr{:class => "select_row"}
     %td<
       = render :partial => "slot/adminslot", | 
       :locals => {:slot => day.slotAs[row],  |

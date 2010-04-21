@@ -2,11 +2,37 @@ TODO:
 
 Set up Production environment
 Make sure Timed events are going off (set it to clear a date at a given time, just to test)
-Users.  Pull from session?  Joomla's session info
-calendar/edit for work-studies & level2s
+DONE# Users.  Pull from session?  Joomla's session info
+DONE# calendar/edit for work-studies & level2s
 "View my schedule for this week"
 
 Aesthetics (last issue)
+	Custom CSS
+	Browser Based CSS Sheets
+	
+
+	User roles
+		Variable limitation on # hours.  
+		unique color for the table?
+		DONE#Control only unclaimed and their own spots
+	
+	Administration
+		DONE#Control ANYONE
+		Make templates
+		Propagate Templates into a given week
+		View anyone's schedule
+		
+		
+		
+		
+		
+	Lock schedule once day is passed*  (Or some other criteria)
+
+	
+	Coloration
+		Logged in user is shown in different color
+		
+
 
 //******************************************************************
 
@@ -25,30 +51,6 @@ Rails app shit for apache is in /etc/apache2/site/0000_207.72...
 
 //******************************************************************
 
-
-
-
-
-	User roles
-		Variable limitation on # hours.  
-		unique color for the table?
-		Control only unclaimed and their own spots
-	
-	Administration
-		Control ANYONE
-		Make templates
-		Propagate Templates into a given week
-		View anyone's schedule
-		
-		
-		
-		
-	Lock schedule once day is passed*  (Or some other criteria)
-
-	
-	Coloration
-		Logged in user is shown in different color
-		
 		
 //******************************************************************
 a :before_filter will have to check the session table of the Joomla database
@@ -67,18 +69,9 @@ In "login" controller
 #Method 1:
 #	`php /Library/WebServer/Documents/Joomla/tech.php`
 
-#Method 2:
-	require 'open-uri'
-	require 'pp'
-	
-	open('https://serafina.labs.is.wccnet.org/joomla/tech.php') do |page|
-	  content = page.read
-	  # do something with content
-	  pp content
-	end		
 			
 			
-#In PHP scripts in joomla
+#In PHP scripts in Joomla/tech.php
 			
 	<?php
 	define( '_JEXEC', 1 );
@@ -99,7 +92,11 @@ In "login" controller
 	print(session_id());
 	?>
 
-//******************************************************************		
+//******************************************************************	
+
+
+script to add to edit.html.haml for locking the editing
+	
 %script
   ID=window.setTimeout("update();", 1000);
   function update()
