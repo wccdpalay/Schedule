@@ -5,12 +5,17 @@ module CalendarHelper
     Day.find_by_date(Date.new(year.to_i, month.to_i, day.to_i))
   end
   
-  def close_at_5(day)
-    close_at_time(day, "5:00 PM")
+  
+  #the reason for the slots in these methods is the admin_edit method in the controller
+  #passes along a group of Slots as the argument to the methods.  Rather than rewrite 
+  #admin_edit and complicate it further, I decided to just grab the day from the slots
+  #passed to these methods
+  def close_at_5(slots)
+    close_at_time(slots.first.day, "5:00 PM")
   end
   
-  def close_at_7(day)
-    close_at_time(day, "7:00 PM")
+  def close_at_7(slots)
+    close_at_time(slots.first.day, "7:00 PM")
   end
   
   def close_at_time(day, time)
