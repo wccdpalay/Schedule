@@ -16,9 +16,11 @@ module ApplicationHelper
   
   def options_from_users(slot=nil)
     options = ""
+    select_used = false
     for user in User.find(:all)
       if slot != nil
         if slot.user == user
+          select_used = true
           options += "<option selected=\"selected\">"+user.name.gsub(/\s[a-zA-Z]*/, "")+"</option> "
         else
           options += "<option>"+user.name.gsub(/\s[a-zA-Z]*/, "")+"</option> "
@@ -26,6 +28,11 @@ module ApplicationHelper
       else #slot == nil
         options += "<option>"+user.name.gsub(/\s[a-zA-Z]*/, "")+"</option> "
       end
+    end
+    if select_used
+      options = "<option> - </option>" + options
+    else
+      options = "<option selected=\"selected\">" + options
     end
     options
   end
