@@ -83,7 +83,7 @@ class CalendarController < ApplicationController
   end
   
   def update
-    @day = Day.find_by_date(Date.civil(y=params[:year].to_i, m=params[:month].to_i, d=params[:day].to_i))
+    @day = Day.find_by_date(Date.civil(params[:year].to_i, params[:month].to_i, params[:day].to_i))
     if admin?
       @slots = [params[:SlotAs],params[:SlotBs],params[:SlotCs],params[:SlotDs]]
       @dslots = [@day.slotAs, @day.slotBs, @day.slotCs, @day.slotDs]
@@ -91,8 +91,8 @@ class CalendarController < ApplicationController
       for col in 0..3
         for slot in @slots[col]
           dslot = @dslots[col][slot[0].to_i]
-          dslot.user_id = USERS[slot[1].to_sym]
-          dslot.save!        
+          dslot.user = User.find(slot[1])
+          #dslot.save!        
         end
       end
       @day.being_edited = (DateTime.now - 1.year)
@@ -137,8 +137,8 @@ class CalendarController < ApplicationController
       
       
     end
-    redirect_to :controller => :calendar, :action => :view, 
-                :year => params[:year], :month => params[:month], :day => params[:day]
+    #redirect_to :controller => :calendar, :action => :view, 
+    #            :year => params[:year], :month => params[:month], :day => params[:day]
   end
   
   

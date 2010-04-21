@@ -6,9 +6,6 @@ class ApplicationController < ActionController::Base
   
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-
-  # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
   
   
   def check_user()
@@ -32,8 +29,10 @@ class ApplicationController < ActionController::Base
   end
   
   def admin?
-    if session[:user]
+    if session[:user] #to prevent nil.usertype errors
       session[:user].usertype == "Administrator"
+    else
+      redirect_to :controller => :joomla, :action => :kick
     end
   end
   

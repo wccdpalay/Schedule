@@ -1,7 +1,9 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def admin?
-    session[:user].usertype == "Administrator"
+    if session[:user]
+      session[:user].usertype == "Administrator"
+    end
   end
   
   def link_to_cal(string, date, length="day")
@@ -10,23 +12,27 @@ module ApplicationHelper
                   :month => date.month, :day => date.day}
   end
   
+  
+  
   def options_from_users(slot=nil)
     options = ""
-    for user in USERS.keys
+    for user in User.find(:all)
       if slot != nil
-        if slot.user_id == USERS[user]
-          options += "<option selected=\"selected\">"+user.to_s+"</option> "
+        if slot.user == user
+          options += "<option selected=\"selected\">"+user.name.gsub(/\s[a-zA-Z]*/, "")+"</option> "
         else
-          options += "<option>"+user.to_s+"</option> "
+          options += "<option>"+user.name.gsub(/\s[a-zA-Z]*/, "")+"</option> "
         end
       else #slot == nil
-        options += "<option>"+user.to_s+"</option> "
+        options += "<option>"+user.name.gsub(/\s[a-zA-Z]*/, "")+"</option> "
       end
-      
     end
     options
   end
   
+  
+  
+  #Template stuff
   def options_for_wtemplates
     options = ""
     for op in Wtemplates.find(:all)
