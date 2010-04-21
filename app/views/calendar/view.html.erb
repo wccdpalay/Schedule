@@ -42,6 +42,13 @@
   </tr>
   </tbody>
   <tr>
-    <td>Your total Hours go here</td>
+    <td>
+    	Your hours for this week:
+    	<% if @sd.week == Day.find_by_date(Date.today).week -%>
+			<%= session[:current_user_hours] %>
+		<% else -%>
+			<%= session[:user].weeks_hours(@sd.week) %>
+		<% end -%>
+	</td>
   </tr>
 </table>

@@ -1,4 +1,3 @@
-require "date"
 class CalendarController < ApplicationController
   before_filter :check_user
   
@@ -138,9 +137,8 @@ class CalendarController < ApplicationController
         slot.user = nil
         slot.save!
       end
-      
-      
     end
+    session[:current_user_hours] = session[:user].weeks_hours(@day.week)
     redirect_to :controller => :calendar, :action => :view, 
                 :year => params[:year], :month => params[:month], :day => params[:day]
   end

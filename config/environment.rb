@@ -29,6 +29,7 @@ Rails::Initializer.run do |config|
   require 'open-uri'
   require 'pp'
   require 'openssl'
+  require "date"
   module OpenSSL
     module SSL
       remove_const :VERIFY_PEER

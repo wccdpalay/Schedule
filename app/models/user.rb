@@ -28,7 +28,18 @@ class User < ActiveRecord::Base
     current_user = User.new({:name => name, :username => username, :usertype => usertype})
   end
   
-  def self.firstname()
+  def firstname()
     name.gsub(/(\.|\s)[a-zA-Z]*/, "")
+  end
+  
+  def weeks_hours(week = Day.find_by_date(Date.today).week)
+    hours_total = 0
+    u = session[:user]
+    for slot in u.slots
+      if slot.day.week == week
+        hours_total += 0.5
+      end
+    end
+    hours_total
   end
 end
