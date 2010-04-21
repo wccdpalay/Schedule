@@ -34,8 +34,7 @@ class User < ActiveRecord::Base
   
   def weeks_hours(week = Day.find_by_date(Date.today).week)
     hours_total = 0
-    u = session[:user]
-    for slot in u.slots
+    for slot in slots
       if slot.day.week == week
         hours_total += 0.5
       end
