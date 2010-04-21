@@ -91,8 +91,12 @@ class CalendarController < ApplicationController
       for col in 0..3
         for slot in @slots[col]
           dslot = @dslots[col][slot[0].to_i]
-          dslot.user_id = slot[1]
-          #dslot.save!        
+          if slot[1] != 'nil'
+            dslot.user_id = slot[1]
+          else
+            dslot.user_id = nil
+          end
+          dslot.save!        
         end
       end
       @day.being_edited = (DateTime.now - 1.year)
@@ -137,8 +141,8 @@ class CalendarController < ApplicationController
       
       
     end
-    #redirect_to :controller => :calendar, :action => :view, 
-    #            :year => params[:year], :month => params[:month], :day => params[:day]
+    redirect_to :controller => :calendar, :action => :view, 
+                :year => params[:year], :month => params[:month], :day => params[:day]
   end
   
   

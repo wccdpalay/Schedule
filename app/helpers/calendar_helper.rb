@@ -1,3 +1,4 @@
+require "date"
 module CalendarHelper
   
   def get_start_day(year, month, day)
@@ -29,16 +30,17 @@ module CalendarHelper
   end
   
   def get_user_for_slot(slot)
-    if slot.user_id == nil
-      return "&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;"
-    elsif slot.user_id == -1
-      return "Blocked"
-    elsif slot.user_id == -2
-      return "Closed"
-    else
-      return slot.user.name.gsub(/\s[a-zA-Z]*/, "")
+    case slot.user_id
+      when nil
+        "&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;"
+      when -1
+        "Blocked"
+      when -2
+        "Closed"
+      else
+        slot.user.name.gsub(/\s[a-zA-Z]*/, "")
     end
   end
   
