@@ -48,7 +48,7 @@ module CalendarHelper
 #        slot.save!
 #      end
 #    end
-  end
+#   end
   
   def alter_block(block, uid=nil)
     for slot in block
