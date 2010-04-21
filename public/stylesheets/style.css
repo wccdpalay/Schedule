@@ -27,7 +27,7 @@ table {
 
   /* The following 3 classes are because Chrome and firefox tend to render tables differently.  FUCK THEM. */
 .select_row{
-	height: 26px;
+	height: 28px;
 }
 
 .admin_edit{
