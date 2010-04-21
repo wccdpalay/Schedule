@@ -91,7 +91,7 @@ class CalendarController < ApplicationController
       for col in 0..3
         for slot in @slots[col]
           dslot = @dslots[col][slot[0].to_i]
-          dslot.user = User.find(slot[1])
+          dslot.user_id = slot[1]
           #dslot.save!        
         end
       end

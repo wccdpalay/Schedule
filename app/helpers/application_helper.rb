@@ -21,21 +21,22 @@ module ApplicationHelper
       if slot != nil
         if slot.user == user
           select_used = true
-          options += "<option selected=\"selected\">"+user.name.gsub(/\s[a-zA-Z]*/, "")+"</option> "
+          options += "<option selected=\"selected\" value='#{user.id}>"+user.name.gsub(/\s[a-zA-Z]*/, "")+"</option> "
         else
-          options += "<option>"+user.name.gsub(/\s[a-zA-Z]*/, "")+"</option> "
+          options += "<option value='#{user.id}'>"+user.name.gsub(/\s[a-zA-Z]*/, "")+"</option> "
         end
       else #slot == nil
-        options += "<option>"+user.name.gsub(/\s[a-zA-Z]*/, "")+"</option> "
+        options += "<option value='#{user.id}>"+user.name.gsub(/\s[a-zA-Z]*/, "")+"</option> "
       end
     end
     if select_used
-      options = "<option> - </option>" + options
+      options = "<option value='nil'> - </option>" + options
     else
-      options = "<option selected=\"selected\">" + options
+      options = "<option selected=\"selected\" value='nil'> - </option>" + options
     end
     options
   end
+  
   
   
   
