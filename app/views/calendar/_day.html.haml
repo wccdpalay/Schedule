@@ -41,6 +41,12 @@
                 :params => {:day => day,     | 
                 :method => "close_at_7"}     |
             %li
+              = link_to "Close At 10",       |
+                :controller => :calendar,    | 
+                :action => :admin_edit,      |
+                :params => {:day => day,     | 
+                :method => "close_at_10"}    |
+            %li
               = link_to "Block Col 1",       |
                 :controller => :calendar,    | 
                 :action => :admin_edit,      |

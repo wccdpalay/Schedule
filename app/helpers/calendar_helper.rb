@@ -18,7 +18,19 @@ module CalendarHelper
     close_at_time(slots.first.day, "7:00 PM")
   end
   
+  def close_at_10(slots)
+    close_at_time(slots.first.day, "10:00 PM")
+  end
+  
   def close_at_time(day, time)
+    for index in (ALL_TIMES[0]...ALL_TIMES.index(time)-1)
+      for slot in day.slots.find_all_by_start_time(index)
+        if slot.user_id = -2
+          slot.user_id = nil
+          slot.save!
+        end
+      end
+    end
     for index in (ALL_TIMES.index(time)-1)..ALL_TIMES.length
       for slot in day.slots.find_all_by_start_time(index)
         slot.user_id = -2

@@ -158,14 +158,14 @@ class CalendarController < ApplicationController
     else
       eval("#{params[:method]}(@args)")
     end
-    redirect_to request.env["HTTP_REFERER"]
+    redirect_to request.env["HTTP_REFERER"] ||= {:controller => :calendar, :action => :view}
   end
   
   def admin_clear
     @day = Day.find_by_date(Date.today)
     @day.being_edited = (DateTime.now - 1.year)
     @day.save!
-    redirect_to request.env["HTTP_REFERER"]
+    redirect_to request.env["HTTP_REFERER"] ||= {:controller => :calendar, :action => :view}
   end
   
   
