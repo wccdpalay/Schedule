@@ -1,4 +1,5 @@
 <p><%=flash[:notice]%></p>
+<p><%=flash[:warning]%></p>
 <p>
 <%= if admin?; link_to "Admin Clear", :controller => :calendar, :action => :admin_clear; end %>
 <% if @length != 7%>

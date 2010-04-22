@@ -82,8 +82,8 @@ class CalendarController < ApplicationController
   end
   
   def update
-    day.transaction do
-      slot.transaction do
+    Day.transaction do
+      Slot.transaction do
         @day = Day.find_by_date(Date.civil(params[:year].to_i, params[:month].to_i, params[:day].to_i))
         if admin?
           @slots = [params[:SlotAs],params[:SlotBs],params[:SlotCs],params[:SlotDs]]
@@ -141,7 +141,7 @@ class CalendarController < ApplicationController
           end
         end
         session[:current_user_hours] = get_user(session[:user]).weeks_hours(@day.week)
-        if session[:current_user_hours] > 20
+        if session[:current_user_hours] > 20.0
           #stop the transaction, redirect back to edit
           raise ActiveRecord::Rollback
           flash[:warning] = "You have more than 20 hours scheduled.  Your changes have NOT been saved."
