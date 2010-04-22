@@ -5,6 +5,8 @@ Make sure Timed events are going off (set it to clear a date at a given time, ju
 DONE# Users.  Pull from session?  Joomla's session info
 DONE# calendar/edit for work-studies & level2s
 "View my schedule for this week"
+Javascript Based Checking on 20+ hours per week.
+
 
 Aesthetics (last issue)
 	Custom CSS

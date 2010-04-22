@@ -143,8 +143,7 @@ class CalendarController < ApplicationController
         session[:current_user_hours] = get_user(session[:user]).weeks_hours(@day.week)
         if session[:current_user_hours].to_f > 20.0.to_f
           #stop the transaction, redirect back to edit
-          flash[:warning] = "You have more than 20 hours scheduled.  Your changes have NOT been saved."
-          raise ActiveRecord::Rollback
+          flash[:warning] = "You have more than 20 hours scheduled."
         end
       end
     end  

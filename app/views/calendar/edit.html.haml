@@ -1,3 +1,25 @@
+%script
+  ID=window.setTimeout("update();", 1000);
+  function update()
+  {
+  var s_timeleft= document.forms[0].timeleft.value;
+  
+  if(s_timeleft<=0)
+  {
+  document.forms[0].timeleft.value = "0";
+  document.forms[0].SUBMIT.value = "Lock Expired";
+  document.forms[0].SUBMIT.disabled = true;
+  window.alert("You have run out of time!  Please try again.");
+  =#history.back();
+  }
+  else
+  {
+  s_timeleft = document.forms[0].timeleft.value -1;
+  document.forms[0].timeleft.value = s_timeleft;
+  }
+  ID=window.setTimeout("update();", 1000);
+  }
+		
 -form_for :day, @sd,          |
 :url => {                     |
 :controller => :calendar,     |
