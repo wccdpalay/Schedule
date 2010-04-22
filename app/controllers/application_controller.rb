@@ -22,15 +22,21 @@ class ApplicationController < ActionController::Base
           redirect_to :controller => :joomla, :action => :kick
         else
           current_user = User.find_by_username(sess.username)
-          session[:user] = current_user
+          session[:user] = current_user.id
         end
       end
     end
   end
   
+  def get_user(userid)
+    User.find_by_id(userid)
+  end
+  
+  
   def admin?
-    if session[:user] #to prevent nil.usertype errors
-      session[:user].usertype == "Administrator"
+    user = get_user(session[:user])
+    if user #to prevent nil.usertype errors
+      user.usertype == "Administrator"
     else
       redirect_to :controller => :joomla, :action => :kick
     end

@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
     
     params[:cookie_name] = content
     content = cookies[params[:cookie_name]]
-    sql = 
     result = sql.execute("SELECT * FROM jos_session WHERE session_id = '#{@content}';")
     row = result.fetch_hash
     username = row["username"]

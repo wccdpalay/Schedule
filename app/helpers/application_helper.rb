@@ -1,8 +1,9 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def admin?
-    if session[:user]
-      session[:user].usertype == "Administrator"
+    user = get_user(session[:user])
+    if user
+      user.usertype == "Administrator"
     end
   end
   

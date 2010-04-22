@@ -82,71 +82,72 @@ class CalendarController < ApplicationController
   end
   
   def update
-    transaction do
-      @day = Day.find_by_date(Date.civil(params[:year].to_i, params[:month].to_i, params[:day].to_i))
-      if admin?
-        @slots = [params[:SlotAs],params[:SlotBs],params[:SlotCs],params[:SlotDs]]
-        @dslots = [@day.slotAs, @day.slotBs, @day.slotCs, @day.slotDs]
-    
-        for col in 0..3
-          for slot in @slots[col]
-            dslot = @dslots[col][slot[0].to_i]
-            if slot[1] != 'nil'
-              dslot.user_id = slot[1]
-            else
-              dslot.user_id = nil
+    day.transaction do
+      slot.transaction do
+        @day = Day.find_by_date(Date.civil(params[:year].to_i, params[:month].to_i, params[:day].to_i))
+        if admin?
+          @slots = [params[:SlotAs],params[:SlotBs],params[:SlotCs],params[:SlotDs]]
+          @dslots = [@day.slotAs, @day.slotBs, @day.slotCs, @day.slotDs]
+      
+          for col in 0..3
+            for slot in @slots[col]
+              dslot = @dslots[col][slot[0].to_i]
+              if slot[1] != 'nil'
+                dslot.user_id = slot[1]
+              else
+                dslot.user_id = nil
+              end
+              dslot.save!        
             end
-            dslot.save!        
+          end
+          @day.being_edited = (DateTime.now - 1.year)
+          @day.save!
+          
+        else
+          @rows = params[:row]
+          @sa = []
+          @sb = []
+          @sc = []
+          @sd = []
+          @se = []
+          @rows.each { |key, val|
+            eval("@" + val.to_s) << key
+          }
+          
+          for x in @sa
+            slot = @day.slotAs[x.to_i]
+            slot.user_id = session[:user]
+            slot.save!
+          end
+          for x in @sb
+            slot = @day.slotBs[x.to_i]
+            slot.user_id = session[:user]
+            slot.save!
+          end
+          for x in @sc
+            slot = @day.slotCs[x.to_i]
+            slot.user_id = session[:user]
+            slot.save!
+          end
+          for x in @sd
+            slot = @day.slotDs[x.to_i]
+            slot.user_id = session[:user]
+            slot.save!
+          end
+          for x in @se
+            slot = @day.slotAs[x.to_i]
+            slot.user = nil
+            slot.save!
           end
         end
-        @day.being_edited = (DateTime.now - 1.year)
-        @day.save!
-        
-      else
-        @rows = params[:row]
-        @sa = []
-        @sb = []
-        @sc = []
-        @sd = []
-        @se = []
-        @rows.each { |key, val|
-          eval("@" + val.to_s) << key
-        }
-        
-        for x in @sa
-          slot = @day.slotAs[x.to_i]
-          slot.user = session[:user]
-          slot.save!
-        end
-        for x in @sb
-          slot = @day.slotBs[x.to_i]
-          slot.user = session[:user]
-          slot.save!
-        end
-        for x in @sc
-          slot = @day.slotCs[x.to_i]
-          slot.user = session[:user]
-          slot.save!
-        end
-        for x in @sd
-          slot = @day.slotDs[x.to_i]
-          slot.user = session[:user]
-          slot.save!
-        end
-        for x in @se
-          slot = @day.slotAs[x.to_i]
-          slot.user = nil
-          slot.save!
+        session[:current_user_hours] = get_user(session[:user]).weeks_hours(@day.week)
+        if session[:current_user_hours] > 20
+          #stop the transaction, redirect back to edit
+          raise ActiveRecord::Rollback
+          flash[:warning] = "You have more than 20 hours scheduled.  Your changes have NOT been saved."
         end
       end
-      session[:current_user_hours] = session[:user].weeks_hours(@day.week)
-      if session[:current_user_hours] > 20
-        #stop the transaction, redirect back to edit
-        raise ActiveRecord::Rollback
-        flash[:warning] = "You have more than 20 hours scheduled.  Your changes have NOT been saved."
-      end
-    end
-      
+    end  
     redirect_to :controller => :calendar, :action => :view, 
       :year => params[:year], :month => params[:month], :day => params[:day]  
   end
