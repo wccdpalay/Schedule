@@ -25,7 +25,7 @@ module CalendarHelper
   def close_at_time(day, time)
     #open all closed, before closing after the time
     for slot in day.slots
-      if (ALL_TIMES.index(time)..ALL_TIMES.length-1).include? slot.start_time
+      if (ALL_TIMES.index(time)-1..ALL_TIMES.length-1).include? slot.start_time
         slot.user_id = -2
         slot.save!
       elsif slot.user_id == -2

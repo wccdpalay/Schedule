@@ -45,7 +45,7 @@
     <td>
     	Your hours for this week:
     	<% if @sd.week == Day.find_by_date(Date.today).week -%>
-			<%= session[:current_user_hours] %>
+			<%= session[:current_user_hours] ||= session[:user].weeks_hours(@sd.week) %>
 		<% else -%>
 			<%= session[:user].weeks_hours(@sd.week) %>
 		<% end -%>
