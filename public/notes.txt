@@ -6,7 +6,7 @@ DONE# Users.  Pull from session?  Joomla's session info
 DONE# calendar/edit for work-studies & level2s
 "View my schedule for this week"
 Javascript Based Checking on 20+ hours per week.
-
+Templates
 
 Aesthetics (last issue)
 	Custom CSS
@@ -49,6 +49,37 @@ Rails app shit for apache is in /etc/apache2/site/0000_207.72...
                 PassengerResolveSymlinksInDocumentRoot on
                 RailsEnv development
         </Directory>
+
+
+
+
+
+
+
+
+#Dave's stuff here!
+        RailsBaseURI /schedule
+        <Directory "/Library/WebServer/Documents/Joomla">
+                <IfModule mod_dav.c>
+                        DAV On
+                </IfModule>
+                Options All -MultiViews -ExecCGI -Indexes +Includes
+                AllowOverride None
+                RailsEnv development
+                PassengerResolveSymlinksInDocumentRoot on
+                Allow from all
+        </Directory>
+        <IfModule mod_proxy_balancer.c>
+#               ProxyPass / balancer://balancer-group
+#               ProxyPassReverse / balancer://balancer-group/
+                <Proxy "balancer://balancer-group">
+                </Proxy>
+        </IfModule>
+        <IfModule mod_alias.c>
+                Alias "/collaboration" "/usr/share/collaboration"
+                Alias "/icons/" "/usr/share/httpd/icons/"
+                Alias "/error/" "/usr/share/httpd/error/"
+        </IfModule>
 
 
 //******************************************************************

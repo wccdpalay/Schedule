@@ -38,6 +38,10 @@ table {
 	height: 24px;
 }
 
+.time_row{
+	height: 28px;
+}
+
 .col1{
 	background-color:#CCF;
 }
@@ -56,6 +60,10 @@ table {
 
 .col{
 	
+}
+
+.logged_in{
+	background-color:#EEE;
 }
 
 .day_link{
