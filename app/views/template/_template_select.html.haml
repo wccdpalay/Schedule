@@ -2,7 +2,7 @@
   %table{:border => 1}
     %tr<
       %td<
-        = render :partial => "select_list", :locals => {:dtemp => dtemp}
+        = render :partial => "select_list", :locals => {:dtemp => dtemp, :col => x}
     %tr<
       %td
         %table{:border => 1, :id => "day#{x}"}

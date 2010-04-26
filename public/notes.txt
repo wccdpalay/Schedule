@@ -84,6 +84,22 @@ Rails app shit for apache is in /etc/apache2/site/0000_207.72...
 
 //******************************************************************
 
+
+
+//**********************************AJAX****************************
+<select id = "what_state" name="state" onChange="<%= remote_function(
+                                     :update => 'colleges',
+                                     :url => { :action => 
+'get_schools'},
+                                     :with => "'state='+value",
+                                     :complete => "new 
+Effect.Highlight('college',{duration: 2.0,
+                                                   startcolor: 
+'#00FFCC',
+                                                   endcolor: '#333333',
+                                                   restorecolor: 
+'#333333'})" ) %>">
+//******************************************************************
 		
 //******************************************************************
 a :before_filter will have to check the session table of the Joomla database
