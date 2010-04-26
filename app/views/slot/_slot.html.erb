@@ -14,7 +14,17 @@
 
 
 <% if params[:action]=="view" -%> 
-	<%= get_user_for_slot(slot)%>
+	
+	<% if slot.user_id != nil -%>
+		<% if slot.user_id == user -%>
+			<div class="logged_in">
+				<%= get_user_for_slot(slot)%>	
+			</div>
+		<% else -%>
+			<%= get_user_for_slot(slot)%>
+		<% end -%>
+	<% end -%>
+	
 <% elsif params[:action]=="edit" -%>
 	
 	<% if slot.user_id != nil %>
