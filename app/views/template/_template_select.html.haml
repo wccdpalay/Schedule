@@ -2,10 +2,8 @@
   %table{:border => 1}
     %tr<
       %td<
-        Temp_Selector
+        = render :partial => "select_list", :locals => {:dtemp => dtemp}
     %tr<
       %td
         %table{:border => 1, :id => "day#{x}"}
-          %tr<
-            %td<
-              A table
+              = render :partial => "dtemp", :locals => {:dtemp => dtemp}
