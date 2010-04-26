@@ -70,8 +70,8 @@ class CalendarController < ApplicationController
     #On an edit, the Day#being_edited attribute is updated to the current time.  If the attribute is within
     #the EDITLAG set in the environment, then it is "locked".
   
-    #if @sd.being_edited < (DateTime.now - 2.minutes)
-    if true
+    if @sd.being_edited < (DateTime.now - 2.minutes)
+    #if true
      @sd.being_edited = DateTime.now  
      @sd.save!
     else

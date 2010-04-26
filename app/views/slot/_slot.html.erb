@@ -18,7 +18,7 @@
 <% elsif params[:action]=="edit" -%>
 	
 	<% if slot.user_id != nil %>
-		<% if get_user_for_slot(slot) != user.firstname)  %>
+		<% if get_user_for_slot(slot) != user.firstname  %>
 			<%= get_user_for_slot(slot)%>
 		<% else %>
 			<%= radio_button_tag("row[#{row}]", "s#{['a','b','c','d'][col-1]}", true)%>
