@@ -1,13 +1,13 @@
 class Dtemplate < ActiveRecord::Base
   
   has_many :stemplates
-  has_many :sats, {:class_name=> :wtemplate}
-  has_many :suns, {:class_name=> :wtemplate}
-  has_many :mons, {:class_name=> :wtemplate}
-  has_many :tues, {:class_name=> :wtemplate}
-  has_many :weds, {:class_name=> :wtemplate}
-  has_many :thus, {:class_name=> :wtemplate}
-  has_many :fris, {:class_name=> :wtemplate}
+  has_many :sats, {:class_name=> 'wtemplate'}
+  has_many :suns, {:class_name=> 'wtemplate'}
+  has_many :mons, {:class_name=> 'wtemplate'}
+  has_many :tues, {:class_name=> 'wtemplate'}
+  has_many :weds, {:class_name=> 'wtemplate'}
+  has_many :thus, {:class_name=> 'wtemplate'}
+  has_many :fris, {:class_name=> 'wtemplate'}
   
   
   def slotAs

@@ -1,4 +1,5 @@
-%p= flash[:notice]
+%p
+  = flash[:notice]
 %table{:border=>1, :style=>'table-layout:fixed;'}
   %caption Template #{@wtemplate.name}
   %tr
@@ -19,4 +20,4 @@
                   %td<
                     =x
           - for x in 1..7 
-            = render :partial => "template_select", :locals => {:x => x}
+            = render :partial => "template_select", :locals => {:x => x, :dtemp => eval("['@wtemplate.sat', '@wtemplate.sun', '@wtemplate.mon', '@wtemplate.tue', '@wtemplate.wed', '@wtemplate.thu', '@wtemplate.fri'][x-1]")}
