@@ -1,2 +1,2 @@
 = select("day", col, template_select(dtemp), {}, {})
-= observe_field "day_#{col}", :url =>  url_for(:action => :change_day, :id => col, :with => "'dtemp_id='+value")
+= observe_field "day_#{col}", :url =>  {:action => :change_day, :id => col, :with => "'dtemp_id='+value"}

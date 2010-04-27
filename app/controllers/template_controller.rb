@@ -22,8 +22,9 @@ class TemplateController < ApplicationController
   
   def change_day
     respond_to do |format|  
-      format.html  
-      format.js  
+      format.html
+      
+      format.js  {}
     end
   end
 end
