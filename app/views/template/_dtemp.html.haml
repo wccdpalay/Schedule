@@ -1,3 +1,6 @@
 %tr<
   %td<
-    Some Content Here
+    - if @dtemp.nil?
+      Nothing here!
+    - else
+      = @dtemp.name

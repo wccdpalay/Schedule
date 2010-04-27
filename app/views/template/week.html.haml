@@ -20,5 +20,5 @@
                   %td<
                     =x
           - for x in 1..7 
-            %td{:id => "day" + x.to_s}<
+            %td<
               = render :partial => "template_select", :locals => {:x => x, :dtemp => [@wtemplate.sat, @wtemplate.sun, @wtemplate.mon, @wtemplate.tue, @wtemplate.wed, @wtemplate.thu, @wtemplate.fri][x-1]}
