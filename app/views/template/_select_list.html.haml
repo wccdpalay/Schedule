@@ -1,1 +1,5 @@
-= select("day", col, template_select(dtemp))
+= select("day", col, template_select(dtemp), {},                     |
+  {:onchange => remote_function(                                     |
+  :url => url_for(                                                   |
+  :action => :change_day, :id => col, :dtemp => dtemp),              |
+  :with => "'name=' + $('day_#{col}').value")})                      |
