@@ -1,2 +1,0 @@
-page.replace_html("day#{params[:id]}".to_sym, dtemp_id.name)
-#page.replace_html "day#{params[:id]}".to_sym, {:partial => "dtemp", :locals => { :dtemp => Dtemplate.find(params[:name])}}

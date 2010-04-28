@@ -1,0 +1,6 @@
+for x in 1..7
+  unless params[:day][x].nil?
+    page.replace_html "day#{x}".to_sym, {:partial => "dtemp", :locals => {:dtemp => Dtemplate.find(params[:day][x])}}
+  end
+end
+#page.replace_html "day#{params[:id]}".to_sym, {:partial => "dtemp", :locals => { :dtemp => Dtemplate.find(params[:name])}}
