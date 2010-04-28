@@ -20,4 +20,13 @@ class Wtemplate < ActiveRecord::Base
   def save_as(str)
     
   end
+  
+  def sym_days
+    [:sat, :sun, :mon, :tue, :wed, :thu, :fri]
+  end
+  
+  def days
+    [sat, sun, mon, tue, wed, thu, fri]
+  end
+  
 end
