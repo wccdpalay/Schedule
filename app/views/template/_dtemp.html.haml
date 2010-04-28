@@ -1,6 +1,6 @@
 %tr<
   %td<
-    - if dtemp.nil?
+    - if dtemp == (nil || "nil") 
       Nothing here!
     - else
       = dtemp
