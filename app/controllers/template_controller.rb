@@ -21,10 +21,18 @@ class TemplateController < ApplicationController
   def update
     @wtemplate = Wtemplate.find(params[:id])
 
-    for x in 1..7
-        @wtemplate[@wtemplate.days[x-1]] = params[:day][x.to_s]
-        @wtemplate.save!
-    end
+    @wtemplate[:sat] = params[:day]["1"]
+    @wtemplate[:sun] = params[:day]["2"]
+    @wtemplate[:mon] = params[:day]["3"]
+    @wtemplate[:tue] = params[:day]["4"]
+    @wtemplate[:wed] = params[:day]["5"]
+    @wtemplate[:thu] = params[:day]["6"]
+    @wtemplate[:fri] = params[:day]["7"]
+
+    @wtemplate.save!
+
+
+
     respond_to do |format|
       format.html {redirect_to :action => "week", :id => @wtemplate.id}
 
