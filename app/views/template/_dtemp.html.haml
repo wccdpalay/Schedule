@@ -1,6 +1,8 @@
 %tr<
   %td<
-    - if dtemp == (nil || "nil") 
+    - if dtemp == nil
       Nothing here!
+    - elsif dtemp == "nil"
+      "nil"
     - else
-      = dtemp
+      = dtemp.name

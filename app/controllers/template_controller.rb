@@ -23,7 +23,7 @@ class TemplateController < ApplicationController
 
     for x in 1..7
         @wtemplate[@wtemplate.days[x-1]] = params[:day][x.to_s]
-        @wtemplate.save
+        @wtemplate.save!
     end
     respond_to do |format|
       format.html {redirect_to :action => "week", :id => @wtemplate.id}

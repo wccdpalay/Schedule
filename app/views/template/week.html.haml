@@ -1,7 +1,7 @@
 %p
   = flash[:notice]
-= #form_remote_tag :url => {:controller => "template", :action => "update"},:html => { :action => url_for(:controller => "template", :action => "change_day")} do
-= form_remote_tag :url => {:controller => "template", :action => "update", :id => @wtemplate.id}, :html => { :action => url_for(:controller => "template", :action => "update", :id => @wtemplate.id)} do
+- #form_tag :controller => "template", :action => "update", :id => @wtemplate.id do
+- form_remote_tag :url => {:controller => "template", :action => "update", :id => @wtemplate.id}, :html => { :action => url_for(:controller => "template", :action => "update", :id => @wtemplate.id)} do
   %table{:border=>1, :style=>'table-layout:fixed;'}
     %caption Template #{@wtemplate.name}
     %tr
@@ -24,6 +24,6 @@
                   %tr<
                     %td<
                       =x
-            - for x in 1..7 
+            - for x in 1..7
               %td<
                 = render :partial => "template_select", :locals => {:x => x, :dtemp => [@wtemplate.sat, @wtemplate.sun, @wtemplate.mon, @wtemplate.tue, @wtemplate.wed, @wtemplate.thu, @wtemplate.fri][x-1]}

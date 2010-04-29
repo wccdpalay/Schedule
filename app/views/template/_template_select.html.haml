@@ -5,4 +5,4 @@
   %tr<
     %td
       %table{:border => 1, :id => "day#{x}"}
-        = render :partial => "dtemp", :object => dtemp
+        = render :partial => "dtemp", :locals => {:dtemp => ((dtemp == nil) ? nil : dtemp.id )}

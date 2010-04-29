@@ -1,4 +1,10 @@
 for x in 1..7
-    page.replace_html "day#{x}".to_sym, {:partial => "dtemp", :locals => {:dtemp => @wtemplate[@wtemplate.days[x-1]]}}
+  dtemp = @wtemplate[@wtemplate.days[x-1]] 
+  unless dtemp.nil?
+    page.replace_html "day#{x}".to_sym, {:partial => "dtemp", :locals => {:dtemp => Dtemplate.find(@wtemplate[@wtemplate.days[x-1]])}}
+  else
+    page.replace_html "day#{x}".to_sym, {:partial => "dtemp", :locals => {:dtemp => nil}}
+  end
+  @wtemplate.save!
+#  page.replace_html "day#{x}".to_sym, "day: #{@wtemplate.days[x-1]}, x #{x}, dtemp #{@wtemplate[@wtemplate.days[x-1]]}"
 end
-#page.replace_html "day#{params[:id]}".to_sym, {:partial => "dtemp", :locals => { :dtemp => Dtemplate.find(params[:name])}}
