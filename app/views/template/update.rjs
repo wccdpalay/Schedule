@@ -1,7 +1,7 @@
 for x in 1..7
   dtemp = @wtemplate[@wtemplate.days[x-1]] 
   unless dtemp.nil?
-    page.replace_html "day#{x}".to_sym, {:partial => "dtemp", :locals => {:dtemp => Dtemplate.find(@wtemplate[@wtemplate.days[x-1]])}}
+    page.replace_html "day#{x}".to_sym, {:partial => "dtemp", :locals => {:dtemp => Dtemplate.find(dtemp)}}
   else
     page.replace_html "day#{x}".to_sym, {:partial => "dtemp", :locals => {:dtemp => nil}}
   end
