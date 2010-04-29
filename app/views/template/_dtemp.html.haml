@@ -1,8 +1,12 @@
 %tr<
-  %td<
+  %td{:class => "dtemp_title"}<
     - if dtemp == nil
       Nothing here!
     - elsif dtemp == "nil"
       "nil"
     - else
       = dtemp.name
+- for x in 1..TIME_SLOTS.length
+  %tr<
+    %td<
+      = x
