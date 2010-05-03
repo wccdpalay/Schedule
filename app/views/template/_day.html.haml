@@ -1,4 +1,8 @@
-%table
+%table{:border => 1}  
+  %tr
+    %td
+  %tr
+    %td
   - for row in ALL_TIMES.index(START_TIME)..ALL_TIMES.index(END_TIME)
     %tr
       - for x in ['slotAs', 'slotBs', 'slotCs', 'slotDs']
@@ -6,4 +10,4 @@
           - if day == nil
             &nbsp;
           - else
-            = render :partial => 'temp_select', :locals => {:slot => day.#{x}[row-1], :col => x, :row => row})
+            = render :partial => 'temp_select', :locals => {:slot => eval("day.#{x}[row-1]"), :col => x, :row => row}
