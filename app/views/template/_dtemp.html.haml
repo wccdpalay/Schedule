@@ -11,11 +11,4 @@
     &nbsp;
 - for x in ALL_TIMES.index(START_TIME)..ALL_TIMES.index(END_TIME)
   %tr{:class => "select_row"}<
-    %td<
-      =dtemp.slotAs[x-1]
-    %td<
-      =dtemp.slotBs[x-1]
-    %td<
-      =dtemp.slotCs[x-1]
-    %td<
-      =dtemp.slotDs[x-1]
+    = render :partial => "temp_row", :locals => {:dtemp => dtemp, :row => x} 
