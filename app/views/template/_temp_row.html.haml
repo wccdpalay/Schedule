@@ -1,3 +1,9 @@
 - for x in ['slotAs', 'slotBs', 'slotCs', 'slotDs']
-  %td<
-    =eval("dtemp == nil ? '&nbsp;' : dtemp.#{x}[row-1].user.firstname")
+  %td{:class => "td_24"}<
+    - if dtemp == nil
+      &nbsp;
+    - else
+      - if eval("dtemp.#{x}[row-1]").user != nil
+        = eval("dtemp.#{x}[row-1]").user.firstname
+      - else
+        &nbsp;
