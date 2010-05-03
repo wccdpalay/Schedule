@@ -1,0 +1,28 @@
+%p
+  = flash[:notice]
+- form_tag :controller => "template", :action => "update_day", :id => @dtemplate.id do
+- #form_remote_tag :url => {:controller => "template", :action => "update_day", :id => @dtemplate.id}, :html => { :action => url_for(:controller => "template", :action => "update_day", :id => @dtemplate.id)} do
+  %table{:border=>1, :style=>'table-layout:fixed;'}
+    %caption Template #{@dtemplate.name}
+    %tr
+      %td
+        = submit_tage "update"
+    %tr
+      %td
+        %table{:border=>1}
+          %tr
+            %td
+              %table{:border=>1}
+                %caption{:class => "row_34"} Date
+                %tr<
+                  %td<
+                    &nbsp;
+                %tr{:class => "time_col"}<
+                  %td<
+                    &nbsp;
+                - for x in TIME_SLOTS do
+                  %tr{:class => "admin_edit"}<
+                    %td{:class => "td_24"}<
+                      =x
+            %td<
+              = render :partial => "day", :locals => {:day => @dtemplate}
