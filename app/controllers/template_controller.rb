@@ -9,17 +9,17 @@ class TemplateController < ApplicationController
     @title = "Week template"
     @wtemplate = Wtemplate.find(:all).last
   end
-
-  def view
-
+  
+  def day
+    @title = "Day Templates"
+    @dtemplate = Dtemplate.find(:all).last
   end
 
-  def edit
-
+  def update_day
+    
   end
 
-
-  def update
+  def update_week
     @wtemplate = Wtemplate.find(params[:id])
 
     @wtemplate[:sat] = params[:day]["1"]

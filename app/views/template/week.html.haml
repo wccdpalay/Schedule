@@ -1,7 +1,7 @@
 %p
   = flash[:notice]
-- #form_tag :controller => "template", :action => "update", :id => @wtemplate.id do
-- form_remote_tag :url => {:controller => "template", :action => "update", :id => @wtemplate.id}, :html => { :action => url_for(:controller => "template", :action => "update", :id => @wtemplate.id)} do
+- #form_tag :controller => "template", :action => "update_week", :id => @wtemplate.id do
+- form_remote_tag :url => {:controller => "template", :action => "update_week", :id => @wtemplate.id}, :html => { :action => url_for(:controller => "template", :action => "update_week", :id => @wtemplate.id)} do
   %table{:border=>1, :style=>'table-layout:fixed;'}
     %caption Template #{@wtemplate.name}
     %tr
@@ -22,7 +22,7 @@
                     &nbsp;
                 - for x in TIME_SLOTS do
                   %tr{:class => "admin_edit"}<
-                    %td<
+                    %td{:class => "td_24"}<
                       =x
             - for x in 1..7
               %td<
