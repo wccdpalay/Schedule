@@ -1,3 +1,3 @@
 - for x in ['slotAs', 'slotBs', 'slotCs', 'slotDs']
   %td<
-    = eval("dtemp == nil ? '&nbsp;' : (render :partial => 'temp_select', :locals => {:slot => dtemp.#{x}[row-1], :col => x, :row => row})")
+    =eval("dtemp == nil ? '&nbsp;' : dtemp.#{x}[row-1].user.firstname")

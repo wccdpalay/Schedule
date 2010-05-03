@@ -1,1 +1,2 @@
-= select(x, row, options_from_users(slot))
+= select(col, row, options_from_users(slot))
+=#render :partial => 'temp_select', :locals => {:slot => dtemp.#{x}[row-1], :col => x, :row => row})

@@ -21,8 +21,8 @@
                   %td<
                     &nbsp;
                 - for x in TIME_SLOTS do
-                  %tr<
-                    %td<
+                  %tr{:class => "admin_edit"}<
+                    %td{:class => "admin_edit_td"}<
                       =x
             - for x in 1..7
               %td<

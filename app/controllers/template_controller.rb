@@ -6,6 +6,7 @@ class TemplateController < ApplicationController
   end
 
   def week
+    @title = "Week template"
     @wtemplate = Wtemplate.find(:all).last
   end
 
