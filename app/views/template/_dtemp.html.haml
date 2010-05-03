@@ -6,13 +6,16 @@
       "nil"
     - else
       = dtemp.name
-- for x in 1..TIME_SLOTS.length
+%tr
+  %td{:colspan => 4}
+    &nbsp;
+- for x in ALL_TIMES.index(START_TIME)..ALL_TIMES.index(END_TIME)
   %tr{:class => "select_row"}<
     %td<
-      =x
+      =dtemp.slotAs[x-1]
     %td<
-      =x
+      =dtemp.slotBs[x-1]
     %td<
-      =x
+      =dtemp.slotCs[x-1]
     %td<
-      =x
+      =dtemp.slotDs[x-1]
