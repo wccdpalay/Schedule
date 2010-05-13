@@ -12,15 +12,39 @@ class TemplateController < ApplicationController
   
   def day
     @title = "Day Templates"
-    @dtemplate = Dtemplate.find(:all).last
+    @dtemplate = Dtemplate.find(params[:id]) || Dtemplate.find(:all).last
   end
 
   def update_day
-    
+    @day = Dtemplate.find_by_id(params[:id])
+    @slots = [params[:SlotAs],params[:SlotBs],params[:SlotCs],params[:SlotDs]]
+    @dslots = [@day.slotAs, @day.slotBs, @day.slotCs, @day.slotDs]
+    for col in 0..3
+      for slot in @slots[col]
+        dslot = @dslots[col][slot[0].to_i]
+        if slot[1] != 'nil'
+          dslot.user_id = slot[1]
+        else
+          dslot.user_id = nil
+        end
+        dslot.save!        
+      end
+    end
+    @day.save!
+    respond_to do |format|
+      format.html {redirect_to :action => "day", :id => @day}
+      format.js  {}
+    end
   end
   
   def change_day
     @day = Dtemplate.find(params[:value])
+    params[:id] = params[:value]
+    respond_to do |format|
+      format.html {redirect_to :action => "day", :id => @day}
+
+      format.js  {}
+    end
   end
 
   def update_week
