@@ -23,16 +23,14 @@ module ApplicationHelper
   def options_from_users(slot=nil)
     options = ""
     select_used = false
-    if slot != nil
-      if slot.user == -1
+    if slot == nil
+      options = "<option value='-1'>Blocked</option><option value='-2'>Closed</option>"
+    elsif slot.user_id == -1
         options = "<option selected=\"selected\" value='-1'>Blocked</option><option value='-2'>Closed</option>"
         select_used = true
-      elsif slot.user == -2
+    elsif slot.user_id == -2
         options = "<option value='-1'>Blocked</option><option selected=\"selected\" value='-2'>Closed</option>"
         select_used = true
-      end
-    else
-      options = "<option value='-1'>Blocked</option><option value='-2'>Closed</option>"
     end
     for user in User.find(:all)
       if slot != nil
