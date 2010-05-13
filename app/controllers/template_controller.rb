@@ -37,6 +37,15 @@ class TemplateController < ApplicationController
     end
   end
   
+  def new_week
+    @week = Wtemplate.new()
+    
+    respond_to do |format|
+      format.html {redirect_to :action => "view", :id => @week}
+      format.js  {}
+    end
+  end
+  
   def change_day
     @day = Dtemplate.find(params[:value])
     params[:id] = params[:value]
