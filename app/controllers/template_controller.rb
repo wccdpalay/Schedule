@@ -12,7 +12,7 @@ class TemplateController < ApplicationController
   
   def day
     @title = "Day Templates"
-    @dtemplate = Dtemplate.find(params[:id]) || Dtemplate.find(:all).last
+    @dtemplate = Dtemplate.find(params[:id] || :last)
   end
 
   def update_day
