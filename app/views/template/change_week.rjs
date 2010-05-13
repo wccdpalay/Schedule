@@ -1,0 +1,3 @@
+for x in 1..7
+page.replace_html "wtemp_day#{x}".to_sym, {:partial => "template_select", :locals => {:x => x, :dtemp => [@week.sat, @week.sun, @week.mon, @week.tue, @week.wed, @week.thu, @week.fri][x-1]}}
+end

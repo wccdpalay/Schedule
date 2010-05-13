@@ -42,7 +42,15 @@ class TemplateController < ApplicationController
     params[:id] = params[:value]
     respond_to do |format|
       format.html {redirect_to :action => "day", :id => @day}
-
+      format.js  {}
+    end
+  end
+  
+  def change_week
+    @week = Wtemplate.find(params[:value])
+    params[:id] = params[:value]
+    respond_to do |format|
+      format.html {redirect_to :action => "week", :id => @week}
       format.js  {}
     end
   end

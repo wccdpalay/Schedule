@@ -3,7 +3,8 @@
 - #form_tag :controller => "template", :action => "update_week", :id => @wtemplate.id do
 - form_remote_tag :url => {:controller => "template", :action => "update_week", :id => @wtemplate.id}, :html => { :action => url_for(:controller => "template", :action => "update_week", :id => @wtemplate.id)} do
   %table{:border=>1, :style=>'table-layout:fixed;'}
-    %caption Template #{@wtemplate.name}
+    %caption
+      = select_tag("dtemp_tag", template_select(@wtemplate, "Wtemplate"), :onChange => remote_function(:url => 'change_week', :with => "'value=' + this.value"))
     %tr
       %td
         = submit_tag "update"
@@ -25,5 +26,5 @@
                     %td{:class => "td_24"}<
                       =x
             - for x in 1..7
-              %td<
+              %td{:id => "wtemp_day#{x}"}<
                 = render :partial => "template_select", :locals => {:x => x, :dtemp => [@wtemplate.sat, @wtemplate.sun, @wtemplate.mon, @wtemplate.tue, @wtemplate.wed, @wtemplate.thu, @wtemplate.fri][x-1]}

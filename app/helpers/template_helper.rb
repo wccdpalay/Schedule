@@ -1,8 +1,8 @@
 module TemplateHelper
   
-  def template_select(dtemp = nil)
+  def template_select(template = nil, cat = "Dtemplate")
     options = ""
-    for temp in Dtemplate.find(:all)
+    for temp in eval("#{cat}.find(:all)")
       if dtemp != nil
         if temp.name == dtemp.name
           options += "<option selected=\"selected\" value='#{temp.id}'>"+temp.name+"</option> "
