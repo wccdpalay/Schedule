@@ -25,15 +25,14 @@ module ApplicationHelper
     select_used = false
     if slot != nil
       if slot.user == -1
-        options += "<option selected=\"selected\" value='-1'>Blocked</option><option value='-2'>Closed</option>"
+        options = "<option selected=\"selected\" value='-1'>Blocked</option><option value='-2'>Closed</option>"
         select_used = true
       elsif slot.user == -2
-        options += "<option value='-1'>Blocked</option><option selected=\"selected\" value='-2'>Closed</option>"
+        options = "<option value='-1'>Blocked</option><option selected=\"selected\" value='-2'>Closed</option>"
         select_used = true
       end
     else
-      options += "<option value='-1'>Blocked</option>"
-      options += "<option value='-2'>Closed</option>"
+      options = "<option value='-1'>Blocked</option><option value='-2'>Closed</option>"
     end
     for user in User.find(:all)
       if slot != nil
