@@ -24,10 +24,10 @@ module ApplicationHelper
     options = ""
     select_used = false
     if slot != nil
-      if slot.user == -1
+      if slot.user_id == -1
         options = "<option selected=\"selected\" value='-1'>Blocked</option><option value='-2'>Closed</option>"
         select_used = true
-      elsif slot.user == -2
+      elsif slot.user_id == -2
         options = "<option value='-1'>Blocked</option><option selected=\"selected\" value='-2'>Closed</option>"
         select_used = true
       else

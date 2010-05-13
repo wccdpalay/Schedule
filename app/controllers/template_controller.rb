@@ -17,7 +17,7 @@ class TemplateController < ApplicationController
 
   def update_day
     @day = Dtemplate.find_by_id(params[:id])
-    @slots = [params[:SlotAs],params[:SlotBs],params[:SlotCs],params[:SlotDs]]
+    @slots = [params[:slotAs],params[:slotBs],params[:slotCs],params[:slotDs]]
     @dslots = [@day.slotAs, @day.slotBs, @day.slotCs, @day.slotDs]
     for col in 0..3
       for slot in @slots[col]
@@ -32,7 +32,7 @@ class TemplateController < ApplicationController
     end
     @day.save!
     respond_to do |format|
-      format.html {redirect_to :action => "day", :id => @day}
+      format.html {redirect_to :action => "day", :id => params[:id]}
       format.js  {}
     end
   end
