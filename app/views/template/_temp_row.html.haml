@@ -3,7 +3,7 @@
     - if dtemp == nil
       &nbsp;
     - else
-      - if eval("dtemp.#{x}[row-1]").user != nil
-        = eval("dtemp.#{x}[row-1]").user.firstname
+      - if eval("get_user_for_slot(dtemp.#{x}[row-1])") != nil
+        = eval("get_user_for_slot(dtemp.#{x}[row-1])")
       - else
         &nbsp;

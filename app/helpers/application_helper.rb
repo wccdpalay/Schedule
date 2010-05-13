@@ -56,6 +56,20 @@ module ApplicationHelper
   end
   
   
+  def get_user_for_slot(slot)
+    case slot.user_id
+      when nil
+        "&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;"
+      when -1
+        "Blocked"
+      when -2
+        "Closed"
+      else
+        slot.user.firstname
+    end
+  end
   
   
   #Template stuff
