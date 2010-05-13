@@ -21,8 +21,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
    config.gem "rufus-scheduler", :source => "http://gemcutter.org"
    config.gem "haml"
-   config.gem 'db-charmer', :lib => 'db_charmer', :source => 'http://gemcutter.org'
-   config.gem 'chronic'
+   #config.gem 'db-charmer', :lib => 'db_charmer', :source => 'http://gemcutter.org'
 
    
   # Require certain gems

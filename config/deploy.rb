@@ -38,7 +38,7 @@ namespace :deploy do
   
   task :start, :roles => :app do
     run "touch #{current_release}/tmp/restart.txt"
-    run "cp ~/database.yml ~/Sites/Schedule/current/config/database.yml"
+    run "cp ~/Schedule_database.yml ~/Sites/Schedule/current/config/database.yml"
   end
 
   task :stop, :roles => :app do
@@ -47,7 +47,7 @@ namespace :deploy do
 
   desc "Restart Application"
   task :restart, :roles => :app do
-    run "cp ~/database.yml ~/Sites/Schedule/current/config/database.yml"
+    run "cp ~/Schedule_database.yml ~/Sites/Schedule/current/config/database.yml"
     run "touch #{current_release}/tmp/restart.txt"
   end
 

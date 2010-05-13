@@ -3,7 +3,8 @@
 - form_tag :controller => "template", :action => "update_day", :id => @dtemplate.id do
 - #form_remote_tag :url => {:controller => "template", :action => "update_day", :id => @dtemplate.id}, :html => { :action => url_for(:controller => "template", :action => "update_day", :id => @dtemplate.id)} do
   %table{:border=>1, :style=>'table-layout:fixed;'}
-    %caption Template #{@dtemplate.name}
+    %caption
+      = select_tag(dtemp, template_select, :onChange => remote_function(:url => 'change_day', :with => 'value=' + this.value)
     %tr
       %td
         = submit_tag "update"
@@ -15,9 +16,6 @@
               %table{:border=>1}
                 %caption{:class => "row_34"} Date
                 %tr<
-                  %td<
-                    &nbsp;
-                %tr{:class => "time_col"}<
                   %td<
                     &nbsp;
                 - for x in TIME_SLOTS do

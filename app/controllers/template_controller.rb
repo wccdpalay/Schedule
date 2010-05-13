@@ -18,6 +18,10 @@ class TemplateController < ApplicationController
   def update_day
     
   end
+  
+  def change_day
+    @dtemplate = Dtemplate.find(params[:value])
+  end
 
   def update_week
     @wtemplate = Wtemplate.find(params[:id])

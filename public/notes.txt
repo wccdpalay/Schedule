@@ -167,4 +167,8 @@ script to add to edit.html.haml for locking the editing
   }
   ID=window.setTimeout("update();", 1000);
   }
-		
+	
+//******************************************************************
+	
+For running cron jobs to automate a few things
+	http://www.ameravant.com/posts/recurring-tasks-in-ruby-on-rails-using-runner-and-cron-jobs	
