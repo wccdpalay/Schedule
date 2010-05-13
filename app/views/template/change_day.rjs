@@ -1,0 +1,1 @@
+page.replace_html "dtemp_day".to_sym, {:partial => "day", :locals => {:day => @day}}

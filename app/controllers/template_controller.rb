@@ -20,7 +20,7 @@ class TemplateController < ApplicationController
   end
   
   def change_day
-    @dtemplate = Dtemplate.find(params[:value])
+    @day = Dtemplate.find(params[:value])
   end
 
   def update_week
