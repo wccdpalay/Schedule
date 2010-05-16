@@ -38,8 +38,14 @@ class TemplateController < ApplicationController
   end
   
   def new_week
-    @week = Wtemplate.new(params[:wtemplate])
-    
+    @week = Wtemplate.new()
+    @week.name = params[:wtemplate][:name]
+      if params[:wtemplate][:more] == 1
+        for x in [:sat, :sun, :mon, :tue, :wed, :thu, :fri]
+          @week[x] = Wtemplate.find(params[:wtemplate][:copy_from])[x]
+        end
+      end
+    @week.save!
     respond_to do |format|
       format.html {redirect_to :action => "view", :id => @week}
       format.js  {}

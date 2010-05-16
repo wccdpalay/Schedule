@@ -7,36 +7,11 @@
     = text_field_tag "wtemplate[name]"
     %br
     = label_tag "wtemplate_copy", "Would you like to start with another Week's template as your base?"
-    = check_box_tag "wtemplate[more]",1, false, :onChange => " document.getElementById('new_form_more').toggle();"
+    = check_box_tag "wtemplate[more]",1, false, :onChange => "document.getElementById('new_form_more').toggle();"
+    %br
     #new_form_more{:style => "display: none;"}
       = label_tag "wtemplate_from", "Which template would you like to copy"
-      = select_tag("wtemp_tag", template_select(@wtemplate, "Wtemplate"))
-    = submit_tag "Create New Week Template"         
-- #form_tag :controller => "template", :action => "update_week", :id => @wtemplate.id do
-- form_remote_tag :url => {:controller => "template", :action => "update_week", :id => @wtemplate.id}, :html => { :action => url_for(:controller => "template", :action => "update_week", :id => @wtemplate.id)} do
-  %table{:border=>1, :style=>'table-layout:fixed;'}
-    %caption
-      = select_tag("wtemp_tag", template_select(@wtemplate, "Wtemplate"), :onChange => remote_function(:url => 'change_week', :with => "'value=' + this.value"))
-    %tr
-      %td
-        = submit_tag "update"
-    %tr
-      %td
-        %table{:border=>1}
-          %tr
-            %td
-              %table{:border=>1}
-                %caption{:class => "row_34"} Date
-                %tr<
-                  %td<
-                    &nbsp;
-                %tr{:class => "time_col"}<
-                  %td<
-                    &nbsp;
-                - for x in TIME_SLOTS do
-                  %tr{:class => "admin_edit"}<
-                    %td{:class => "td_24"}<
-                      =x
-            - for x in 1..7
-              %td{:id => "wtemp_day#{x}"}<
-                = render :partial => "template_select", :locals => {:x => x, :dtemp => [@wtemplate.sat, @wtemplate.sun, @wtemplate.mon, @wtemplate.tue, @wtemplate.wed, @wtemplate.thu, @wtemplate.fri][x-1]}
+      = select_tag"wtemplate[copy_from]", template_select(@wtemplate, "Wtemplate")
+    = submit_tag "Create New Week Template"
+#week_form
+  = render :partial => "week_form", :locals => {:wtemplate => @wtemplate}
