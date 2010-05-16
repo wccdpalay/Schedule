@@ -7,7 +7,7 @@
     = text_field_tag "wtemplate[name]"
     %br
     = label_tag "wtemplate_copy", "Would you like to start with another Week's template as your base?"
-    = check_box_tag "wtemplate[more]",1, false, :onChange => "document.getElementById('new_form_more').toggle();"
+    = check_box_tag "wtemplate[more]",1 , false, :onChange => "document.getElementById('new_form_more').toggle();"
     %br
     #new_form_more{:style => "display: none;"}
       = label_tag "wtemplate_from", "Which template would you like to copy"
