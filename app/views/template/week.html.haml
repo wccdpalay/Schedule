@@ -1,17 +1,17 @@
-  %p
-    = flash[:notice]
-  = submit_tag "New Week Template", :onClick => "document.getElementById('new_form').toggle();" 
-  #new_form{:style => "display: none;"}
-    - form_remote_tag :url => {:controller => "template", :action => "new_week"}, :html => { :action => url_for(:controller => "template", :action => "new_week")} do
-      = label_tag "wtemplate_name", "Name of the new template"
-      = text_field_tag "wtemplate[name]"
-      %br
-      = label_tag "wtemplate_copy", "Would you like to start with another Week's template as your base?"
-      = check_box_tag "wtemplate[more]", false, :onChange => " document.getElementById('new_form_more').toggle();" 
-      #new_form_more{:style => "display: none;"}
-        = label_tag "wtemplate_from", "Which template would you like to copy"
-        = select_tag("wtemp_tag", template_select(@wtemplate, "Wtemplate"))
-      = submit_tag "Create New Week Template"         
+%p
+  = flash[:notice]
+= submit_tag "New Week Template", :onClick => "document.getElementById('new_form').toggle();"
+#new_form{:style => "display: none;"}
+  - form_remote_tag :url => {:controller => "template", :action => "new_week"}, :html => { :action => url_for(:controller => "template", :action => "new_week")} do
+    = label_tag "wtemplate_name", "Name of the new template"
+    = text_field_tag "wtemplate[name]"
+    %br
+    = label_tag "wtemplate_copy", "Would you like to start with another Week's template as your base?"
+    = check_box_tag "wtemplate[more]", false, :onChange => " document.getElementById('new_form_more').toggle();"
+    #new_form_more{:style => "display: none;"}
+      = label_tag "wtemplate_from", "Which template would you like to copy"
+      = select_tag("wtemp_tag", template_select(@wtemplate, "Wtemplate"))
+    = submit_tag "Create New Week Template"         
 - #form_tag :controller => "template", :action => "update_week", :id => @wtemplate.id do
 - form_remote_tag :url => {:controller => "template", :action => "update_week", :id => @wtemplate.id}, :html => { :action => url_for(:controller => "template", :action => "update_week", :id => @wtemplate.id)} do
   %table{:border=>1, :style=>'table-layout:fixed;'}

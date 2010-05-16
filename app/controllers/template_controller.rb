@@ -38,7 +38,7 @@ class TemplateController < ApplicationController
   end
   
   def new_week
-    @week = Wtemplate.new()
+    @week = Wtemplate.new(params[:wtemplate])
     
     respond_to do |format|
       format.html {redirect_to :action => "view", :id => @week}
