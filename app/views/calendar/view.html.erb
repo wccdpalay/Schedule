@@ -1,6 +1,7 @@
 <p><%=flash[:notice]%></p>
+<p><%=flash[:warning]%></p>
 <p>
-<%= link_to "Admin Clear", :controller => :calendar, :action => :admin_clear%>
+<%= if admin?; link_to "Admin Clear", :controller => :calendar, :action => :admin_clear; end %>
 <% if @length != 7%>
 <%= link_to "view the whole week", {:controller => :calendar, :action => :view, 
                                     :length => "week", :year => @start_day.date.year, 
@@ -12,10 +13,10 @@
 
   <caption>
     <%= "Schedule starting on #{@start_day.date.strftime(fmt='%A, %B %d, %Y')}" %><br />
-    <%= link_to_cal(h("<back 1 week> "), (@sd.date-7), @length)%>
-    <%= link_to_cal(h("<back 1 day> "), (@sd.date-1), @length) %>
-    <%= link_to_cal(h("<forward 1 day> "), (@sd.date+1), @length) %>
-    <%= link_to_cal(h("<forward 1 week>"), (@sd.date+7), @length) %>
+    <%= link_to_cal(h("<prev week> "), (@sd.date-7), @length)%>
+    <%= link_to_cal(h("<prev day> "), (@sd.date-1), @length) %>
+    <%= link_to_cal(h("<next day> "), (@sd.date+1), @length) %>
+    <%= link_to_cal(h("<next week>"), (@sd.date+7), @length) %>
   </caption>
   <tbody align=center>
   <tr>
@@ -25,9 +26,9 @@
           <td>
             <table border=1>
               <caption>Date</caption>
-			  <tr><td>&nbsp;</td></tr>
+			  <tr><td class="filler">&nbsp;</td></tr>
               <% for x in TIME_SLOTS do -%>
-                <%= "<tr><td> #{x} </td></tr>"%>
+                <%= "<tr class='time_row'><td class='time_col'> #{x} </td></tr>"%>
               <% end -%>
             </table>
           </td>
@@ -42,6 +43,8 @@
   </tr>
   </tbody>
   <tr>
-    <td>Your total Hours go here</td>
+    <td>
+    	Your hours for this week: <%= get_user(session[:user]).weeks_hours(@sd.week) %>
+	</td>
   </tr>
 </table>

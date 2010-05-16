@@ -10,7 +10,13 @@ class Wtemplate < ActiveRecord::Base
   
   
   def before_create
-    
+    self[:sat] = 1
+    self[:sun] = 1
+    self[:mon] = 1
+    self[:tue] = 1
+    self[:wed] = 1
+    self[:thu] = 1
+    self[:fri] = 1
   end
   
   def after_save
@@ -20,4 +26,14 @@ class Wtemplate < ActiveRecord::Base
   def save_as(str)
     
   end
+  
+  def sym_days
+    [:sat, :sun, :mon, :tue, :wed, :thu, :fri]
+  end
+  
+  def days
+    [sat, sun, mon, tue, wed, thu, fri]
+  end
+  
+  
 end

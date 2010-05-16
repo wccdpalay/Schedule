@@ -8,12 +8,12 @@
       =@title
       = #yield :head
   %body
-    %ul
-      %li
+    %ul{:class => "menu_list"}
+      %li{:class => "menu_item"}
         %a{:href => "https://serafina.labs.is.wccnet.org/joomla"} The Staff Site
-      %li
+      %li{:class => "menu_item"}
         = link_to "Home", {:controller => :calendar, :action => :select}
-      %li
+      %li{:class => "menu_item"}
         = link_to_cal("Go to Today", Date.today, 7)
     =yield
     #debug

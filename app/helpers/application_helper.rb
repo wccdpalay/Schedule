@@ -1,7 +1,16 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def get_user(user)
+    user = User.find(session[:user])
+  end
   
+  def admin?
+    user = get_user(session[:user])
+    if user
+      user.usertype == "Administrator"
+    end
+  end
   
   def link_to_cal(string, date, length="day")
     link_to string, {:controller => :calendar, :action => :view, 
@@ -9,23 +18,62 @@ module ApplicationHelper
                   :month => date.month, :day => date.day}
   end
   
+  
+  
   def options_from_users(slot=nil)
     options = ""
-    for user in USERS.keys
+    select_used = false
+    if slot != nil
+      if slot.user_id == -1
+        options = "<option selected=\"selected\" value='-1'>Blocked</option><option value='-2'>Closed</option>"
+        select_used = true
+      elsif slot.user_id == -2
+        options = "<option value='-1'>Blocked</option><option selected=\"selected\" value='-2'>Closed</option>"
+        select_used = true
+      else
+        options = "<option value='-1'>Blocked</option><option value='-2'>Closed</option>"  
+      end
+    else
+      options = "<option value='-1'>Blocked</option><option value='-2'>Closed</option>"
+    end
+    for user in User.find(:all)
       if slot != nil
-        if slot.user_id == USERS[user]
-          options += "<option selected=\"selected\">"+user.to_s+"</option> "
+        if slot.user == user
+          select_used = true
+          options += "<option selected=\"selected\" value='#{user.id}'>"+user.firstname+"</option> "
         else
-          options += "<option>"+user.to_s+"</option> "
+          options += "<option value='#{user.id}'>"+user.firstname+"</option> "
         end
       else #slot == nil
-        options += "<option>"+user.to_s+"</option> "
+        options += "<option value='#{user.id}'>"+user.firstname+"</option> "
       end
-      
     end
-    return options
+    if select_used
+      options = "<option value='nil'> - </option>" + options
+    else
+      options = "<option selected=\"selected\" value='nil'> - </option>" + options
+    end
+    options
   end
   
+  
+  def get_user_for_slot(slot)
+    case slot.user_id
+      when nil
+        "&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;"
+      when -1
+        "Blocked"
+      when -2
+        "Closed"
+      else
+        slot.user.firstname
+    end
+  end
+  
+  
+  #Template stuff
   def options_for_wtemplates
     options = ""
     for op in Wtemplates.find(:all)
@@ -33,7 +81,7 @@ module ApplicationHelper
           options += "<option>"+op.name.to_s+"</option> "
       end
     end
-    return options
+    options
   end
   
   def options_for_dtemplates

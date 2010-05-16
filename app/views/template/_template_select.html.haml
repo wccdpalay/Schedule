@@ -1,11 +1,8 @@
-%td
-  %table{:border => 1}
-    %tr<
-      %td<
-        Temp_Selector
-    %tr<
-      %td
-        %table{:border => 1, :id => "day#{x}"}
-          %tr<
-            %td<
-              A table
+%table{:border => 1}
+  %tr<
+    %td<
+      = render :partial => "select_list", :locals => {:dtemp => dtemp, :col => x}
+  %tr<
+    %td
+      %table{:border => 1, :id => "day#{x}", :style => "width: 100%;"}
+        = render :partial => "dtemp", :locals => {:dtemp => ((dtemp == nil) ? nil : dtemp )}

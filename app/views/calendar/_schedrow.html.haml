@@ -1,36 +1,40 @@
-- if params[:admin]==true
-  %tr
+- if admin?
+  %tr{:class => "select_row"}
     %td<
       = render :partial => "slot/adminslot", | 
       :locals => {:slot => day.slotAs[row],  |
-      :col => 1, :row => row}                |
+      :col => 1, :row => row, :user => user} |
     %td<
       = render :partial => "slot/adminslot", | 
       :locals => {:slot => day.slotBs[row],  |
-      :col => 2, :row => row}                |
+      :col => 2, :row => row, :user => user} |
     %td<
       = render :partial => "slot/adminslot", | 
       :locals => {:slot => day.slotCs[row],  |
-      :col => 3, :row => row}                |
+      :col => 3, :row => row, :user => user} |
     %td<
       = render :partial => "slot/adminslot", | 
       :locals => {:slot => day.slotDs[row],  |
-      :col => 4, :row => row}                |
+      :col => 4, :row => row, :user => user} |
 - else
   %tr
     %td<
       = render :partial => "slot/slot",      | 
       :locals => {:slot => day.slotAs[row],  |
-      :col => 1, :row => row}                |
+      :col => 1, :row => row, :user => user} |
     %td<
       = render :partial => "slot/slot",      | 
       :locals => {:slot => day.slotBs[row],  |
-      :col => 2, :row => row}                |
+      :col => 2, :row => row, :user => user} |
     %td<
       = render :partial => "slot/slot",      | 
       :locals => {:slot => day.slotCs[row],  |
-      :col => 3, :row => row}                |
+      :col => 3, :row => row, :user => user} |
     %td<
       = render :partial => "slot/slot",      | 
       :locals => {:slot => day.slotDs[row],  |
-      :col => 4, :row => row}                |
+      :col => 4, :row => row, :user => user} |
+    - if params[:action] == "edit"
+      %td<
+        = radio_button_tag("row[#{row}]", "se")
+    
