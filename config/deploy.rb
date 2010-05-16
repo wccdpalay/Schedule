@@ -14,6 +14,7 @@ set :branch, "Users"
 set :scm_command, "/usr/local/git/bin/git"
 set :local_scm_command, "git"
 
+
 default_run_options[:pty] = true
 
 set :ssh_options, {:forward_agent => true}
