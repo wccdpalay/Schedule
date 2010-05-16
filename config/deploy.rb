@@ -10,7 +10,7 @@ set :gem, '/usr/local/bin/gem'
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 set :repository,  "git@github.com:wccdpalay/#{application}.git"
-set :branch, "users"
+set :branch, "Users"
 set :scm_command, "/usr/local/git/bin/git"
 set :local_scm_command, "git"
 
