@@ -2,10 +2,10 @@
 - #form_remote_tag :url => {:controller => "template", :action => "update_day", :id => dtemplate.id}, :html => { :action => url_for(:controller => "template", :action => "update_day", :id => dtemplate.id)} do
   %table{:border=>1, :style=>'table-layout:fixed;'}
     %caption
-      = select_tag("dtemp_tag", template_select(dtemplate), :onChange => remote_function(:url => 'change_day', :with => "'value=' + this.value"))
+      = select_tag("dtemp_tag", template_select(dtemplate), :onChange => remote_function(:url => {:action => 'change_day'}, :with => "'value=' + this.value"))
     %tr
       %td
-        = submit_tag "update"
+        = submit_tag "Save"
     %tr
       %td
         %table{:border=>1}

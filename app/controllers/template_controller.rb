@@ -54,7 +54,7 @@ class TemplateController < ApplicationController
 
 
   def new_day
-    @dtemplate = DTemplate.create()
+    @dtemplate = Dtemplate.create()
     @dtemplate.name = params[:dtemplate][:name]
     if params[:dtemplate][:more] == 1
       @dtemplate.copy_from_dtemplate(Dtemplate.find(params[:dtemplate][:copy_from]))
