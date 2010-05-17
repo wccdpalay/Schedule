@@ -1,12 +1,21 @@
 class Stemplate < ActiveRecord::Base
   belongs_to :dtemplate
   belongs_to :user
+
+  def copy_from_stemplate(stemp)
+    dtemplate_id = stemp.dtemplate_id
+    start_time = stemp.start_time
+    user_id = stemp.user_id
+    spot = stemp.spot
+    save!
+  end
+
 end
 
 
 class SAt < Stemplate
   def self.new()
-    s = Stemplate.new(:spot => "A")
+    Stemplate.new(:spot => "A")
   end
   
   def self.find_first
@@ -20,7 +29,7 @@ end
 
 class SBt < Stemplate
   def self.new
-    s = Stemplate.new(:spot => "B")
+    Stemplate.new(:spot => "B")
   end
   
   def self.find_first
@@ -43,13 +52,13 @@ class SCt < Stemplate
   end
   
   def self.new
-    s = Stemplate.new(:spot => "C")
+    Stemplate.new(:spot => "C")
   end  
 end
 
 class SDt < Stemplate
   def self.new
-    s = Stemplate.new(:spot => "D")
+    Stemplate.new(:spot => "D")
   end
   
   def self.find_first

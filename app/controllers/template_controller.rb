@@ -51,6 +51,20 @@ class TemplateController < ApplicationController
       format.js  {}
     end
   end
+
+
+  def new_day
+    @dtemplate = DTemplate.create()
+    @dtemplate.name = params[:dtemplate][:name]
+    if params[:dtemplate][:more] == 1
+      @dtemplate.copy_from_dtemplate(Dtemplate.find(params[:dtemplate][:copy_from]))
+    end
+    @dtemplate.save!
+    respond_to do |format|
+      format.html {redirect_to :action => "day", :id => @dtemplate}
+      format.js {}
+    end
+  end
   
   def change_day
     @day = Dtemplate.find(params[:value])

@@ -26,8 +26,11 @@ class Dtemplate < ActiveRecord::Base
     self.stemplates.find_all_by_spot "D"
   end
   
-  def copy_from_day(day)
-    
+  def copy_from_dtemplate(dtemp)
+    for x in 0..stemplates.length-1
+      stemplates[x].copy_from_stemplate(dtemp.stemplates[x])
+    end
+    save!
   end
   
   def after_create

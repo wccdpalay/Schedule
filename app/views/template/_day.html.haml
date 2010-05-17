@@ -6,7 +6,7 @@
     %td{:colspan => 4}
       &nbsp;
   - for row in (ALL_TIMES.index(START_TIME)-1)..(ALL_TIMES.index(END_TIME)-1)
-    %tr
+    %tr{:class => "row_28"}
       - for x in ['slotAs', 'slotBs', 'slotCs', 'slotDs']
         %td{:class => "td_24"}<
           - if day == nil

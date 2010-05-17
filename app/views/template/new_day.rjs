@@ -1,0 +1,3 @@
+page.replace_html :day_form, {:partial => "day", :locals => {:dtemplate => @dtemplate}} 
+page.select("#new_form form").first().reset()
+page[:new_form].hide()
