@@ -1,2 +1,3 @@
 page.replace_html :week_form, {:partial => "week_form", :locals => {:wtemplate => @week}} 
-page[:new_form].reset
+page.select("#new_form form").first().reset()
+

@@ -1,17 +1,5 @@
-<% case col -%>
-<% when 1 -%>
-	<div class="col1">
-<% when 2 -%>
-	<div class="col2">
-<% when 3 -%>
-	<div class="col3">
-<% when 4 -%>
-	<div class="col4">
-<% else -%>
-	<div class="col">
-<% end -%>
-
-<% if params[:action]=="view" -%> 
+<div class=<%= "col#{col}" %>>
+<% if params[:action]=="view" -%>
 <%= get_user_for_slot(slot)%>
 <% elsif params[:action]=="edit" -%>
 <%= select("Slot#{['A','B','C','D'][col-1]}s", row, options_from_users(slot))%>
