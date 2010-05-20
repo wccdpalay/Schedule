@@ -48,7 +48,7 @@ class TemplateController < ApplicationController
   end
 
   def new_week
-    @week = Wtemplate.new()
+    @week = Wtemplate.create()
     @week.name = params[:wtemplate][:name]
       if params[:wtemplate][:more] == 1
         for x in [:sat, :sun, :mon, :tue, :wed, :thu, :fri]
