@@ -16,27 +16,35 @@ class TemplateController < ApplicationController
   end
 
   def list_weeks
-
+    @title = "Week listing"
+    @weeks = Wtemplate.find(:all)
   end
 
   def list_days
-
+    @title = "Day Listing"
+    @days = Dtemplate.find(:all)
   end
   
   def edit_week
-
+    @week = Wtemplate.find(params[:id])
+    @title = "Edit details of #{@week.name}"
   end
 
   def edit_day
-
+    @day = Dtemplate.find(params[:id])
+    @title = "Edit details of #{@day.name}"
   end
 
   def delete_week
-
+    @week = Wtemplate.find(params[:id])
+    @week.delete
+    redirect_to :action => :week
   end
 
   def delete_day
-    
+    @day = Dtemplate.find(params[:id])
+    @day.delete
+    redirect_to :action => :day
   end
 
   def new_week
