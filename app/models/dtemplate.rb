@@ -28,7 +28,7 @@ class Dtemplate < ActiveRecord::Base
   
   def copy_from_dtemplate(dtemp)
     for x in 0..stemplates.length-1
-      stemplates[x].copy_from_stemplate(dtemp.stemplates[x])
+      self.stemplates[x].copy_from_stemplate(dtemp.stemplates[x])
     end
     save!
   end
