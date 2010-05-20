@@ -3,10 +3,10 @@ class Stemplate < ActiveRecord::Base
   belongs_to :user
 
   def copy_from_stemplate(stemp)
-    dtemplate_id = stemp.dtemplate_id
-    start_time = stemp.start_time
-    user_id = stemp.user_id
-    spot = stemp.spot
+    self.dtemplate_id = stemp.dtemplate_id
+    self.start_time = stemp.start_time
+    self.user_id = stemp.user_id
+    self.spot = stemp.spot
     save!
   end
 
