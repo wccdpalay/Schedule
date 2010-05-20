@@ -10,10 +10,10 @@ class User < ActiveRecord::Base
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate()
     content = nil
-    open('https://serafina.labs.is.wccnet.org/joomla/tech.php') do |page|
-      content = page.read
-    end
-    #content = `/Library/WebServer/Documents/Joomla/tech.php`
+    #open('https://serafina.labs.is.wccnet.org/joomla/tech.php') do |page|
+    #  content = page.read
+    #end
+    content = `/Library/WebServer/Documents/Joomla/tech.php`
     
     params[:cookie_name] = content
     content = cookies[params[:cookie_name]]
