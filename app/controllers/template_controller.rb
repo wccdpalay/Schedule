@@ -50,7 +50,7 @@ class TemplateController < ApplicationController
   def new_week
     @week = Wtemplate.create()
     @week.name = params[:wtemplate][:name]
-      if params[:wtemplate][:more] == 1
+      if params[:wtemplate][:more] == "1"
         for x in [:sat, :sun, :mon, :tue, :wed, :thu, :fri]
           @week[x] = Wtemplate.find(params[:wtemplate][:copy_from])[x]
         end
@@ -66,7 +66,7 @@ class TemplateController < ApplicationController
   def new_day
     @dtemplate = Dtemplate.create()
     @dtemplate.name = params[:dtemplate][:name]
-    if params[:dtemplate][:more] == 1
+    if params[:dtemplate][:more] == "1"
       @dtemplate.copy_from_dtemplate(Dtemplate.find(params[:dtemplate][:copy_from]))
     end
     @dtemplate.save!

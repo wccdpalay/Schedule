@@ -1,1 +1,2 @@
+#TODO: = select("day", col, template_select(dtemp), {}, {:onChange => remote_function(:url => {:controller => :template, :action => :change_week}, :with => "'name=' + $('name').value ")})
 = select("day", col, template_select(dtemp), {}, {})
