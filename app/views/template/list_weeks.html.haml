@@ -1,0 +1,25 @@
+%table
+  %caption Listing of Weeks
+  %tr
+    %th Name
+    %th Sat
+    %th Sun
+    %th Mon
+    %th Tue
+    %th Wed
+    %th Thu
+    %th Fri
+    %th{:colspan => 2} Options
+  - for week in @weeks
+    %tr
+      %td= week.name
+      %td= week.sat.name
+      %td= week.sun.name
+      %td= week.mon.name
+      %td= week.tue.name
+      %td= week.wed.name
+      %td= week.thu.name
+      %td= week.fri.name
+      %td= link_to "delete", :controller => :template, :action => :delete_week
+      %td= link_to "view/edit", :controller => :template, :action => :week, :id => week.id
+
