@@ -1,0 +1,10 @@
+%table
+  %caption Listing of Days
+  %tr
+    %th Name
+    %th{:colspan => 2} Options
+  - for day in @days
+    %tr
+      %td= day.name
+      %td= link_to "delete", :controller => :template, :action => :delete_day, :id => day.id
+      %td= link_to "view/edit", :controller => :template, :action => :day, :id => day.id
