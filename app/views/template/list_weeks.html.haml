@@ -20,6 +20,6 @@
       %td= week.wed.name
       %td= week.thu.name
       %td= week.fri.name
-      %td= link_to "delete", :controller => :template, :action => :delete_week
+      %td= link_to "delete", :controller => :template, :action => :delete_week, :id => week.id
       %td= link_to "view/edit", :controller => :template, :action => :week, :id => week.id
 
