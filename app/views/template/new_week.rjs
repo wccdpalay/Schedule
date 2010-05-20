@@ -1,3 +1,4 @@
-page.replace_html :week_form, {:partial => "week_form", :locals => {:wtemplate => @week}} 
+page.replace_html :week_form, {:partial => "week_form", :locals => {:wtemplate => @week}}
 page.select("#new_form form").first().reset()
+page.replace_html :wtemplate_copy_from, "#{select_tag"wtemplate[copy_from]", template_select(@wtemplate, "Wtemplate")}"
 page[:new_form].hide()
