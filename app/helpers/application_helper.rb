@@ -4,6 +4,7 @@ module ApplicationHelper
   def get_user(user)
     user = User.find(session[:user])
   end
+
   
   def admin?
     user = get_user(session[:user])

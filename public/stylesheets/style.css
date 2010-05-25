@@ -6,7 +6,7 @@ body {
 
 #ja-header, #ja-mainnav, #ja-container, #jabotsl, #ja-footer{
 	margin: 0px auto;
-	width 97%;
+	width: 97%;
 }
 
 #ja-mainbody{
@@ -17,7 +17,7 @@ body {
 #ja-contentwrap{
 	float: right;
 	display: block;
-	background: #fcfcfc:
+	background: #fcfcfc;
 }
 
 #ja-wrapper{
