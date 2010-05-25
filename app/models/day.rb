@@ -64,8 +64,19 @@ class Day < ActiveRecord::Base
       slots[x].save!
     end
   end
- 
+
+  def copy_from_other_day(o_day)
+     for x in 0..slots.length-1
+      slots[x].start_time = o_day.slots[x].start_time
+      slots[x].user_id = o_day.slots[x].user_id
+      slots[x].spot = o_day.slots[x].spot
+      slots[x].save!
+    end
+  end
+
 end
+
+
 
 class ArcDay < Day
   

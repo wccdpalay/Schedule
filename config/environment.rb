@@ -80,5 +80,8 @@ Rails::Initializer.run do |config|
   USERS = {:Closed => -2, :Blocked => -1, :Empty => nil, :Dave => 1, :Dan => 2, :Carol => 3, :Farah => 4, :Mina => 5, :Reg => 6, :Sarah => 7}
   
   JSESSION_NAME = `php /Library/WebServer/Documents/Joomla/tech.php`
+
+   #This is the number of weeks to hold on to before archiving.  
+  MAX_WEEKS = 5
   
 end

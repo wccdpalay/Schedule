@@ -8,7 +8,7 @@
 
 #blank Day_Template
 dtemplates = Dtemplate.create([{:name => "Blank"}, {:name => "Blank Fall/Winter Weekday"}])
-wtemplate = Wtemplate.create({:name => "Empty Template"})
+Wtemplate.create({:name => "Empty Template"})
 
 dtemp = dtemplates.last
 for slot in dtemp.slotBs
@@ -21,7 +21,7 @@ date -= 1 while date.wday != 6
 woy = date.strftime('%V').to_i
 w = Week.create({:year => date.year, :woy => woy, :start_date => date })
 7.times do
-  d = Day.create({:date => date, :week => w, :being_edited => DateTime.now - 2.years})
+  d = Day.create({:date => date, :week => w, :being_edited => DateTime.now - 2.years, :name => DAYS[(date.wday+1)%7]})
   date += 1
 end
 

@@ -1,27 +1,43 @@
 class Week < ActiveRecord::Base
   has_many :days
-  
- def next
-   Week.find(:all, {:order => "start_date DESC"}).last
-    
+
+  def make_new(type_from)
+    lw = Week.last #find the last week created so far
+
+
+    #if there are more than MAX_WEEKS weeks already, archive the oldest
+    while Week.count > MAX_WEEKS
+      archweek(Week.first)
+    end
+
+
   end
-  
+
   def make_from_template(wtemplate)
     
   end
   
   
   def copy_from_template(wtemplate)
-    for x in 0..days.length-1
-      days[x].copy_from_template(Dtemplate.find(wtemplate[DAYS[x]]))
+    for x in days
+      x.copy_from_dtemplate(Dtemplate.find(wtemplate[x.name]))
     end
   end
-  
+
+  def copy_from_other_week(week)
+
+    for x in days
+      x.copy_from_other_day(Day.find(:first, :conditions => {:week_id => week, :name => x.name}))
+    end
+
+  end
   def copy_from_previous_week
     if Week.find(self.id-1)
       copy_from_template(Week.find(self.id-1))
     end
   end
+
+  
 end
 
 class ArcWeek < Week
