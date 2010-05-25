@@ -1,16 +1,14 @@
 class Week < ActiveRecord::Base
   has_many :days
 
-  def make_new(type_from)
-    lw = Week.last #find the last week created so far
+  after_create :max_weeks
 
 
+  def max_weeks
     #if there are more than MAX_WEEKS weeks already, archive the oldest
     while Week.count > MAX_WEEKS
       archweek(Week.first)
     end
-
-
   end
 
   def make_from_template(wtemplate)
