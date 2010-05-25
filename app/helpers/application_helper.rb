@@ -1,6 +1,7 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  
+
+
   def get_user(user)
     user = User.find(session[:user])
   end
@@ -11,6 +12,10 @@ module ApplicationHelper
     if user
       user.usertype == "Administrator"
     end
+  end
+
+  def current_user
+    session[:username]
   end
   
   def link_to_cal(string, date, length="day")

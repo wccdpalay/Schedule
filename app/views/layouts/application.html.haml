@@ -24,13 +24,7 @@
         %p{:style => "float: right;"}
           Logged in as:
           = current_user
-        %ul{:class => "menu_list"}
-          %li{:class => "menu_item"}
-            %a{:href => "https://serafina.labs.is.wccnet.org"} The Staff Site
-          %li{:class => "menu_item"}
-            = link_to "Home", {:controller => :calendar, :action => :select}
-          %li{:class => "menu_item"}
-            = link_to_cal("Go to Today", Date.today, 7)
+        = link_to_cal("Go to Today", Date.today, 7)
         =yield
         -if (current_user == "dpalay")
           #debug
