@@ -7,52 +7,28 @@
 #   Major.create(:name => 'Daley', :city => cities.first)
 
 #blank Day_Template
-daytemplates = Dtemplate.create([{:name => "Blank"}, {:name => "Blank Fall/Winter Weekday"}])
+dtemplates = Dtemplate.create([{:name => "Blank"}, {:name => "Blank Fall/Winter Weekday"}])
 wtemplate = Wtemplate.create({:name => "Empty Template"})
 
-
-
-def get_workers
-
-d = Day.find_by_date(Date.today)
-#shift 1 level 2
-for x in 11..22
-  s = d.slotAs[x]
-  s.user = User.find_by_username("ckruise")
-  s.save!
-end
-#shift2 level2
-for x in 23..40
- s = d.slotAs[x]
- s.user = User.find_by_username("dpalay")
- s.save!
+dtemp = dtemplates.last
+for slot in dtemp.slotBs
+  slot.user_id = -1
+  slot.save!
 end
 
-#shift1 workstudy
-for x in 11..15
-  s = d.slotCs[x]
-s.user = User.find_by_username("swomble")
-  s.save!
-end
-
-#shift2 workstudy
-for x in 13..18
-s = d.slotDs[x]
-s.user = User.find_by_username("rrwandz")
-s.save!
-end
-
-#shift3 workstudy
-for x in 17..38
-s = d.slotCs[x]
-s.user = User.find_by_username("taylor")
-s.save!
-end
+date = Date.today
+date -= 1 while date.wday != 6
+woy = date.strftime('%V').to_i
+w = Week.create({:year => date.year, :woy => woy, :start_date => date })
+7.times do
+  d = Day.create({:date => date, :week => w, :being_edited => DateTime.now - 2.years})
+  date += 1
 end
 
 
-year = Date.today.year
-  #def init_year(year)
+
+#year = Date.today.year
+def init_year(year)
 puts "starting year #{year}"
 #puts "making new date"
     date = Date.new(year, 1, 1)
@@ -112,3 +88,4 @@ puts "Week #{woy} saved with start_date = #{w.start_date}"
 puts "Saved #{d.date}"
       days -= 1
     end
+end

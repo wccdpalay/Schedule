@@ -6,24 +6,14 @@ class Week < ActiveRecord::Base
     
   end
   
-  def make_from_template(template)
-    w = Week.next
+  def make_from_template(wtemplate)
     
   end
   
   
-  def copy_from_template(temp)
-    transaction do
-      for x in 0..self.days.length-1
-        tday = temp.days[x]
-        day = self.days[x]
-        for y in 0..day.slots.length-1
-          slot = day.slots[y]
-          tslot = tday.slots[y]
-          slot.user = tslot.user
-          slot.save!
-        end
-      end  
+  def copy_from_template(wtemplate)
+    for x in 0..days.length-1
+      days[x].copy_from_template(Dtemplate.find(wtemplate[DAYS[x]]))
     end
   end
   

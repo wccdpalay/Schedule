@@ -75,6 +75,7 @@ Rails::Initializer.run do |config|
   TIME_SLOTS = ALL_TIMES[ALL_TIMES.index(START_TIME)..ALL_TIMES.index(END_TIME)]
   
   SLOT_NAMES = ["SlotA", "SlotB", "SlotC", "SlotD" ]
+  DAYS = [:sat, :sun, :mon, :tue, :wed, :thu, :fri]
   
   USERS = {:Closed => -2, :Blocked => -1, :Empty => nil, :Dave => 1, :Dan => 2, :Carol => 3, :Farah => 4, :Mina => 5, :Reg => 6, :Sarah => 7}
   

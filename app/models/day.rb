@@ -3,7 +3,7 @@ class Day < ActiveRecord::Base
   belongs_to :week
   has_many :slots
   
-  def today
+  def self.today
     return Day.find_by_date(Date.today)
   end
   
@@ -57,7 +57,12 @@ class Day < ActiveRecord::Base
   end
   
   def copy_from_dtemplate(dtemp)
-    
+    for x in 0..slots.length-1
+      slots[x].start_time = dtemp.stemplates[x].start_time
+      slots[x].user_id = dtemp.stemplates[x].user_id
+      slots[x].spot = dtemp.stemplates[x].spot
+      slots[x].save!
+    end
   end
  
 end
