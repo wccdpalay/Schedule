@@ -84,4 +84,5 @@ class ArcDay < Day
   has_many :arcslots, :foreign_key => "slot_id"
   
 ArcDay.establish_connection :arc
+
 end

@@ -8,29 +8,64 @@
       =@title
       = #yield :head
   %body
-    %ul{:class => "menu_list"}
-      %li{:class => "menu_item"}
-        %a{:href => "https://serafina.labs.is.wccnet.org/joomla"} The Staff Site
-      %li{:class => "menu_item"}
-        = link_to "Home", {:controller => :calendar, :action => :select}
-      %li{:class => "menu_item"}
-        = link_to_cal("Go to Today", Date.today, 7)
-    =yield
-    #debug
-      %a{:href => "#", :onclick => "Element.toggle('params_debug_info');return false;"} params
-      %a{:href => "#", :onclick => "Element.toggle('session_debug_info');return false;"} session 
-      %a{:href => "#", :onclick => "Element.toggle('env_debug_info');return false;"} env       
-      %a{:href => "#", :onclick => "Element.toggle('request_debug_info');return false;"} request
-      
-      %fieldset{:id => "params_debug_info", :class => "debug_info"}
-        %legend params
-        =debug(params)
-      %fieldset{:id => "session_debug_info", :class => "debug_info", :style => "display: none;"}
-        %legend session
-        =debug(session)
-      %fieldset{:id => "env_debug_info", :class => "debug_info", :style => "display: none;"}
-        %legend env
-        =debug(request.env)
-      %fieldset{:id => "request_debug_info", :class => "debug_info", :style => "display: none;"}
-        %legend request
-        =debug(request)
+    =#Top Bar
+    #ja-wrapper
+      #ja-headerwrap.clearfix{:style => "background: #323232; width 100%;"}
+        %h1.logo-text
+          %a{:href => "/index.php", :title => "Computer Commons Staff Site"}
+            %span{:style => "color: #AAA;"} Serafina - Staff Site
+        %p.site-slogan{:style => "color: #CCC;"} Washtenaw Community College
+    =#END TOP BAR
+    #ja-mainbody
+      =#MAIN PANEL
+      #ja-contentwrap{:style => "background: #fcfcfc; width: 75%;"}
+        %p#notice{:style => "color: green;"}= flash[:notice]
+        %p{:style => "float: right;"}
+          Logged in as:
+          = current_user
+        %ul{:class => "menu_list"}
+          %li{:class => "menu_item"}
+            %a{:href => "https://serafina.labs.is.wccnet.org"} The Staff Site
+          %li{:class => "menu_item"}
+            = link_to "Home", {:controller => :calendar, :action => :select}
+          %li{:class => "menu_item"}
+            = link_to_cal("Go to Today", Date.today, 7)
+        =yield
+        -if (current_user == "dpalay")
+          #debug
+            %a{:href => "#", :onclick => "Element.toggle('params_debug_info');return false;"} params
+            %a{:href => "#", :onclick => "Element.toggle('session_debug_info');return false;"} session
+            %a{:href => "#", :onclick => "Element.toggle('env_debug_info');return false;"} env
+            %a{:href => "#", :onclick => "Element.toggle('request_debug_info');return false;"} request
+
+            %fieldset{:id => "params_debug_info", :class => "debug_info"}
+              %legend params
+              =debug(params)
+            %fieldset{:id => "session_debug_info", :class => "debug_info", :style => "display: none;"}
+              %legend session
+              =debug(session)
+            %fieldset{:id => "env_debug_info", :class => "debug_info", :style => "display: none;"}
+              %legend env
+              =debug(request.env)
+            %fieldset{:id => "request_debug_info", :class => "debug_info", :style => "display: none;"}
+              %legend request
+              =debug(request)
+      =#END MAIN PANEL
+      =#SIDE BAR
+      .moduletable_menu
+        %h3 Main Menu
+        %ul.menu
+          %li#current.active_item1
+            %a{:href => "https://serafina.labs.is.wccnet.org"}
+              %span Home
+          %li.item73
+            %a Contact
+          %li.item75
+            %a Help Chat
+          %li.item72
+            %a Order Supplies
+      .moduletable_menu
+        %h3 User Menu
+        %ul.menu
+          %li
+            %a something here!
