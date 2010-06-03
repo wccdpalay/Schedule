@@ -3,6 +3,16 @@ class Week < ActiveRecord::Base
 
   after_create :max_weeks
 
+  def self.new_next
+    w = Week.last
+    d = w.start_date
+    d += 7
+    w2 = Week.create({:year => d.year, :woy => d.strftime('%V').to_i, :start_date => d})
+    7.times do
+      Day.create({:date =>d, :week => w2, :being_edited => DateTime.now-2.years, :name => DAYS[(d.wday+1)%7]})
+      d += 1
+    end
+  end
 
   def max_weeks
     #if there are more than MAX_WEEKS weeks already, archive the oldest
