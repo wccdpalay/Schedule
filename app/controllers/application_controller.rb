@@ -70,6 +70,7 @@ class ApplicationController < ActionController::Base
         else
           current_user = User.find_by_username(sess.username)
           session[:user] = current_user.id
+          session[:username] = current_user.username
         end
       end
     end
