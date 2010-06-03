@@ -176,6 +176,13 @@ class CalendarController < ApplicationController
     @day.save!
     redirect_to request.env["HTTP_REFERER"] ||= {:controller => :calendar, :action => :view}
   end
+
+  def week_from_template
+    @week = Week.new.copy_from_template Wtemplate.find(params[:id])
+    @week.save
+    redirect_to :controller => :calendar, :action => :view
+
+  end
   
   
 end
