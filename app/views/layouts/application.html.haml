@@ -24,9 +24,8 @@
         %p{:style => "float: right;"}
           Logged in as:
           = current_user
-        = link_to_cal("Go to Today", Date.today, 7)
         =yield
-        -if (current_user == "dpalay")
+        -if (true || current_user == "dpalay")
           #debug
             %a{:href => "#", :onclick => "Element.toggle('params_debug_info');return false;"} params
             %a{:href => "#", :onclick => "Element.toggle('session_debug_info');return false;"} session
@@ -54,13 +53,28 @@
             %a{:href => "https://serafina.labs.is.wccnet.org"}
               %span Home
           %li.item73
-            %a Contact
+            %a{:href => "/index.php?option=com_contact&view=category&catid=12&Itemid=73"}
+              %span Contact
           %li.item75
-            %a Help Chat
+            %a{:href => "/index.php?option=com_jpfchat&Itemid=75"}
+              %span Help Chat
           %li.item72
-            %a Order Supplies
+            %a{:href => "/order.php"}
+              %span Order Supplies
+      -if admin?
+        .moduletable_menu
+          %h3 User Menu
+          %ul.menu
+            -if params[:controller] == :calendar
+              -if params[:action] == :view
+                %li
+                  %a{:href => url_for(:controller => :calendar, :action => :admin_clear)}
+                    %span Force Editing Availability
       .moduletable_menu
-        %h3 User Menu
-        %ul.menu
-          %li
-            %a something here!
+        -if params[:controller] == :calendar
+          %h3 User Menu
+          %ul.menu
+            %li
+              =link_to_cal("Go to Today", Date.today, 1)
+            %li
+              =link_to_cal("Go to This Week", Date.today, 7)

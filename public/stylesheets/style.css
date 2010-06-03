@@ -4,6 +4,12 @@ body {
 	line-height: 150%;
 	}
 
+body, p, ol, ul{
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+}
+
 #ja-header, #ja-mainnav, #ja-container, #jabotsl, #ja-footer{
 	margin: 0px auto;
 	width: 97%;
