@@ -12,6 +12,7 @@ class Week < ActiveRecord::Base
       Day.create({:date =>d, :week => w2, :being_edited => DateTime.now-2.years, :name => DAYS[(d.wday+1)%7]})
       d += 1
     end
+    w2
   end
 
   def max_weeks
@@ -21,8 +22,8 @@ class Week < ActiveRecord::Base
     end
   end
 
-  def make_from_template(wtemplate)
-    
+  def self.make_from_template(wtemplate)
+    Week.new_next.copy_from_template(wtemplate)
   end
   
   

@@ -178,10 +178,10 @@ class CalendarController < ApplicationController
   end
 
   def week_from_template
-    @week = Week.new.copy_from_template Wtemplate.find(params[:id])
+    @week = Week.make_from_template Wtemplate.find(params[:id])
     @week.save
-    redirect_to :controller => :calendar, :action => :view
-
+    redirect_to :controller => :calendar, :action => :view, :year => @week.start_date.year,
+                :month => @week.start_date.month, :day => @week.start_date.day
   end
   
   
