@@ -10,7 +10,14 @@ body, p, ol, ul{
     line-height: 18px;
 }
 
-#ja-container2 ul.menu lia{
+a:visited, ul.menu li a:visited{
+    color: #666;
+}
+
+a{
+    color: #000;
+}
+ul.menu li a{
     color: #333;
     backgroungd: url("../images/hdot2.gif") repeat-x scroll center bottom #FFF;
     font-weight: bold;
@@ -20,17 +27,11 @@ body, p, ol, ul{
     text-decoration: none;
 }
 
-#ja-container2 ul.menu{
+ul.menu{
     list-style: none outside none;
 }
 
-a:visited{
-    color: #666;
-}
 
-a{
-    color: #000;
-}
 #ja-header, #ja-mainnav, #ja-container, #jabotsl, #ja-footer{
 	margin: 0px auto;
 	width: 97%;
