@@ -63,16 +63,20 @@
               %span Order Supplies
       -if admin?
         .moduletable_menu
-          %h3 User Menu
+          %h3 Admin Menu
           %ul.menu
+            =link_to_unless_current "Week Template", :controller => :template, :action => :week
+            =link_to_unless_current "Day Template", :controller => :template, :action => :day
+            =link_to_unless_current ""
             -if params[:controller] == "calendar"
               -if params[:action] == "view"
                 %li
                   %a{:href => url_for(:controller => :calendar, :action => :admin_clear)}
                     %span Force Editing Availability
+            -if params[:controller == "template"]
       .moduletable_menu
+        %h3 User Menu
         -if params[:controller] == "calendar"
-          %h3 User Menu
           %ul.menu
             %li
               =link_to_cal("Go to Today", Date.today, 1)
