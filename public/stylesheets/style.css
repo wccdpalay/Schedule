@@ -20,7 +20,6 @@ a{
 ul.menu li a{
     color: #333;
     backgroungd: url("../images/hdot2.gif") repeat-x scroll center bottom #FFF;
-    font-weight: bold;
     display: block;
     outline: medium none;
     padding: 2px 0;
