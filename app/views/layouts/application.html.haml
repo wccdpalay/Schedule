@@ -25,7 +25,7 @@
           Logged in as:
           = current_user
         =yield
-        -if (true || current_user == "dpalay")
+        -if (current_user == "dpalay")
           #debug
             %a{:href => "#", :onclick => "Element.toggle('params_debug_info');return false;"} params
             %a{:href => "#", :onclick => "Element.toggle('session_debug_info');return false;"} session
@@ -65,13 +65,13 @@
         .moduletable_menu
           %h3 User Menu
           %ul.menu
-            -if params[:controller] == :calendar
-              -if params[:action] == :view
+            -if params[:controller] == "calendar"
+              -if params[:action] == "view"
                 %li
                   %a{:href => url_for(:controller => :calendar, :action => :admin_clear)}
                     %span Force Editing Availability
       .moduletable_menu
-        -if params[:controller] == :calendar
+        -if params[:controller] == "calendar"
           %h3 User Menu
           %ul.menu
             %li
