@@ -1,6 +1,7 @@
 %table{:border => 1}
   %tr<
     %td<
+      = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"][x-1]
       = render :partial => "select_list", :locals => {:dtemp => dtemp, :col => x}
   %tr<
     %td
