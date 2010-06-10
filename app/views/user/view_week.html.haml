@@ -1,25 +1,12 @@
-%h1= "#{@user}'s schedule for the #{@week} week of the year"
-%table#user_schedule
+%h1= "#{@user}'s schedule for the #{@week.woy} week of the year"
+%table#user_schedule{:border => 1}
+  -for x in 0..6
+    %tr
+      %td ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"][x]
+      %td= to_block(@results[x])
   %tr
-    %td Saturday
-    %td= to_block(@results[:sat])
-  %tr
-    %td Sunday
-    %td= to_block(@results[:sun])
-  %tr
-    %td Monday
-    %td= to_block(@results[:mon])
-  %tr
-    %td Tuesday
-    %td= to_block(@results[:tue])
-  %tr
-    %td Wednesday
-    %td= to_block(@results[:wed])
-  %tr
-    %td Thursday
-    %td= to_block(@results[:thu])
-  %tr
-    %td Friday
-    %td= to_block(@results[:fri])
+    %td{:colspan => 2}
+      Total Hours for this week:
+      =#Hours for the week!
 
 
