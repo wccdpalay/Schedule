@@ -1,17 +1,16 @@
-%h1= "#{@user.username}'s schedule for the #{@week.woy} week of the year"
-
+%h1
+  %span#user_name= "#{@user.username}"
+  ="'s schedule for the #{@week.woy} week of the year"
 -unless @prev.nil?
   =link_to "Previous Week", :controller => :user, :action => :view_week, :user => params[:user], :woy => @prev.woy, :year => @prev.year
+-else
+  Previous Week
 -unless @next.nil?
   =link_to "Next Week", :controller => :user, :action => :view_week, :user => params[:user], :woy => @next.woy, :year => @next.year
+-else
+  Next Week
 %table#user_schedule{:border => 1}
-  -for x in 0..6
-    %tr
-      %td= "#{['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'][x]} the #{@week.days[x].date}"
-      %td= to_block(@results[x])
-  %tr
-    %td{:colspan => 2}
-      Total Hours for this week:
-      =#Hours for the week!
+  =render :partial => "user_week_data", :locals => {:week => @week, :results => @results}
+
 
 

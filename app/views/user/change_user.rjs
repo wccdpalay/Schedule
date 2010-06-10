@@ -1,0 +1,2 @@
+page.replace_html "user_schedule".to_sym, {:partial => "user_week_data", :locals => {:week => @week, :results => @results}}
+page.replace_html "user_name".to_sym, "#{@user.username}"

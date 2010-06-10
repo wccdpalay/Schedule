@@ -9,11 +9,30 @@ class UserController < ApplicationController
     @prev = Week.find(@week.id-1) unless @week.id == 1
     @next = Week.find(@week.id+1) unless @week.id == Week.last.id
 
-    @results = [[],[],[],[],[],[],[]]
+    @results = get_results(@user, @week)
+
+  end
+
+  def change_user
+    @user = User.find(params[:user])
+    @week = Week.find(params[:week])
+    @results = get_results(@user, @week)
+
+    respond_to do |format|
+      format.html {redirect_to :action => "view_week", :woy => @week.woy, :year => @week.year, :user => @user}
+      format.js  {}
+    end
+  end
+
+
+
+  private
+  def get_results(user, week)
+    results = [[],[],[],[],[],[],[]]
     pos = 0
-    for day in @week.days
+    for day in week.days
       temp = []
-      slots = day.slots.find_all_by_user_id(@user.id).sort {|x, y| x.start_time <=> y.start_time}
+      slots = day.slots.find_all_by_user_id(user.id).sort {|x, y| x.start_time <=> y.start_time}
       slots.each {|x| temp << x.start_time}
       temp.reverse!
       st = temp.pop
@@ -22,16 +41,14 @@ class UserController < ApplicationController
         if temp[temp.length-1] == (en + 1)
           en = temp.pop
         else
-          @results[pos] << [st, en]
+          results[pos] << [st, en]
           st = temp.pop
           en = st
         end
       end
-      @results[pos] << [st, en]
+      results[pos] << [st, en]
       pos += 1
     end
-
-
+    results
   end
-
 end

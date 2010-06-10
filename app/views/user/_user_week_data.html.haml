@@ -1,0 +1,8 @@
+-for x in 0..6
+  %tr
+    %td= "#{['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'][x]} the #{week.days[x].date}"
+    %td= to_block(results[x])
+  %tr
+    %td{:colspan => 2}
+      Total Hours for this week:
+      =#Hours for the week!
