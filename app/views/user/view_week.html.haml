@@ -2,7 +2,7 @@
   %span#user_name= "#{@user.username}"
   ="'s schedule for the #{@week.woy} week of the year"
 -if admin?
-  =select_tag :user_select, options_from_users, :onChange => remote_function(:url => {:action => 'change_user'}, :with => "'user=' + this.value, 'week='+#{@week.id}")
+  =select_tag :user_select, options_from_users, :onChange => remote_function(:url => {:action => 'change_user'}, :with => "'value=' + this.value+'**'+'#{@week.id}'")
 -unless @prev.nil?
   =link_to "Previous Week", :controller => :user, :action => :view_week, :user => params[:user], :woy => @prev.woy, :year => @prev.year
 -else

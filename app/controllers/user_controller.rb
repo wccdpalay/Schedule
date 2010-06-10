@@ -14,6 +14,9 @@ class UserController < ApplicationController
   end
 
   def change_user
+    vals = params[:value].split('**')
+    params[:user] = vals[0]
+    params[:week] = vals[1]
     @user = User.find(params[:user])
     @week = Week.find(params[:week])
     @results = get_results(@user, @week)
