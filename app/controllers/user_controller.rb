@@ -6,8 +6,8 @@ class UserController < ApplicationController
     @user = User.find(params[:user])
     @week = Week.find_by_woy_and_year(params[:woy].to_i, params[:year])  || Day.find_by_date(Date.today).week
 
-    @prev = Week.find(@week.id-1)
-    @next = {}
+    @prev = Week.find(@week.id-1) unless @week.id == 1
+    @next = Week.find(@week.id+1) unless @week.id == Week.last.id
 
     @results = [[],[],[],[],[],[],[]]
     pos = 0
