@@ -15,7 +15,7 @@ class UserController < ApplicationController
       st = temp.pop
       en = st
       while temp.length > 0
-        if temp[length-1] == (en + 1)
+        if temp[temp.length-1] == (en + 1)
           en = temp.pop
         else
           @results[pos] << [st, en]

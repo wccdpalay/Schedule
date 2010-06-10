@@ -41,13 +41,6 @@ namespace :deploy do
     run "touch #{current_release}/tmp/restart.txt"
     run "cp ~/Schedule_database.yml ~/Sites/Schedule/current/config/database.yml"
     run "cp ~/Sites/Schedule/Schedule_Dev.sqlite3 ~/Sites/Schedule/current/db/development.sqlite3"
-    run "cd #{current_release}"
-    run "#{rake} db:drop"
-    run "#{rake} db:drop RAILS_ENV=arc"
-    run "#{rake} db:migrate"
-    run "#{rake} db:seed"
-    run "#{rake} db:create RAILS_ENV=arc"
-    run "#{rake} db:migrate RAILS_ENV=arc"
   end
 
   task :stop, :roles => :app do
@@ -57,15 +50,8 @@ namespace :deploy do
   desc "Restart Application"
   task :restart, :roles => :app do
     run "cp ~/Schedule_database.yml ~/Sites/Schedule/current/config/database.yml"
-    run "touch #{current_release}/tmp/restart.txt"
-    run "cd #{current_release}"
     run "cp ~/Sites/Schedule/Schedule_Dev.sqlite3 ~/Sites/Schedule/current/db/development.sqlite3"
-    run "#{rake} db:drop"
-    run "#{rake} db:drop RAILS_ENV=arc"
-    run "#{rake} db:migrate"
-    run "#{rake} db:seed"
-    run "#{rake} db:create RAILS_ENV=arc"
-    run "#{rake} db:migrate RAILS_ENV=arc"
+    run "touch #{current_release}/tmp/restart.txt"
   end
 
 end

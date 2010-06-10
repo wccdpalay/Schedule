@@ -1,8 +1,8 @@
-%h1= "#{@user}'s schedule for the #{@week.woy} week of the year"
+%h1= "#{@user.username}'s schedule for the #{@week.woy} week of the year"
 %table#user_schedule{:border => 1}
   -for x in 0..6
     %tr
-      %td ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"][x]
+      %td= "#{['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'][x]} the #{@week.days[x].date}"
       %td= to_block(@results[x])
   %tr
     %td{:colspan => 2}
