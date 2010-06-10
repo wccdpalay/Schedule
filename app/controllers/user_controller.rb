@@ -1,9 +1,13 @@
 class UserController < ApplicationController
   def view_week
+    @title = "View Schedule for the Week"
     params[:user] ||= session[:user]
 
     @user = User.find(params[:user])
-    @week = Week.find_by_woy_and_year(params[:woy].to_i, params[:year])  || Day.find_by_Date(Date.today).week
+    @week = Week.find_by_woy_and_year(params[:woy].to_i, params[:year])  || Day.find_by_date(Date.today).week
+
+    @prev = Week.find(@week.id-1)
+    @next = {}
 
     @results = [[],[],[],[],[],[],[]]
     pos = 0

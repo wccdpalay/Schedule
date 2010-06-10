@@ -48,7 +48,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'calendar/:year/:month/:day', :controller => 'calendar', :action => 'view'
   map.connect 'calendar/:length/:year/:month/:day', :controller => 'calendar', :action => 'view' 
   map.connect 'schedule/:year/:month/:day', :controller => 'calendar', :action => 'view'
-  map.connect 'schedule/:length/:year/:month/:day', :controller => 'calendar', :action => 'view' 
+  map.connect 'schedule/:length/:year/:month/:day', :controller => 'calendar', :action => 'view'
+  map.connect 'user/view_week/:user/:woy/:year', :controller => 'user', :action => 'view_week'
  
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
