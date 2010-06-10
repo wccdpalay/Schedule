@@ -25,8 +25,8 @@ module ApplicationHelper
   end
   
   
-  
-  def options_from_users(slot=nil)
+
+  def options_from_users(slot=nil, tuser=nil)
     options = ""
     select_used = false
     if slot != nil
@@ -40,7 +40,9 @@ module ApplicationHelper
         options = "<option value='-1'>Blocked</option><option value='-2'>Closed</option>"  
       end
     else
-      options = "<option value='-1'>Blocked</option><option value='-2'>Closed</option>"
+      if tuser == nil
+        options = "<option value='-1'>Blocked</option><option value='-2'>Closed</option>"
+      end
     end
     for user in User.find(:all)
       if slot != nil
@@ -51,7 +53,12 @@ module ApplicationHelper
           options += "<option value='#{user.id}'>"+user.firstname+"</option> "
         end
       else #slot == nil
-        options += "<option value='#{user.id}'>"+user.firstname+"</option> "
+        if tuser == user.id
+          select_used = true
+          options += "<option selected=\"selected\" value='#{user.id}'>"+user.firstname+"</option> "
+        else
+          options += "<option value='#{user.id}'>"+user.firstname+"</option> "
+        end
       end
     end
     if select_used
