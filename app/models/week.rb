@@ -9,7 +9,7 @@ class Week < ActiveRecord::Base
     d += 7
     w2 = Week.create({:year => d.year, :woy => d.strftime('%V').to_i, :start_date => d})
     7.times do
-      Day.create({:date =>d, :week => w2, :being_edited => DateTime.now-2.years, :name => DAYS[(d.wday+1)%7]})
+      Day.create({:date =>d, :week => w2, :being_edited => DateTime.now-2.years, :name => eval(DAYS[(d.wday+1)%7])})
       d += 1
     end
     w2

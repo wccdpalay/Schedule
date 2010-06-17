@@ -11,7 +11,7 @@ class JoomlaController < ApplicationController
   
   def kick
     @message = "Your session has either expired or never existed.  
-    Please go back and log into Serafina's main page"
+    Please go back and refresh Serafina's main page"
   end
   
   def debug
