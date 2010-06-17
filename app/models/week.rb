@@ -25,7 +25,9 @@ class Week < ActiveRecord::Base
   end
 
   def self.make_from_template(wtemplate)
-    Week.new_next.copy_from_template(wtemplate)
+    w = Week.new_next
+    w.copy_from_template(wtemplate)
+    w
   end
   
   
