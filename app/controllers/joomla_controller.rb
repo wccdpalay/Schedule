@@ -19,5 +19,6 @@ class JoomlaController < ApplicationController
     @result_from_php = JSESSION_NAME
     @cookie_contents = cookies[@result_from_php]
     @jsessions = Jsession.find(:all)
+    params[:error] ||= "Your session has timed out.  Please refresh the front page of serafina and try again."
   end
 end

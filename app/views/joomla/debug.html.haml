@@ -1,13 +1,16 @@
-%p
-  Results from the php script:
-  = @result_from_php
+%h1 Error!
+%p=params[:error]
 
-%p
-  Cookie Results (The contents of the cookie):
-  = @cookie_contents
+%a{:href => "https://serafina.labs.is.wccnet.org"}
+-if username == "dpalay"
+  %p Results from the php script:
+    = @result_from_php
 
-%p
-  = "There are #{@jsessions.length} sessions" 
-  -for x in @jsessions
-    = x.session_id
-    %br
+  %p Cookie Results (The contents of the cookie):
+    = @cookie_contents
+
+  %p
+    = "There are #{@jsessions.length} sessions"
+    -for x in @jsessions
+      = x.session_id
+      %br
