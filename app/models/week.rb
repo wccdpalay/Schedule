@@ -9,7 +9,9 @@ class Week < ActiveRecord::Base
     d += 7
     w2 = Week.create({:year => d.year, :woy => d.strftime('%V').to_i, :start_date => d})
     7.times do
-      Day.create({:date =>d, :week => w2, :being_edited => DateTime.now-2.years, :name => eval(DAYS[(d.wday+1)%7])})
+      day = Day.create({:date =>d, :week => w2, :being_edited => DateTime.now-2.years})
+      day.name = eval(DAYS[(d.wday+1)%7])
+      day.save!
       d += 1
     end
     w2
@@ -29,14 +31,16 @@ class Week < ActiveRecord::Base
   
   def copy_from_template(wtemplate)
     for x in days
-      x.copy_from_dtemplate(Dtemplate.find(wtemplate[x.name]))
+      x.copy_from_dtemplate(Dtemplate.find(wtemplate[x.name[5,3].to_sym])) #This is terrible terrible hacking, but
+                                                                           # Rails stores the symbol as the string
+                                                                           # "--- :thu\n", so I needed a way around it.
     end
   end
 
   def copy_from_other_week(week)
 
     for x in days
-      x.copy_from_other_day(Day.find(:first, :conditions => {:week_id => week, :name => x.name}))
+      x.copy_from_other_day(Day.find(:first, :conditions => {:week_id => week, :name => x.name[5,3].to_sym}))
     end
 
   end
