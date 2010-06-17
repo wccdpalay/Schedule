@@ -1,7 +1,7 @@
 %h1 Error!
 %p=params[:error]
 
-%a{:href => "https://serafina.labs.is.wccnet.org"}
+%a{:href => "https://serafina.labs.is.wccnet.org", :target => "child"} Click here to refresh your session
 -if current_user == "dpalay"
   %p
     Results from the php script:
