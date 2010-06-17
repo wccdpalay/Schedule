@@ -1,5 +1,5 @@
 %h3
-  =link_to "Push to new week", :controller => :calendar, :action => :week_from_template, :id => params[:id]
+  =link_to "Push to new week", :controller => :calendar, :action => :week_from_template, :id => (params[:id] || @wtemplate.id)
 %p
   = flash[:notice]
 = submit_tag "New Week Template", :onClick => "document.getElementById('new_form').toggle();"

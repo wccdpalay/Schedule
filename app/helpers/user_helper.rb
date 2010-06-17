@@ -18,4 +18,7 @@ module UserHelper
     end
     str
   end
+
+
+  
 end

@@ -3,7 +3,7 @@ module ApplicationHelper
 
 
   def get_user(user)
-    user = User.find(session[:user])
+    User.find(session[:user])
   end
 
   
