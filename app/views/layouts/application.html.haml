@@ -86,3 +86,5 @@
               =link_to_cal("Go to Today", Date.today, 1)
             %li
               =link_to_cal("Go to This Week", Date.today, 7)
+            %li
+              =link_to "View My Schedule", :controller => :user, :action => :view_week

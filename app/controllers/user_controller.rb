@@ -3,13 +3,19 @@ class UserController < ApplicationController
     @title = "View Schedule for the Week"
     params[:user] ||= session[:user]
 
-    @user = User.find(params[:user])
-    @week = Week.find_by_woy_and_year(params[:woy].to_i, params[:year])  || Day.find_by_date(Date.today).week
+    if ((params[:user] != session[:user]) && !admin?)
+      flash[:notice]= "You are not authorized to view that user's information"
+      redirect_to :controller => "calendar", :action => "index"
+    else
+      @user = User.find(params[:user])
+      @week = Week.find_by_woy_and_year(params[:woy].to_i, params[:year])  || Day.find_by_date(Date.today).week
 
-    @prev = Week.find(@week.id-1) unless @week.id == 1
-    @next = Week.find(@week.id+1) unless @week.id == Week.last.id
+      @prev = Week.find(@week.id-1) unless @week.id == 1
+      @next = Week.find(@week.id+1) unless @week.id == Week.last.id
 
-    @results = get_results(@user, @week)
+      @results = get_results(@user, @week)
+    end
+
 
   end
 

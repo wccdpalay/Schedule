@@ -22,7 +22,7 @@ Aesthetics (last issue)
 	Administration
 		DONE#Control ANYONE
 		DONE#Make templates
-		Propagate Templates into a given week
+		DONE#Propagate Templates into a given week
 		View anyone's schedule
 		
 		
