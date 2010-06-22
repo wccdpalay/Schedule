@@ -1,1 +1,3 @@
 page.replace_html "dtemp_day".to_sym, {:partial => "day", :locals => {:day => @day}}
+params[:id] = @day.id
+page << "$('day_form').children[0].action = '/schedule/template/update_day/#{@day.id}'"
