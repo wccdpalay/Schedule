@@ -1,7 +1,8 @@
 class Week < ActiveRecord::Base
   has_many :days
 
-  after_create :max_weeks
+  # The archival system is not fully operational, but the database should be functional without it for now.
+  #after_create :max_weeks
 
   def self.new_next
     w = Week.last
@@ -23,6 +24,7 @@ class Week < ActiveRecord::Base
       archweek(Week.first)
     end
   end
+
 
   def self.make_from_template(wtemplate)
     w = Week.new_next
@@ -52,10 +54,10 @@ class Week < ActiveRecord::Base
     end
   end
 
-  
+
 end
 
 class ArcWeek < Week
-  has_many :days, :class_name => "ArcDays", :foreign_key => "week_id" 
+  has_many :days, :class_name => "ArcDay", :foreign_key => "week_id" 
 ArcWeek.establish_connection :arc
 end

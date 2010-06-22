@@ -81,7 +81,7 @@ end
 class ArcDay < Day
   
   belongs_to :arcweek, :foreign_key => "week_id" 
-  has_many :arcslots, :foreign_key => "slot_id"
+  has_many :slots, :foreign_key => "slot_id"
   
 ArcDay.establish_connection :arc
 

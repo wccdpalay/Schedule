@@ -13,40 +13,7 @@ def archive(obj)
 end
 
 #Archive a given week, it's days, and their slots
-def archweek(w)
-  #for each day of the week
-    for day in w.days
-      
-    #for each slotA of day
-      for slot in day.slotAs
-        #archive
-        archive(slot)
-      end
-      
-    #for each slotB of day
-      for slot in day.slotBs
-        #archive
-        archive(slot)
-      end
-      
-    #for each slotC of day
-      for slot in day.slotCs
-        #archive
-        archive(slot)
-      end
-      
-    #for each slotD of day
-      for slot in day.slotDs
-        #archive
-        archive(slot)
-      end
-      
-    #archive day
-    archive(day)
-  end
-  #archive week
-  archive(w)
-end
+
 
 def initweek(w)
   w.init = true
