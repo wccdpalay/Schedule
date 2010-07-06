@@ -1,0 +1,26 @@
+<%# Header Row -%>
+Date,Saturday,,,,Sunday,,,,Monday,,,,Tuesday,,,,Wednesday,,,,Thursday,,,,Friday<br/>
+<%# Time Rows -%>
+<%for x in 1..TIME_SLOTS.length %>
+<%= TIME_SLOTS[x-1]-%><%for day in 0..6-%>
+        ,<%=get_user_for_slot(@week.days[day].slotAs[ALL_TIMES.index(TIME_SLOTS[x-1])]) -%>
+        ,<%=get_user_for_slot(@week.days[day].slotBs[ALL_TIMES.index(TIME_SLOTS[x-1])]) -%>
+        ,<%=get_user_for_slot(@week.days[day].slotCs[ALL_TIMES.index(TIME_SLOTS[x-1])]) -%>
+        ,<%=get_user_for_slot(@week.days[day].slotDs[ALL_TIMES.index(TIME_SLOTS[x-1])]) -%><%end-%><br/>
+<% end %>
+
+<%#def print_week(w)
+str = "Date,Saturday,,,,Sunday,,,,Monday,,,,Tuesday,,,,Wednesday,,,,Thursday,,,,Friday\n"
+for x in 1..TIME_SLOTS.length
+   str += TIME_SLOTS[x-1]
+   for day in 0..6
+   str += "," + get_user_for_slot(w.days[day].slotAs[ALL_TIMES.index(TIME_SLOTS[x-1])])
+   str += "," + get_user_for_slot(w.days[day].slotBs[ALL_TIMES.index(TIME_SLOTS[x-1])])
+   str += "," + get_user_for_slot(w.days[day].slotCs[ALL_TIMES.index(TIME_SLOTS[x-1])])
+   str += "," + get_user_for_slot(w.days[day].slotDs[ALL_TIMES.index(TIME_SLOTS[x-1])])
+   end
+   str += "\n"
+   end
+str
+   end
+   %>

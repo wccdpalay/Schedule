@@ -183,6 +183,14 @@ class CalendarController < ApplicationController
     redirect_to :controller => :calendar, :action => :view, :year => @week.start_date.year,
                 :month => @week.start_date.month, :day => @week.start_date.day
   end
+
+  def print_week
+    @week = Week.find(params[:week])
+    respond_to do |format|
+      format.html {redirect_to :action => "view", :id => @week}
+      format.csv  {}
+    end
+  end
   
   
   
