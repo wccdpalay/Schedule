@@ -1,3 +1,6 @@
+<% content_for :user_menu do %>
+    <li><%=link_to "Save Week to CSV", :controller => :calendar, :action => :print_week, :format => :csv, :week => @sd.week%></li>
+<% end %>
 <p><%=flash[:notice]%></p>
 <p><%=flash[:warning]%></p>
 <p>

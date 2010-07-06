@@ -8,8 +8,7 @@ class CalendarController < ApplicationController
   end
   
   def view
-    @title = "Schedule"
-    
+    @title = "Schedule"   
     
     #When to start the showing
     if params[:date]
