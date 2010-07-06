@@ -84,7 +84,19 @@ module ApplicationHelper
         slot.user.firstname
     end
   end
-  
+
+    def get_user_for_slot_short(slot)
+    case slot.user_id
+      when nil
+        ""
+      when -1
+        "Blocked"
+      when -2
+        "Closed"
+      else
+        slot.user.firstname
+    end
+  end
   
   #Template stuff
   def options_for_wtemplates
