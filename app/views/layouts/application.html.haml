@@ -2,7 +2,7 @@
 %html
   %head
     %meta{'http-equiv' => 'Content-Type', :content => "text/html; charset=iso-8859-1"}
-    %link{:href => "https://serafina.labs.is.wccnet.org/templates/template.css", :media => "screen", :rel => "stylesheet", :type => "text/css" }
+    %link{:href => "#{request.env["HTTP_HOST"]}/templates/template.css", :media => "screen", :rel => "stylesheet", :type => "text/css" }
     =javascript_include_tag :defaults
     %style{:type => "text/css", :media => "screen"}
       :plain
