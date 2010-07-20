@@ -1,19 +1,24 @@
-%h3
+-content_for :user_menu
+  ="Go to #{link_to "Day", :controller => :template, :action => :day } view"
+-content_for :main_header1
   =link_to "Push to new week", :controller => :calendar, :action => :week_from_template, :id => (params[:id] || @wtemplate.id)
-%p
-  = flash[:notice]
-= submit_tag "New Week Template", :onClick => "document.getElementById('new_form').toggle();"
-#new_form{:style => "display: none;"}
-  - form_remote_tag :url => {:controller => "template", :action => "new_week"}, :html => { :action => url_for(:controller => "template", :action => "new_week")} do
-    = label_tag "wtemplate_name", "Name of the new template"
-    = text_field_tag "wtemplate[name]"
-    %br
-    = label_tag "wtemplate_copy", "Would you like to start with another Week's template as your base?"
-    = check_box_tag "wtemplate[more]",1 , false, :onChange => "document.getElementById('new_form_more').toggle();"
-    %br
-    #new_form_more{:style => "display: none;"}
-      = label_tag "wtemplate_from", "Which template would you like to copy"
-      = select_tag"wtemplate[copy_from]", template_select(@wtemplate, "Wtemplate")
-    = submit_tag "Create New Week Template"
-#week_form
-  = render :partial => "week_form", :locals => {:wtemplate => @wtemplate}
+-content_for :main_header2
+  = submit_tag "New Week Template", :onClick => "document.getElementById('new_form').toggle();"
+-content_for :main_content2
+  #new_form{:style => "display: none;"}
+    - form_remote_tag :url => {:controller => "template", :action => "new_week"}, :html => { :action => url_for(:controller => "template", :action => "new_week")} do
+      = label_tag "wtemplate_name", "Name of the new template"
+      = text_field_tag "wtemplate[name]"
+      %br
+      = label_tag "wtemplate_copy", "Would you like to start with another Week's template as your base?"
+      = check_box_tag "wtemplate[more]",1 , false, :onChange => "document.getElementById('new_form_more').toggle();"
+      %br
+      #new_form_more{:style => "display: none;"}
+        = label_tag "wtemplate_from", "Which template would you like to copy"
+        = select_tag"wtemplate[copy_from]", template_select(@wtemplate, "Wtemplate")
+      = submit_tag "Create New Week Template"
+-content_for :main_header3
+-content_for :main_content3
+  %p= flash[:notice]
+  #week_form
+    = render :partial => "week_form", :locals => {:wtemplate => @wtemplate}
