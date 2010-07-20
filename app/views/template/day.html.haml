@@ -1,10 +1,8 @@
--content_for :user_menu
+-content_for :user_menu do
   ="Go to #{link_to "Week", :controller => :template, :action => :week } view"
--content_for :main_header1
--content_for :main_content1
--content_for :main_header2
+-content_for :main_header1 do
   = submit_tag "New Day Template", :onClick => "document.getElementById('new_form').toggle();"
--content_for :main_content2
+-content_for :main_content1 do
   #new_form{:style => "display: none;"}
   - form_remote_tag :url => {:controller => "template", :action => "new_day"}, :html => { :action => url_for(:controller => "template", :action => "new_day")} do
     = label_tag "dtemplate_name", "Name of the new template"
@@ -17,11 +15,9 @@
       = label_tag "dtemplate_from", "Which template would you like to copy"
       = select_tag"dtemplate[copy_from]", template_select(@dtemplate, "Dtemplate")
     = submit_tag "Create New Day Template"
--content_for :main_header3
--content_for :main_content3
-  %p= flash[:notice]
-  #day_form
-    = render :partial => "day_form", :locals => {:dtemplate => @dtemplate}
+%p= flash[:notice]
+#day_form
+  = render :partial => "day_form", :locals => {:dtemplate => @dtemplate}
   
 
 
