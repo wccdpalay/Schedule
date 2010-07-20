@@ -1,53 +1,58 @@
 <% content_for :user_menu do %>
+    <li><%= link_to_cal(h("<prev week> "), (@sd.date-7), @length)%></li>
+    <li><%= link_to_cal(h("<prev day> "), (@sd.date-1), @length) %></li>
+    <li><%= link_to_cal(h("<next day> "), (@sd.date+1), @length) %></li>
+    <li><%= link_to_cal(h("<next week>"), (@sd.date+7), @length) %></li>
     <li><%=link_to "Save Week to CSV", :controller => :calendar, :action => :print_week, :format => :csv, :week => @sd.week%></li>
+    <li><%= if @length != 7; link_to "view the whole week", {:controller => :calendar, :action => :view,
+                                        :length => "week", :year => @start_day.date.year,
+                                        :month => @start_day.date.month,
+                                        :day => @start_day.date.day}; end %></li>
 <% end %>
-<p><%=flash[:notice]%></p>
-<p><%=flash[:warning]%></p>
-<p>
-<%= if admin?; link_to "Admin Clear", :controller => :calendar, :action => :admin_clear; end %>
-<% if @length != 7%>
-<%= link_to "view the whole week", {:controller => :calendar, :action => :view, 
-                                    :length => "week", :year => @start_day.date.year, 
-                                    :month => @start_day.date.month, 
-                                    :day => @start_day.date.day}%>
-<% end %>
-</p>
-<table border=1 style="table-layout:fixed;">
+<% content_for :admin_menu do -%>
+    <li><%= link_to_unless_current "Week Template", :controller => :template, :action => :week %></li>
+    <li><%= if admin?; link_to "Admin Clear", :controller => :calendar, :action => :admin_clear; end %></li>
+<% end -%>
+<% content_for :main_header1 do -%>
+    Viewing Schedule
+<% end -%>
+<% content_for :main_content1 do -%> 
+    <p><%=flash[:notice]%></p>
+    <p><%=flash[:warning]%></p>
+    <table border=1 style="table-layout:fixed;">
 
-  <caption>
-    <%= "Schedule starting on #{@start_day.date.strftime(fmt='%A, %B %d, %Y')}" %><br />
-    <%= link_to_cal(h("<prev week> "), (@sd.date-7), @length)%>
-    <%= link_to_cal(h("<prev day> "), (@sd.date-1), @length) %>
-    <%= link_to_cal(h("<next day> "), (@sd.date+1), @length) %>
-    <%= link_to_cal(h("<next week>"), (@sd.date+7), @length) %>
-  </caption>
-  <tbody align=center>
-  <tr>
-    <td>
-      <table border=1>
-        <tr>
-          <td>
-            <table border=1>
-              <caption>Date</caption>
-			  <tr><td class="filler">&nbsp;</td></tr>
-              <% for x in TIME_SLOTS do -%>
-                <%= "<tr class='time_row'><td class='time_col'> #{x} </td></tr>"%>
+      <caption>
+        <%= "Schedule starting on #{@start_day.date.strftime(fmt='%A, %B %d, %Y')}" %><br />
+
+      </caption>
+      <tbody align=center>
+      <tr>
+        <td>
+          <table border=1>
+            <tr>
+              <td>
+                <table border=1>
+                  <caption>Date</caption>
+                  <tr><td class="filler">&nbsp;</td></tr>
+                  <% for x in TIME_SLOTS do -%>
+                    <%= "<tr class='time_row'><td class='time_col'> #{x} </td></tr>"%>
+                  <% end -%>
+                </table>
+              </td>
+              <% for x in 1..@length.to_i -%>
+                <%= render :partial => 'day',
+                           :locals => {:day => @start_day.date+(x-1),
+                           :is_today => (@sd.date == @start_day.date+(x-1))} %>
               <% end -%>
-            </table>
-          </td>
-          <% for x in 1..@length.to_i -%>
-            <%= render :partial => 'day', 
-                       :locals => {:day => @start_day.date+(x-1), 
-                       :is_today => (@sd.date == @start_day.date+(x-1))} %>
-          <% end -%>
-        </tr>    
-      </table>
-    </td>
-  </tr>
-  </tbody>
-  <tr>
-    <td>
-    	Your hours for this week: <%= get_user(session[:user]).weeks_hours(@sd.week) %>
-	</td>
-  </tr>
-</table>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+      <tr>
+        <td>
+            Your hours for this week: <%= get_user(session[:user]).weeks_hours(@sd.week) %>
+        </td>
+      </tr>
+    </table>
+<% end -%>

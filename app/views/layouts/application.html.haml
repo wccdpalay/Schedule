@@ -7,11 +7,11 @@
     %style{:type => "text/css", :media => "screen"}
       :plain
         .art-blockcontent-body ul li{
-          background-image: url("https://#{request.env["HTTP_HOST"]}/templates/images/blockcontentbullets.png");
+          background-image: url("https://{request.env["HTTP_HOST"]}/templates/images/blockcontentbullets.png");
         }
     %title<
       =@title
-      = #yield :head
+      = yield :head
   %body{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/page_t.jpg')"}
     #art-page-background-gradient{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/page_g.jpg')"}
     #art-page-background-glare
@@ -123,25 +123,12 @@
                             %fieldset{:id => "request_debug_info", :class => "debug_info", :style => "display: none;"}
                               %legend request
                               =debug(request)
-
-          %li#current.active_item1
-            %a{:href => "https://#{request.env["HTTP_HOST"]}"}
-              %span Home
-          %li.item73
-            %a{:href => "/index.php?option=com_contact&view=category&catid=12&Itemid=73"}
-              %span Contact
-          %li.item75
-            %a{:href => "/index.php?option=com_jpfchat&Itemid=75"}
-              %span Help Chat
-          %li.item72
-            %a{:href => "/order.php"}
-              %span Order Supplies
       -if admin?
         .moduletable_menu
           %h3 Admin Menu
           %ul.menu
             %li
-              =link_to_unless_current "Week Template", :controller => :template, :action => :week
+              
             %li
               =link_to_unless_current "Day Template", :controller => :template, :action => :day
             %li
