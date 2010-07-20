@@ -10,86 +10,6 @@ body, p, ol, ul{
     line-height: 18px;
 }
 
-a:visited, ul.menu li a:visited{
-    color: #666;
-}
-
-a{
-    color: #000;
-}
-ul.menu li a{
-    color: #333;
-    background: url("../images/hdot2.gif") repeat-x scroll center bottom #FFF;
-    display: block;
-    outline: medium none;
-    padding: 2px 0;
-    text-decoration: none;
-}
-
-ul.menu{
-    list-style: none outside none;
-}
-
-
-#ja-header, #ja-mainnav, #ja-container, #jabotsl, #ja-footer{
-	margin: 0px auto;
-	width: 97%;
-}
-
-#ja-mainbody{
-	width: 80%;
-	float: left;
-}
-
-#ja-contentwrap{
-	float: right;
-	display: block;
-	background: #fcfcfc;
-}
-
-#ja-wrapper{
-	min-width: 100%;
-	margin: 0px;
-	width: 100%;
-
-}
-
-#ja-header{
-	height: 80px;
-	position: relative;
-}
-
-h1.logo-text{
-	font-size:180%;
-	margin: 0px 0px 0px 5px;
-	padding: 0px;
-	text-transform: uppercase;
-	display: block;
-	font-weight: bold;
-}
-.contentheading, .componentheading, .blog_morestrong, h1, h2, h3, h4{
-	font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
-}
-
-p.site-slogan{
-	display: block;
-	background: #444;
-	bottom: 20px;
-	color: white;
-	font-size: 92%;
-	left: 0px;
-	margin: 0px;
-	padding: 2px 5px;
-	position: absolute;
-}
-
-.moduletable_menu{
-        float: left;
-        overflow: hidden;
-        padding-top: 10px;
-        width: 24.99%;
-}
-
 tr {
  vertical-align: top;	
 }
@@ -142,21 +62,6 @@ table {
 	height: 24px;
 }
 
-.col1{
-	background-color:#CCF;
-}
-
-.col2{
-	background-color:#CDF;
-}
-
-.col3{
-	background-color:#CEE;
-}
-
-.col4{
-	background-color:#BED;
-}
 
 .logged_in{
 	background-color:#EEEEEE;
