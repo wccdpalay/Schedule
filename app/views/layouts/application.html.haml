@@ -2,35 +2,35 @@
 %html
   %head
     %meta{'http-equiv' => 'Content-Type', :content => "text/html; charset=iso-8859-1"}
-    %link{:href => "#{request.env["HTTP_HOST"]}/templates/template.css", :media => "screen", :rel => "stylesheet", :type => "text/css" }
+    %link{:href => "http://#{request.env["HTTP_HOST"]}/templates/template.css", :media => "screen", :rel => "stylesheet", :type => "text/css" }
     =javascript_include_tag :defaults
     %style{:type => "text/css", :media => "screen"}
       :plain
         .art-blockcontent-body ul li{
-          background-image: url("https://serafina.labs.is.wccnet.org/templates/images/blockcontentbullets.png");
+          background-image: url("https://#{request.env["HTTP_HOST"]}/templates/images/blockcontentbullets.png");
         }
     %title<
       =@title
       = #yield :head
-  %body{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/page_t.jpg')"}
-    #art-page-background-gradient{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/page_g.jpg')"}
+  %body{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/page_t.jpg')"}
+    #art-page-background-gradient{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/page_g.jpg')"}
     #art-page-background-glare
-      #art-page-background-glare-image{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/page_gl.jpg')"}
+      #art-page-background-glare-image{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/page_gl.jpg')"}
     #art-main
       .art-sheet
-        .art-sheet-tl{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/sheet_s.png')"}
-        .art-sheet-tr{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/sheet_s.png')"}
-        .art-sheet-bl{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/sheet_s.png')"}
-        .art-sheet-br{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/sheet_s.png')"}
-        .art-sheet-tc{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/sheet_h.png')"}
-        .art-sheet-bc{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/sheet_h.png')"}
-        .art-sheet-cl{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/sheet_v.png')"}
-        .art-sheet-cr{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/sheet_v.png')"}
-        .art-sheet-cc{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/sheet_c.png')"}
+        .art-sheet-tl{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/sheet_s.png')"}
+        .art-sheet-tr{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/sheet_s.png')"}
+        .art-sheet-bl{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/sheet_s.png')"}
+        .art-sheet-br{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/sheet_s.png')"}
+        .art-sheet-tc{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/sheet_h.png')"}
+        .art-sheet-bc{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/sheet_h.png')"}
+        .art-sheet-cl{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/sheet_v.png')"}
+        .art-sheet-cr{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/sheet_v.png')"}
+        .art-sheet-cc{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/sheet_c.png')"}
         .art-sheet-body
           =#Top Bar
           .art-header
-            .art-header-jpeg{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/header.jpg')"}
+            .art-header-jpeg{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/header.jpg')"}
             .art-logo
               %h1#name-text.art-logo-name
                 %a{:href => "/index.php", :title => "The Computer Commons"}The Computer Commons
@@ -43,8 +43,8 @@
                 .art-block
                   .art-block-body
                     .art-blockheader
-                      .l{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/blockheader.png')"}
-                      .r{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/blockheader.png')"}
+                      .l{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/blockheader.png')"}
+                      .r{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/blockheader.png')"}
                       .t Main Menu
                     .art-blockcontent
                       .art-blockcontent-body
@@ -56,8 +56,8 @@
                 .art-block
                   .art-block-body
                     .art-blockheader
-                      .l{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/blockheader.png')"}
-                      .r{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/blockheader.png')"}
+                      .l{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/blockheader.png')"}
+                      .r{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/blockheader.png')"}
                       .t Main Menu
                     .art-blockcontent
                       .art-blockcontent-body
@@ -68,8 +68,8 @@
                   .art-block
                     .art-block-body
                       .art-blockheader
-                        .l{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/blockheader.png')"}
-                        .r{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/blockheader.png')"}
+                        .l{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/blockheader.png')"}
+                        .r{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/blockheader.png')"}
                         .t Admin Menu
                       .art-blockcontent
                         .art-blockcontent-body
@@ -125,7 +125,7 @@
                               =debug(request)
 
           %li#current.active_item1
-            %a{:href => "https://serafina.labs.is.wccnet.org"}
+            %a{:href => "https://#{request.env["HTTP_HOST"]}"}
               %span Home
           %li.item73
             %a{:href => "/index.php?option=com_contact&view=category&catid=12&Itemid=73"}
