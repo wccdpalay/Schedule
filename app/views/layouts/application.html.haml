@@ -49,6 +49,8 @@
                     .art-blockcontent
                       .art-blockcontent-body
                         %ul.menu
+                          %li
+                            %a{:href => "/index.php", :title => "Home"} Back to Home
                           = yield :main_menu
                     .cleared
                 .art-block
@@ -62,6 +64,18 @@
                         %ul.menu
                           = yield :user_menu
                     .cleared
+                - if admin?
+                  .art-block
+                    .art-block-body
+                      .art-blockheader
+                        .l{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/blockheader.png')"}
+                        .r{:style => "background-image: url('https://serafina.labs.is.wccnet.org/templates/images/blockheader.png')"}
+                        .t Admin Menu
+                      .art-blockcontent
+                        .art-blockcontent-body
+                          %ul.menu
+                            = yield :admin_menu
+                      .cleared
               %div{:class => "art-layout-cell art-content"}
                 .art-post
                   .art-post-body
