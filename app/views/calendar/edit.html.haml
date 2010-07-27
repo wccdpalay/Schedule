@@ -23,43 +23,44 @@
 
 
 -content_for :main_header1
+  Editing the Day
 -content_for :main_content1
--form_for :day, @sd,          |
-:url => {                     |
-:controller => :calendar,     |
-:action => :update,           |
-:year => params[:year],       |
-:month => params[:month],     |
-:day => params[:day]} do |f|  |
+  -form_for :day, @sd,          |
+  :url => {                     |
+  :controller => :calendar,     |
+  :action => :update,           |
+  :year => params[:year],       |
+  :month => params[:month],     |
+  :day => params[:day]} do |f|  |
 
-  %input{:type => "textbox", :value => "119", :name => "timeleft", :size => "3", :readonly => ""}
-  
-  %table#edit_day{:border => 1, :style => "table-layout:fixed;"}
-    %caption
-      Schedule starting on #{@start_day.date.strftime(fmt='%A, %B %d, %Y')}
-    %tbody{:align => "center"}
+    %input{:type => "textbox", :value => "119", :name => "timeleft", :size => "3", :readonly => ""}
+
+    %table#edit_day{:border => 1, :style => "table-layout:fixed;"}
+      %caption
+        Schedule starting on #{@start_day.date.strftime(fmt='%A, %B %d, %Y')}
+      %tbody{:align => "center"}
+        %tr
+          %td
+            %table{:border => 1}
+              %tr
+                %td
+                  %table{:border => 1}
+                    %caption Date
+                    %tr<
+                      %td{:class => "filler"}< &nbsp;
+                    -for x in TIME_SLOTS do
+                      -if admin?
+                        %tr{:class => "admin_edit"}<
+                          %td{:class => "admin_edit_td"}<
+                            =x
+                      -else
+                        %tr<
+                          %td{:class => "fillslot"}<
+                            =x
+                -for x in 1..@length.to_i
+                  =render :partial => 'day',                         |
+                  :locals => {:day => @start_day.date+(x-1),         |
+                  :is_today => (@sd.date == @start_day.date+(x-1))}  |
       %tr
         %td
-          %table{:border => 1}
-            %tr
-              %td
-                %table{:border => 1}
-                  %caption Date
-                  %tr<
-                    %td{:class => "filler"}< &nbsp;
-                  -for x in TIME_SLOTS do
-                    -if admin?
-                      %tr{:class => "admin_edit"}<
-                        %td{:class => "admin_edit_td"}<
-                          =x
-                    -else
-                      %tr<
-                        %td{:class => "fillslot"}<
-                          =x
-              -for x in 1..@length.to_i
-                =render :partial => 'day',                         |
-                :locals => {:day => @start_day.date+(x-1),         |
-                :is_today => (@sd.date == @start_day.date+(x-1))}  |
-    %tr
-      %td
-        =submit_tag value="Save", :class => "form_submit", :name => "SUBMIT"
+          =submit_tag value="Save", :class => "form_submit", :name => "SUBMIT"
