@@ -172,4 +172,12 @@ script to add to edit.html.haml for locking the editing
 //******************************************************************
 	
 For running cron jobs to automate a few things
-	http://www.ameravant.com/posts/recurring-tasks-in-ruby-on-rails-using-runner-and-cron-jobs	
+	http://www.ameravant.com/posts/recurring-tasks-in-ruby-on-rails-using-runner-and-cron-jobs
+
+//***************************************************************		
+    #TODO: Finish check_for_empty? so that I can have an automated email
+    #TODO: Create an automatic emailer
+    #Returns true if there is an shift with no one scheduled
+  def check_for_empty?(start_time, end_time)
+
+  end

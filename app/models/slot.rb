@@ -1,3 +1,4 @@
+#A class to hold a User and a Time.
 class Slot < ActiveRecord::Base
   belongs_to :day
   belongs_to :user

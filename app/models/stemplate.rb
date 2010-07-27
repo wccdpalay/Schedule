@@ -1,3 +1,4 @@
+#A class for Templates of a Slot.  Used to populate Slots.  Held by Dtemplate
 class Stemplate < ActiveRecord::Base
   belongs_to :dtemplate
   belongs_to :user

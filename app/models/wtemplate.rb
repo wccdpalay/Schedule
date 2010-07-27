@@ -1,3 +1,4 @@
+#A class for Templates of a Week.  Used to populate Weeks.  Holds 7 Dtemplates
 class Wtemplate < ActiveRecord::Base
   
   belongs_to :sat, {:class_name => "Dtemplate", :foreign_key => :sat}

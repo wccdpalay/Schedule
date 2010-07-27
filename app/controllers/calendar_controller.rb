@@ -2,11 +2,14 @@ class CalendarController < ApplicationController
   before_filter :check_user
   
   include CalendarHelper
+
+  #The default view.  Renders the Calender with Today's Date
   def index
     @start_day = Date.today
     redirect_to :action => :view
   end
-  
+
+  #View the Schedule
   def view
     @title = "Schedule"   
     
@@ -42,7 +45,8 @@ class CalendarController < ApplicationController
     end
     
   end
-  
+
+  #edit the Schedule
   def edit
     @title = "Editing Schedule"
     
@@ -79,7 +83,8 @@ class CalendarController < ApplicationController
     end
     
   end
-  
+
+  #update the schedule (CALLED BY EDIT, DO NOT USE ALONE)
   def update
     Day.transaction do
       Slot.transaction do
@@ -152,7 +157,8 @@ class CalendarController < ApplicationController
   end
   
   
-  
+
+  #An alternate view for administrators.  Each slot has selection boxes instead of radio buttons
   def admin_edit
     @title = "Administrative Edit"
     @day = Day.find_by_date(params[:day])
@@ -168,7 +174,9 @@ class CalendarController < ApplicationController
     end
     redirect_to request.env["HTTP_REFERER"] ||= {:controller => :calendar, :action => :view}
   end
-  
+
+
+  #remove the editing lock
   def admin_clear
     @day = Day.find_by_date(Date.today)
     @day.being_edited = (DateTime.now - 1.year)
@@ -176,6 +184,8 @@ class CalendarController < ApplicationController
     redirect_to request.env["HTTP_REFERER"] ||= {:controller => :calendar, :action => :view}
   end
 
+
+  #create the new week based on a template
   def week_from_template
     @week = Week.make_from_template Wtemplate.find(params[:id])
     @week.save
@@ -183,6 +193,7 @@ class CalendarController < ApplicationController
                 :month => @week.start_date.month, :day => @week.start_date.day
   end
 
+  #saves the week as a comma separated value file
   def print_week
     @week = Week.find(params[:week])
     respond_to do |format|

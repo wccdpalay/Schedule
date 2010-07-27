@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  
+
+  #Moves a given object to the Archive Databse
   def archive(obj)
     if obj.class == (SlotA || SlotB || SlotC || SlotD)
       oldobjclass = ArcSlot
@@ -55,6 +56,7 @@ class ApplicationController < ActionController::Base
     archive(w)
   end
 
+  #Get the currently logged in user from the Joomla Sessions Table
   def check_user()
     sess_id = get_joomla_session_id
     if sess_id == nil
@@ -75,12 +77,14 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+
+  #Get the User from an ID
   def get_user(userid)
     User.find_by_id(userid)
   end
   
-  
+
+  #Check if the User is an admin
   def admin?
     user = get_user(session[:user])
     if user #to prevent nil.usertype errors
@@ -90,7 +94,8 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  
+
+  #Return the Slot for a given Day and its column
   def get_slots(day, col)
     case col
       when "1"
@@ -105,7 +110,8 @@ class ApplicationController < ActionController::Base
         Day.find(day).slots
     end
   end
-  
+
+  #Get the Session ID from the Joomla Cookie
   def get_joomla_session_id
     cookies[JSESSION_NAME]
   end

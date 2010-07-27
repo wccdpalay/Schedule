@@ -1,3 +1,4 @@
+#A class for Templates of each Day.  Used to populate Days.
 class Dtemplate < ActiveRecord::Base
   
   has_many :stemplates

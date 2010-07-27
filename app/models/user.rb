@@ -1,3 +1,4 @@
+#Class for the User.  Gets the User information from the Joomla jos_users table.
 class User < ActiveRecord::Base
   has_many :slots
   has_many :stemplates
@@ -7,7 +8,7 @@ class User < ActiveRecord::Base
 
 
 
-  # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
+  # Authenticates a user by checking the session of the Joomla page.  Returns the user or nil.
   def self.authenticate()
     content = nil
     #open('https://serafina.labs.is.wccnet.org/joomla/tech.php') do |page|
@@ -26,11 +27,13 @@ class User < ActiveRecord::Base
   def self.make_new(name, username, usertype)
     current_user = User.new({:name => name, :username => username, :usertype => usertype})
   end
-  
+
+  #grab the first name from the Joomla DB
   def firstname()
     name.gsub(/(\.|\s)[a-zA-Z]*/, "")
   end
-  
+
+  #calculate how many hours a user has for a given week 
   def weeks_hours(week = Day.find_by_date(Date.today).week)
     hours_total = 0
     for slot in slots

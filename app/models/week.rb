@@ -1,8 +1,10 @@
+#A class to hold 7 days, as well as the position of the week of the year.  
 class Week < ActiveRecord::Base
-  has_many :days
-
   # The archival system is not fully operational, but the database should be functional without it for now.
   #after_create :max_weeks
+
+  has_many :days
+
 
   def self.new_next
     w = Week.last
@@ -18,6 +20,7 @@ class Week < ActiveRecord::Base
     w2
   end
 
+  #this is an unimplemented method.  The archiving system is NOT set up to satisfaction yet.
   def max_weeks
     #if there are more than MAX_WEEKS weeks already, archive the oldest
     while Week.count > MAX_WEEKS
@@ -26,13 +29,15 @@ class Week < ActiveRecord::Base
   end
 
 
+  #copy a template into a new week.
   def self.make_from_template(wtemplate)
     w = Week.new_next
     w.copy_from_template(wtemplate)
     w
   end
   
-  
+
+  #Take an existing week, and copy a template into it
   def copy_from_template(wtemplate)
     for x in days
       x.copy_from_dtemplate(Dtemplate.find(wtemplate[x.name[5,3].to_sym])) #This is terrible terrible hacking, but
@@ -48,6 +53,8 @@ class Week < ActiveRecord::Base
     end
 
   end
+
+  #takes the previous week and copies it into this week.
   def copy_from_previous_week
     if Week.find(self.id-1)
       copy_from_template(Week.find(self.id-1))
