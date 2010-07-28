@@ -11,6 +11,7 @@
 <% end %>
 <% content_for :admin_menu do -%>
     <li><%= link_to_unless_current "Week Template", :controller => :template, :action => :week %></li>
+    <li><%= link_to "Day Templates", :controller => :template, :action => :day %></li>
     <li><%= if admin?; link_to "Admin Clear", :controller => :calendar, :action => :admin_clear; end %></li>
 <% end -%>
 <% content_for :main_header1 do -%>

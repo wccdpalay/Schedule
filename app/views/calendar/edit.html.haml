@@ -1,4 +1,4 @@
--content_for :head
+-content_for :head do
   %script
     ID=window.setTimeout("update();", 1000);
     function update()
@@ -22,9 +22,9 @@
     }
 
 
--content_for :main_header1
+-content_for :main_header1 do
   Editing the Day
--content_for :main_content1
+-content_for :main_content1 do
   -form_for :day, @sd,          |
   :url => {                     |
   :controller => :calendar,     |
