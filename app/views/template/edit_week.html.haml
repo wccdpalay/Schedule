@@ -5,6 +5,6 @@
 -content_for :main_content1 do
   -form_tag :action => 'rename_week', :id => @week do
     =label_tag "Rename from #{@week.name} to: "
-    =text_field_tag 'day', 'name'
+    =text_field_tag 'name'
     =submit_tag 'Rename'
 
