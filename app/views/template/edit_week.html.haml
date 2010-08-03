@@ -3,7 +3,7 @@
 -content_for :main_header1 do
   ="Rename: #{@week.name}"
 -content_for :main_content1 do
-  -form_tag :action => 'rename_week', :id => @week
+  -form_tag :action => 'rename_week', :id => @week do
     =label_tag "Rename from #{@week.name} to: "
     =text_field_tag 'day', 'name'
     =submit_tag 'Rename'
