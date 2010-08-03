@@ -35,6 +35,19 @@ class TemplateController < ApplicationController
     @title = "Edit details of #{@day.name}"
   end
 
+  def rename_week
+    @week = Wtemplate.find(params[:id])
+    @week.name = params[:name]
+    @week.save!
+    redirect_to :action =>"list_weeks"
+  end
+  def rename_day
+    @day = Dtemplate.find(params[:id])
+    @day.name = params[:name]
+    @day.save!
+    redirect_to :action => "list_days"
+  end
+
   def delete_week
     @week = Wtemplate.find(params[:id])
     @week.delete

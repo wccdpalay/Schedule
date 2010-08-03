@@ -1,0 +1,10 @@
+-content_for :user_menu do
+  ="Go to #{link_to "Week", :controller => :template, :action => :week } view"
+-content_for :main_header1 do
+  ="Rename: #{@day.name}"
+-content_for :main_content1 do
+  -form_tag :action => 'rename_day', :id => @day
+    = label_tag "Rename from #{@day.name} to: "
+    = text_field_tag 'day', 'name'
+    = submit_tag 'Rename'
+

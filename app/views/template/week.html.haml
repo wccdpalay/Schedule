@@ -4,7 +4,7 @@
   %li=link_to "List Week Templates", :controller => :template, :action => :list_weeks
   %li=link_to "List Day Templates", :controller => :template, :action => :list_days
 -content_for :main_header1 do
-  =link_to "Click here to create new week with selected Template", :controller => :calendar, :action => :week_from_template, :id => (params[:id] || @wtemplate.id)
+  =link_to "Click here to create New Week", :controller => :calendar, :action => :week_from_template, :id => (params[:id] || @wtemplate.id)
 -content_for :main_header2 do
   = submit_tag "New Week Template", :onClick => "document.getElementById('new_form').toggle();"
 -content_for :main_content2 do
