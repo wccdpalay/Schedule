@@ -2,6 +2,6 @@
 <% if params[:action]=="view" -%>
 <%= get_user_for_slot(slot)%>
 <% elsif params[:action]=="edit" -%>
-<%= select("Slot#{['A','B','C','D'][col-1]}s", row, options_from_users(slot))%>
+<%= select("Slot#{['A','B','C','D'][col-1]}s", row, options_from_users(slot), {}, {:onchange => "max20();"})%>
 <% end -%>
 </div>
