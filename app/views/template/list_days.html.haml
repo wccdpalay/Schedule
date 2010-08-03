@@ -1,11 +1,15 @@
-%table
-  %caption Listing of Days
-  %tr
-    %th Name
-    %th{:colspan => 3} Options
-  - for day in @days
+-content_for :main_header1 do
+  = link_to "Back to Day", :controller => :template, :action => :day  
+-content_for :main_header2 do
+  Listing of Days
+-content_for :main_content2 do
+  %table
     %tr
-      %td= day.name
-      %td= link_to "delete", :controller => :template, :action => :delete_day, :id => day.id
-      %td= link_to "view/edit", :controller => :template, :action => :day, :id => day.id
-      %td= link_to "rename day", :controller => :template, :action => :editday, :id => day.id
+      %th Name
+      %th{:colspan => 3} Options
+    - for day in @days
+      %tr
+        %td= day.name
+        %td= link_to "delete", :controller => :template, :action => :delete_day, :id => day.id
+        %td= link_to "view/edit", :controller => :template, :action => :day, :id => day.id
+        %td= link_to "rename day", :controller => :template, :action => :edit_day, :id => day.id

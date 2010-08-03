@@ -1,26 +1,30 @@
-%table
-  %caption Listing of Weeks
-  %tr
-    %th Name
-    %th Sat
-    %th Sun
-    %th Mon
-    %th Tue
-    %th Wed
-    %th Thu
-    %th Fri
-    %th{:colspan => 3} Options
-  - for week in @weeks
+-content_for :main_header1 do
+  = link_to "Back to Day", :controller => :template, :action => :day
+-content_for :main_header2 do
+  Listing of Weeks
+-content_for :main_content2 do
+  %table
     %tr
-      %td= week.name
-      %td= week.sat.name
-      %td= week.sun.name
-      %td= week.mon.name
-      %td= week.tue.name
-      %td= week.wed.name
-      %td= week.thu.name
-      %td= week.fri.name
-      %td= link_to "delete", :controller => :template, :action => :delete_week, :id => week.id
-      %td= link_to "view/edit", :controller => :template, :action => :week, :id => week.id
-      %td= link_to "rename week", :controller => :template, :action => :edit_week, :id => week.id
+      %th Name
+      %th Sat
+      %th Sun
+      %th Mon
+      %th Tue
+      %th Wed
+      %th Thu
+      %th Fri
+      %th{:colspan => 3} Options
+    - for week in @weeks
+      %tr
+        %td= week.name
+        %td= week.sat.name unless week.sat.nil?
+        %td= week.sun.name unless week.sun.nil?
+        %td= week.mon.name unless week.mon.nil?
+        %td= week.tue.name unless week.tue.nil?
+        %td= week.wed.name unless week.wed.nil?
+        %td= week.thu.name unless week.thu.nil?
+        %td= week.fri.name unless week.fri.nil?
+        %td= link_to "delete", :controller => :template, :action => :delete_week, :id => week.id
+        %td= link_to "view/edit", :controller => :template, :action => :week, :id => week.id
+        %td= link_to "rename week", :controller => :template, :action => :edit_week, :id => week.id
 
