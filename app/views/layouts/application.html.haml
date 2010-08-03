@@ -12,7 +12,7 @@
         }
     %title<
       =@title
-      = yield :head
+    = yield :head
   %body{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/page_t.jpg')"}
     #art-page-background-gradient{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/page_g.jpg')"}
     #art-page-background-glare

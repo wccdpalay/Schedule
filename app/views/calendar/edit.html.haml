@@ -1,7 +1,5 @@
 -content_for :head do
   %script
-    =eval("var all_but_todays_hours = #{get_user(session[:user]).weeks_hours(@sd.week)} - get_hours_of_day();")
-
     function get_hours_of_day()
     {
     var x = 0;
@@ -9,7 +7,7 @@
     {
     if(document.forms[0].elements[i].type=="select-one")
     {
-    =eval("if(document.forms[0].elements[i].value == '#{session[:user]}'")
+    ="if(document.forms[0].elements[i].value == '#{session[:user]}')"
     {
     x++;
     }
@@ -17,6 +15,8 @@
     }
     return x;
     }
+
+    ="var all_but_todays_hours = #{get_user(session[:user]).weeks_hours(@sd.week)} - get_hours_of_day();"
 
     ID=window.setTimeout("update();", 1000);
     function update()
