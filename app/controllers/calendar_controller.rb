@@ -102,7 +102,7 @@ class CalendarController < ApplicationController
         if admin?
           @slots = [params[:SlotAs],params[:SlotBs],params[:SlotCs],params[:SlotDs]]
           @dslots = [@day.slotAs, @day.slotBs, @day.slotCs, @day.slotDs]
-      
+
           for col in 0..3
             for slot in @slots[col]
               dslot = @dslots[col][slot[0].to_i]
