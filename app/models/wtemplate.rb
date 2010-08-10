@@ -8,6 +8,7 @@ class Wtemplate < ActiveRecord::Base
   belongs_to :wed, {:class_name => "Dtemplate", :foreign_key => :wed}
   belongs_to :thu, {:class_name => "Dtemplate", :foreign_key => :thu}
   belongs_to :fri, {:class_name => "Dtemplate", :foreign_key => :fri}
+
   
   
   def before_create

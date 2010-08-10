@@ -48,6 +48,7 @@ class CalendarController < ApplicationController
 
   #edit the Schedule
   def edit
+
     @title = "Editing Schedule"
     
     #When to start the showing
@@ -60,7 +61,11 @@ class CalendarController < ApplicationController
     end
   
     @sd = @start_day
-    
+
+    unless @sd.week.init
+      flash[:notice] = "The Day You Were Trying To Edit Has Not Been Initialized."
+      redirect_to :controller => "calendar", :action => "view", :id => @start_day
+    end
     #find out the Saturday before
     @start_sat = Day.find(@start_day)
     while @start_sat.date.wday < 6

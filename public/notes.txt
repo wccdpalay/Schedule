@@ -1,4 +1,7 @@
-TODO:
+TODO:Day template, create new, needs to reload page!
+
+TODO:Side bar needs to be filled on most pages
+
 
 Set up Production environment
 Make sure Timed events are going off (set it to clear a date at a given time, just to test)

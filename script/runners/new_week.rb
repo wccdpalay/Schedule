@@ -1,5 +1,8 @@
-#wait for up to 12 hours...
-sleep ((rand 43200)+1)
+if Day.find_by_date(Date.today+7).nil?
+  #wait for up to 12 hours...
+  sleep ((rand 43200)+1)
 
-#create the new week
-Week.new_next
+  #create the new week
+  Week.new_next
+end
+Week.last.init = true
