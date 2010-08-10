@@ -63,7 +63,8 @@
                     .art-blockcontent
                       .art-blockcontent-body
                         %ul.menu
-                          = link_to "View My Schedule (This week)", :controller => :user, :action => :view_week
+                          %li
+                            = link_to "View My Schedule (This week)", :controller => :user, :action => :view_week
                           = yield :user_menu
                     .cleared
                 - if admin?

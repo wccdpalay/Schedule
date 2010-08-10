@@ -4,5 +4,4 @@
     %td= to_block(results[x])
 %tr
   %td{:colspan => 2}
-    Total Hours for this week:
-    =#TODO: Hours for the week!
+    ="Total Hours for this week: #{get_user(session[:user]).weeks_hours(week)}"
