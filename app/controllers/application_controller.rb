@@ -88,7 +88,7 @@ class ApplicationController < ActionController::Base
   def admin?
     user = get_user(session[:user])
     if user #to prevent nil.usertype errors
-      (current_user != "dpalay" && user.usertype == "Administrator")
+      (user.usertype == "Administrator")
     else
       redirect_to :controller => :joomla, :action => :kick
     end

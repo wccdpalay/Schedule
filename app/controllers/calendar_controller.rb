@@ -162,7 +162,7 @@ class CalendarController < ApplicationController
         end
       end
     end  
-    @day.being_edited = DateTime.now - 3.minutes
+    @day.being_edited = DateTime.now - 5.minutes
     redirect_to :controller => :calendar, :action => :view, 
       :year => params[:year], :month => params[:month], :day => params[:day]  
   end

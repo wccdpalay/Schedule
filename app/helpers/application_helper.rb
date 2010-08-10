@@ -10,7 +10,7 @@ module ApplicationHelper
   def admin?
     user = get_user(session[:user])
     if user
-      (current_user != "dpalay" && user.usertype == "Administrator")
+      (user.usertype == "Administrator")
     end
   end
 
