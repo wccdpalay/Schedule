@@ -17,7 +17,7 @@
       :locals => {:slot => day.slotDs[row],  |
       :col => 4, :row => row, :user => user} |
 - else
-  %tr
+  %tr{:class => "select_row"}
     %td<
       = render :partial => "slot/slot",      | 
       :locals => {:slot => day.slotAs[row],  |
