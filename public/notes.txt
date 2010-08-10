@@ -8,7 +8,6 @@ Make sure Timed events are going off (set it to clear a date at a given time, ju
 DONE# Users.  Pull from session?  Joomla's session info
 DONE# calendar/edit for work-studies & level2s
 TODO: "View my schedule for this week"
-TODO: Javascript Based Checking on 20+ hours per week.
 TODO:  Mostly done: Templates
     Can make, create, list, destroy, copy templates of both week & day.  Now it's on to applying and creating based off of templates
 

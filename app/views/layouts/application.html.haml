@@ -59,10 +59,11 @@
                     .art-blockheader
                       .l{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/blockheader.png')"}
                       .r{:style => "background-image: url('https://#{request.env["HTTP_HOST"]}/templates/images/blockheader.png')"}
-                      .t Main Menu
+                      .t User Menu
                     .art-blockcontent
                       .art-blockcontent-body
                         %ul.menu
+                          = link_to "View My Schedule (This week)", :controller => :user, :action => :view_week
                           = yield :user_menu
                     .cleared
                 - if admin?

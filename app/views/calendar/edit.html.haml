@@ -37,7 +37,7 @@
   }
   }
   }
-  return x;
+  return x/2;
   }
 
   ="var all_but_todays_hours = #{get_user(session[:user]).weeks_hours(@sd.week)} - get_hours_of_day();"
@@ -48,7 +48,7 @@
 
   if (hours > 20)
   {
-  alert('Too Many Hours!');
+  alert('You Have '+ hours + ' hours!\n  This is over your 20 hour maximum.');
   document.forms[0].SUBMIT.value = "Too Many Hours";
   document.forms[0].SUBMIT.disabled = true;
   }
@@ -77,7 +77,7 @@
       %caption
         Schedule starting on #{@start_day.date.strftime(fmt='%A, %B %d, %Y')}
       %tbody{:align => "center"}
-        %tr
+        %tr                            \
           %td
             %table{:border => 1}
               %tr
@@ -93,7 +93,7 @@
                             =x
                       -else
                         %tr<
-                          %td{:class => "fillslot"}<
+                          %td{:class => "admin_edit_td"}<
                             =x
                 -for x in 1..@length.to_i
                   =render :partial => 'day',                         |
