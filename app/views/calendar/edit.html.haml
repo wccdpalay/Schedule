@@ -1,22 +1,5 @@
 -content_for :head do
   %script
-    function get_hours_of_day()
-    {
-    var x = 0;
-    for(i=0;i<document.forms[0].elements.length;i++)
-    {
-    if(document.forms[0].elements[i].type=="select-one")
-    {
-    ="if(document.forms[0].elements[i].value == '#{session[:user]}')"
-    {
-    x++;
-    }
-    }
-    }
-    return x;
-    }
-
-    ="var all_but_todays_hours = #{get_user(session[:user]).weeks_hours(@sd.week)} - get_hours_of_day();"
 
     ID=window.setTimeout("update();", 1000);
     function update()
@@ -42,6 +25,25 @@
     ID=window.setTimeout("update();", 1000);
     }
 
+    function get_hours_of_day()
+    {
+    var x = 0;
+    var length = document.forms[0].elements.length
+    for(i=0; i < length; i++)
+    {
+    if(document.forms[0].elements[i].type=="select-one")
+    {
+    ="if(document.forms[0].elements[i].value == '#{session[:user]}')"
+    {
+    x++;
+    }
+    }
+    }
+    return x;
+    }
+
+    ="var all_but_todays_hours = #{get_user(session[:user]).weeks_hours(@sd.week)} - get_hours_of_day();"
+    
     function max20()
     {
     var hours = all_but_todays_hours + get_hours_of_day();

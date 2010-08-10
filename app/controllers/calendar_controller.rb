@@ -62,10 +62,7 @@ class CalendarController < ApplicationController
   
     @sd = @start_day
 
-    unless @sd.week.init
-      flash[:notice] = "The Day You Were Trying To Edit Has Not Been Initialized."
-      redirect_to :controller => "calendar", :action => "view", :id => @start_day
-    end
+
     #find out the Saturday before
     @start_sat = Day.find(@start_day)
     while @start_sat.date.wday < 6
@@ -77,7 +74,9 @@ class CalendarController < ApplicationController
     #completely unsatisfied with Rail's Locking mechanism, I'm writing my own.  
     #On an edit, the Day#being_edited attribute is updated to the current time.  If the attribute is within
     #the EDITLAG set in the environment, then it is "locked".
-  
+
+
+
     if @sd.being_edited < (DateTime.now - 2.minutes)
     #if true
      @sd.being_edited = DateTime.now  
@@ -85,6 +84,12 @@ class CalendarController < ApplicationController
     else
      flash[:notice]="This day is currently being edited.  Please try again in a few minutes."
      redirect_to (request.env["HTTP_REFERER"] ||= "/") 
+    end
+
+    unless @sd.week.init
+      @day.being_edited = (DateTime.now - 1.year)
+      flash[:notice] = "The Day You Were Trying To Edit Has Not Been Initialized."
+      redirect_to (request.env["HTTP_REFERER"] ||= "/")
     end
     
   end
