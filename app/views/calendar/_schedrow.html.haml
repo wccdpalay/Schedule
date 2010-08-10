@@ -1,4 +1,4 @@
-- if admin?
+- unless current_user == "dpalay"  || !admin?
   %tr{:class => "select_row"}
     %td<
       = render :partial => "slot/adminslot", | 
