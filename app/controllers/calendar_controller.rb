@@ -214,7 +214,10 @@ class CalendarController < ApplicationController
   end
 
   def apply_template
-    
+    @week = Week.find(params[:wid])
+    @week.copy_from_template(Wtemplate.find(params[:wtemplate[from]]))
+    @week.save!
+    redirect_to request.env["HTTP_REFERER"] ||= {:controller => :calendar, :action => :view} 
   end
   
   
