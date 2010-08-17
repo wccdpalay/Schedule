@@ -14,6 +14,10 @@
     <li><%= link_to_unless_current "Week Template", :controller => :template, :action => :week %></li>
     <li><%= link_to "Day Templates", :controller => :template, :action => :day %></li>
     <li><%= if admin?; link_to "Admin Clear", :controller => :calendar, :action => :admin_clear; end %></li>
+    <% form_tag :url => {:controller => :calendar, :action => :apply_template} do -%>
+        <li><%= select_tag template_select(nil, "Wtemplate") %></li>
+        <li><%= submit_tag "Apply Selected Template to Week" %></li>
+    <% end %>
 <% end -%>
 <% content_for :main_header1 do -%>
     Viewing Schedule

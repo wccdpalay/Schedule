@@ -212,7 +212,10 @@ class CalendarController < ApplicationController
       format.csv  {}
     end
   end
-  
+
+  def apply_template
+    
+  end
   
   
 end

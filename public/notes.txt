@@ -1,14 +1,15 @@
-TODO:Day template, create new, needs to reload page!
+DONE:Day template, create new, needs to reload page!
 
 TODO:Side bar needs to be filled on most pages
 
 
-Set up Production environment
-Make sure Timed events are going off (set it to clear a date at a given time, just to test)
+DONE# Set up Production environment
+DONE# Make sure Timed events are going off (set it to clear a date at a given time, just to test)
 DONE# Users.  Pull from session?  Joomla's session info
 DONE# calendar/edit for work-studies & level2s
-TODO:  Mostly done: Templates
-    Can make, create, list, destroy, copy templates of both week & day.  Now it's on to applying and creating based off of templates
+DONE#  Mostly done: Templates.  Can make, create, list, destroy, copy templates of both week & day.  Now it's on to applying and creating based off of templates
+TODO:  Blank week into a template
+TODO:  Create a Template from a week.
 
 Aesthetics (last issue)
 	Custom CSS
@@ -30,7 +31,7 @@ Aesthetics (last issue)
 		
 		
 		
-	Lock schedule once day is passed*  (Or some other criteria)
+DONE	Lock schedule once day is passed*  (Or some other criteria)
 
 	
 	Coloration

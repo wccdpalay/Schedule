@@ -1,5 +1,7 @@
--content_for :user_menu do
-  ="Go to #{link_to "Week", :controller => :template, :action => :week } view"
+-content_for :admin_menu do
+  %li="Go to #{link_to "Week", :controller => :template, :action => :week } view"
+  %li=link_to "List Week Templates", :controller => :template, :action => :list_weeks
+  %li=link_to "List Day Templates", :controller => :template, :action => :list_days
 -content_for :main_header1 do
   = submit_tag "New Day Template", :onClick => "document.getElementById('new_form').toggle();"
 -content_for :main_content1 do
