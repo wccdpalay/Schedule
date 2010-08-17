@@ -15,6 +15,7 @@
     <li><%= link_to "Day Templates", :controller => :template, :action => :day %></li>
     <li><%= if admin?; link_to "Admin Clear", :controller => :calendar, :action => :admin_clear; end %></li>
     <% form_tag :url => {:controller => :calendar, :action => :apply_template} do -%>
+        <%= hidden_field_tag :wid, @sd.week.id %>
         <li><%= select_tag template_select(nil, "Wtemplate") %></li>
         <li><%= submit_tag "Apply Selected Template to Week" %></li>
     <% end %>
