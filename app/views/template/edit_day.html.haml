@@ -1,5 +1,5 @@
 -content_for :user_menu do
-  ="Go to #{link_to "Week", :controller => :template, :action => :week } view"
+  %li="Go to #{link_to "Week", :controller => :template, :action => :week } view"
 -content_for :main_header1 do
   ="Rename: #{@day.name}"
 -content_for :main_content1 do
