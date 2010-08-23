@@ -78,6 +78,7 @@
                       .art-blockcontent
                         .art-blockcontent-body
                           %ul.menu
+                            %li=link_to "New Blank Week", :controller => :calendar, :action => :new_week
                             = yield :admin_menu
                       .cleared
               %div{:class => "art-layout-cell art-content"}
