@@ -83,5 +83,7 @@ Rails::Initializer.run do |config|
 
    #This is the number of weeks to hold on to before archiving.  
   MAX_WEEKS = 5
+
+  TABLE_BACKGROUND_COLOR = "#689"
   
 end
