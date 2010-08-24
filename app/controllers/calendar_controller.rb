@@ -219,6 +219,11 @@ class CalendarController < ApplicationController
     @week.save!
     redirect_to request.env["HTTP_REFERER"] ||= {:controller => :calendar, :action => :view} 
   end
+
+  def new_week
+    @week = Week.new_next
+    redirect_to request.env["HTTP_REFERER"] ||= {:controller => :calendar, :action => :view}
+  end
   
   
 end
