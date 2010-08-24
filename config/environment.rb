@@ -57,7 +57,9 @@ Rails::Initializer.run do |config|
   
   
   #Global Constants
-  
+
+
+   #Don't you DARE change this one.
   ALL_TIMES = ["12:00 AM", "12:30 AM", "1:00 AM", "1:30 AM", "2:00 AM", "2:30 AM", 
 				       "3:00 AM", "3:30 AM", "4:00 AM", "4:30 AM", "5:00 AM", "5:30 AM", 
 				       "6:00 AM", "6:30 AM", "7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM", 
@@ -71,12 +73,14 @@ Rails::Initializer.run do |config|
   #  else evil will occur.  (And the server won't start)
   START_TIME = "6:00 AM"
   END_TIME = "10:00 PM"
-  
+
+   #Don't change any of these either.
   TIME_SLOTS = ALL_TIMES[ALL_TIMES.index(START_TIME)..ALL_TIMES.index(END_TIME)]
-  
   SLOT_NAMES = ["SlotA", "SlotB", "SlotC", "SlotD" ]
   DAYS = [":sat", ":sun", ":mon", ":tue", ":wed", ":thu", ":fri"]
-  
+
+
+   #This is actually pretty useless... it's from before I pulled the user info from the joomla database.  Nice for debugging though.
   USERS = {:Closed => -2, :Blocked => -1, :Empty => nil, :Dave => 1, :Dan => 2, :Carol => 3, :Farah => 4, :Mina => 5, :Reg => 6, :Sarah => 7}
   
   JSESSION_NAME = `php /Library/WebServer/Documents/Joomla/tech.php`
@@ -84,6 +88,8 @@ Rails::Initializer.run do |config|
    #This is the number of weeks to hold on to before archiving.  
   MAX_WEEKS = 5
 
-  TABLE_BACKGROUND_COLOR = "#689"
+
+   #You're welcome to change this to whatever color suits your theme.
+  TABLE_BACKGROUND_COLOR = "lightGrey"
   
 end
