@@ -86,8 +86,8 @@ class CalendarController < ApplicationController
      redirect_to (request.env["HTTP_REFERER"] ||= "/") 
     end
 
-    unless @sd.week.init
-      @day.being_edited = (DateTime.now - 1.year)
+    unless @sd.week.init || admin?
+      @sd.being_edited = (DateTime.now - 1.year)
       flash[:notice] = "The Day You Were Trying To Edit Has Not Been Initialized."
       redirect_to (request.env["HTTP_REFERER"] ||= "/")
     end
@@ -222,6 +222,8 @@ class CalendarController < ApplicationController
 
   def new_week
     @week = Week.new_next
+    @week.init? = true;
+    @week.save!
     redirect_to request.env["HTTP_REFERER"] ||= {:controller => :calendar, :action => :view}
   end
   

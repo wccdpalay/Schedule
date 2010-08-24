@@ -11,7 +11,7 @@
           background-image: url("https://{request.env["HTTP_HOST"]}/templates/images/blockcontentbullets.png");
         }
         caption, table{
-          background-color: "#{TABLE_BACKGROUND_COLOR}";
+          background-color: #{TABLE_BACKGROUND_COLOR};
         }
     =# The TABLE_BACKGROUND_COLOR constant is located in config/environment.rb   Don't forget to restart the server with
     =# touch current/tmp/restart.txt after changing the environment.rb file
